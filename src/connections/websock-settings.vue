@@ -9,15 +9,15 @@
       <h3>Websocket</h3>
       <v-chip small :color="status_color">{{status_txt}}</v-chip>
     </div>
-    <p>The websocket uses JSON messages of the form
+    <!-- <p>The websocket uses JSON messages of the form
     <code>{"topic":"...", "payload":...}</code>. Messages for the dashboard
     configuration have topics starting with <code>$config/</code>.
     </p>
     <p>To load/save the config over websocket load the dashboard with a query string
-    of the form <code>?ws=&lt;websocket-url&gt;</code>.</p>
+    of the form <code>?ws=&lt;websocket-url&gt;</code>.</p> -->
     <v-text-field label="websocket server address" persistent-hint clearable
         :value="config.address" @change="handleAddress" :rules="[validateAddress]"
-        hint="wss://server.example.com/mydash, ws://localhost:1880/ws/fd">
+        hint="ws://localhost:1880/ws/flexdash">
     </v-text-field>
     <v-checkbox hide-details label="enable" :disabled="disable"
                 :input-value="config.enabled" @change="config.enabled=$event"></v-checkbox>

@@ -19,25 +19,24 @@ Sends a pre-determined value when toggled on or off. The current state can be se
 value input: the toggle will be "on" if the value is equal to the "on_value" input.`,
 
   props: {
-    value: { default: null, dynamic: "toggle", tip: "set toggle value" },
-    enabled: { type: Boolean, default: true },
     color: { type: String, default: "primary" },
-    on_value: { default: true, tip: "value sent when switched on" },
-    off_value: { default: false, tip: "value sent when switched off" },
-    show_value: { type: Boolean, default: true, tip: "show current value" },
   },
 
   output: { default: null },
 
   data() { return {
     val: 0,  // current value being displayed, separate from this.value to avoid mutating prop
+    show_value: true,
+    off_value: 'OFF',
+    on_value: 'ON',
+    enabled: true,
   }},
 
   computed: {
     // actual bindings passed into v-switch, these are a bit of a massage of the props
     // 'cause of name changes and some heuristics
     bindings() { return {
-      //value: this.val,
+      // value: this.val,
       inputValue: this.val,
       disabled: !this.enabled,
       color: this.color,
@@ -53,15 +52,16 @@ value input: the toggle will be "on" if the value is equal to the "on_value" inp
     },
   },
 
-  watch: {
-    value: { immediate: true, handler(v) { this.val = v } },
-  },
+  // watch: {
+  //   value: { immediate: true, handler(v) { this.val = v } },
+  // },
 
   methods: {
     // change from v-switch is only emitted when the user toggles, not when input value changes
     change(ev) {
       console.log("toggle event:", ev)
       this.$emit('send', ev)
+      this.val = ev
     },
   },
 

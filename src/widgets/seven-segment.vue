@@ -7,7 +7,7 @@
        the title is rendered as v-card-text while the value is rendered here as v-card-title,
        that's so the value is more prominent than the title... ma-auto applies auto margins all
        around, which centers the value. -->
-  <v-card-title v-if="!chip" class="headline pa-0 flex-grow-1">
+  <v-card-title class="headline pa-0 flex-grow-1">
     <span class="ma-auto" :style="statStyle">
       <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
       <div style="
@@ -72,9 +72,6 @@
       <!-- <span class="unit">{{unitTxt}}</span> -->
     </span>
   </v-card-title>
-  <div v-else class="flex-grow-1 d-flex justify-center align-center">
-    <v-chip :color="finalColor">{{valTxt}}<span class="unit">{{unitTxt}}</span></v-chip>
-  </div>
 </template>
 
 <style scoped>
@@ -97,8 +94,6 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    unit: { type: String, default: "", tip: "superscript after the value" },
-
     port_A: { default: "", dynamic: "GND" },
     port_B: { default: "", dynamic: "GND" },
     port_C: { default: "", dynamic: "GND" },
@@ -107,16 +102,7 @@ the high-threshold. For string values low and high colors are selected using reg
     port_F: { default: "", dynamic: "GND" },
     port_G: { default: "", dynamic: "GND" },
 
-
-
-    color: { type: String, default: "red", tip: "value color, null->text color" },
-    low_color: { type: String, default: "blue", tip: "color below low threshold" },
-    high_color: { type: String, default: "pink", tip: "color above high threshold" },
-    low_threshold: { type: Number, default: null, tip: "threshold for low_color, null to disable" },
-    high_threshold:{ type: Number, default: null, tip: "threshold for high_color, null to disable" },
-    low_regexp: { type: String, default: null, tip: "match produces low_color for non-number value" },
-    high_regexp: { type: String, default: null, tip: "match produces high_color for non-number value" },
-    chip: { type: Boolean, default: false, tip: "display value in a chip/pill" },
+    color: { type: String, default: "red", tip: "value color, null->text color" }
   },
 
   computed: {

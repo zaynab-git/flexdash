@@ -325,10 +325,10 @@ const demo_tabs = {
       "t0001": { "id":"t0001", "title":"websock", "icon":"resistor-nodes", "grids":["g0001"] } },
     "grids": {
       "g0001": { "id": "g0001", "kind": "FixedGrid",
-                  "widgets": ["w0015","w0016","w0017","w0018","w0019","w0020","w0021","w0022","w0023"] } },
+                  "widgets": ["w0016","w0017","w0018","w0019","w0020","w0021","w0022","w0023"] } },
     "widgets": {
-      "w0015": { "kind": "Markdown", "id": "w0015", "cols": 5, "rows": 7, "dynamic": {},
-                  "static": { "title": "", "text": websock_text } },
+      // "w0015": { "kind": "Markdown", "id": "w0015", "cols": 5, "rows": 7, "dynamic": {},
+      //             "static": { "title": "", "text": websock_text } },
       "w0016": { "kind": "seven-segment", "id": "w0016",
                   "static": { "title": "seven segment", "unit": "" },
                   "dynamic": { "port_A": "GND", "port_B": "GND" }, "rows": 2, "cols": 1 },

@@ -15,7 +15,7 @@
 
     <!-- connections pop-up dialog, rendered eagerly 'cause we want those components to
          do work for us from the get-go -->
-    <v-dialog eager v-model="show_dialog">
+    <v-dialog width="30rem" eager v-model="show_dialog">
       <v-card>
         <v-card-title class="d-flex">
           <span>Server Connections</span>
@@ -31,7 +31,7 @@
 
         <!-- individual types of connections -->
         <masonry class="v-card__text">
-          <masonry-brick>
+          <!-- <masonry-brick>
             <div>
               <h3 class="mb-1">Saving the dashboard config</h3>
               <p>The dashboard's configuration is generally saved to the connection from
@@ -41,13 +41,13 @@
                 <v-chip class="ml-3">{{config_source_name}}</v-chip>
               </div>
             </div>
-          </masonry-brick>
+          </masonry-brick> -->
 
-          <masonry-brick>
+          <!-- <masonry-brick>
             <sockio-settings :connection="connections['sockio'].conn" :config="sockio_config"
                              @change="changeConfig('sockio', $event)">
             </sockio-settings>
-          </masonry-brick>
+          </masonry-brick> -->
 
           <masonry-brick>
             <websock-settings :connection="connections['websocket'].conn" :config="websock_config"
@@ -55,11 +55,11 @@
             </websock-settings>
           </masonry-brick>
 
-          <masonry-brick>
+          <!-- <masonry-brick>
             <demo-settings :connection="connections['demo'].conn" :config="demo_config"
                            @change="changeConfig('demo', $event)">
             </demo-settings>
-          </masonry-brick>
+          </masonry-brick> -->
         </masonry>
       </v-card>
     </v-dialog>
@@ -83,7 +83,7 @@ export default {
   components: { Masonry, MasonryBrick, DemoSettings, WebsockSettings, SockioSettings },
 
   data: ()=> ({
-    show_dialog: false, // modal dialog box to configure connections
+    show_dialog: true, // modal dialog box to configure connections
     connections: {
       demo: { connClass: DemoConnection, settClass: DemoSettings },
       websocket: { connClass: WebsockConnection, settClass: WebsockSettings },
