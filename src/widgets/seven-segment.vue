@@ -16,55 +16,56 @@
       height: 98px;
       background: #ffffff;"
       >
-        <div style="position: absolute;
-        width: 9px;
-        height: 36px;
-        left: 46px;
-        top: 10px;
-        border-radius: 10px 0px 0px 10px;"
+        <div :style="{position: 'absolute',
+        width: '9px',
+        height: '36px',
+        left: '46px',
+        top: '10px',
+        background: state(port_B),
+        borderRadius: '10px 0px 0px 10px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '9px',
+        height: '36px',
+        left: '6px',
+        top: '10px',
+        background: state(port_F),
+        borderRadius: '0px 10px 10px 0px'}"
         :class="state"></div>
-        <div style="position: absolute;
-        width: 9px;
-        height: 36px;
-        left: 6px;
-        top: 10px;
-        border-radius: 0px 10px 10px 0px;"
-        :class="state"></div>
-        <div style="position: absolute;
-        width: 9px;
-        height: 36px;
-        left: 6px;
-        top: 53px;
-        border-radius: 0px 10px 10px 0px;"
-        :class="state"></div>
-        <div style="position: absolute;
-        width: 9px;
-        height: 36px;
-        left: 46px;
-        top: 53px;
-        border-radius: 10px 0px 0px 10px;"
-        :class="state"></div>
-        <div style="position: absolute;
-        width: 36px;
-        height: 9px;
-        left: 12px;
-        top: 5px;
-        border-radius: 0px 0px 10px 10px;"
-        :class="state"></div>
-        <div style="position: absolute;
-        width: 36px;
-        height: 9px;
-        left: 12px;
-        top: 45px;
-        border-radius: 10px;"
-        :class="state"></div>
-        <div style="position: absolute;
-        width: 36px;
-        height: 9px;
-        left: 12px;
-        top: 84px;
-        border-radius: 10px 10px 0px 0px;"
-        :class="state"></div>
+        <div :style="{position: 'absolute',
+        width: '9px',
+        height: '36px',
+        left: '6px',
+        top: '53px',
+        background: state(port_E),
+        borderRadius: '0px 10px 10px 0px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '9px',
+        height: '36px',
+        left: '46px',
+        top: '53px',
+        background: state(port_C),
+        borderRadius: '10px 0px 0px 10px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '36px',
+        height: '9px',
+        left: '12px',
+        top: '5px',
+        background: state(port_A),
+        borderRadius: '0px 0px 10px 10px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '36px',
+        height: '9px',
+        left: '12px',
+        top: '45px',
+        background: state(port_G),
+        borderRadius: '10px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '36px',
+        height: '9px',
+        left: '12px',
+        top: '84px',
+        background: state(port_D),
+        borderRadius: '10px 10px 0px 0px'}"></div>
       </div>
 
       <!-- <span class="font-weight-medium" style="font-size: 125%; line-height: 125%;">{{valTxt}}</span> -->
@@ -82,7 +83,7 @@
 
 <script scoped>
 export default {
-  name: 'Stat',
+  name: 'seven-segment',
   // help displayed in the UI: the first line is used in the widgets menu and is always shown in
   // the edit card. Successive lines can be expanded in the card and are markdown-formatted.
   help: `Display colored numeric or text status value.
@@ -97,8 +98,18 @@ the high-threshold. For string values low and high colors are selected using reg
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
     unit: { type: String, default: "", tip: "superscript after the value" },
-    value: { default: null, dynamic: "$demo_random" },
-    color: { type: String, default: null, tip: "value color, null->text color" },
+
+    port_A: { default: "", dynamic: "GND" },
+    port_B: { default: "", dynamic: "GND" },
+    port_C: { default: "", dynamic: "GND" },
+    port_D: { default: "", dynamic: "GND" },
+    port_E: { default: "", dynamic: "GND" },
+    port_F: { default: "", dynamic: "GND" },
+    port_G: { default: "", dynamic: "GND" },
+
+
+
+    color: { type: String, default: "red", tip: "value color, null->text color" },
     low_color: { type: String, default: "blue", tip: "color below low threshold" },
     high_color: { type: String, default: "pink", tip: "color above high threshold" },
     low_threshold: { type: Number, default: null, tip: "threshold for low_color, null to disable" },
@@ -118,8 +129,8 @@ the high-threshold. For string values low and high colors are selected using reg
       else if (this.value === null) return "--";
       else return this.value;
     },
-    state() {
-      return (this.value == "ON" ? "background: " + this.color : "background: grey");
+    val() {
+      this.value
     },
     // compute the color for number values
     numColor() {
@@ -143,6 +154,12 @@ the high-threshold. For string values low and high colors are selected using reg
       return this.finalColor ? { color: this.finalColor } : {}
     },
   },
+
+  methods: {
+    state(port_val) {
+      return (port_val == "ON" ? this.color : 'grey');
+    }
+  }
 
 }
 </script>
