@@ -9,8 +9,66 @@
        around, which centers the value. -->
   <v-card-title v-if="!chip" class="headline pa-0 flex-grow-1">
     <span class="ma-auto" :style="statStyle">
-      <span class="font-weight-medium" style="font-size: 125%; line-height: 125%;">{{valTxt}}</span>
-      <span class="unit">{{unitTxt}}</span>
+      <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
+      <div style="
+      position: relative;
+      width: 60px;
+      height: 98px;
+      background: #ffffff;"
+      >
+        <div style="position: absolute;
+        width: 9px;
+        height: 36px;
+        left: 46px;
+        top: 10px;
+        border-radius: 10px 0px 0px 10px;"
+        :class="state"></div>
+        <div style="position: absolute;
+        width: 9px;
+        height: 36px;
+        left: 6px;
+        top: 10px;
+        border-radius: 0px 10px 10px 0px;"
+        :class="state"></div>
+        <div style="position: absolute;
+        width: 9px;
+        height: 36px;
+        left: 6px;
+        top: 53px;
+        border-radius: 0px 10px 10px 0px;"
+        :class="state"></div>
+        <div style="position: absolute;
+        width: 9px;
+        height: 36px;
+        left: 46px;
+        top: 53px;
+        border-radius: 10px 0px 0px 10px;"
+        :class="state"></div>
+        <div style="position: absolute;
+        width: 36px;
+        height: 9px;
+        left: 12px;
+        top: 5px;
+        border-radius: 0px 0px 10px 10px;"
+        :class="state"></div>
+        <div style="position: absolute;
+        width: 36px;
+        height: 9px;
+        left: 12px;
+        top: 45px;
+        border-radius: 10px;"
+        :class="state"></div>
+        <div style="position: absolute;
+        width: 36px;
+        height: 9px;
+        left: 12px;
+        top: 84px;
+        border-radius: 10px 10px 0px 0px;"
+        :class="state"></div>
+      </div>
+
+      <!-- <span class="font-weight-medium" style="font-size: 125%; line-height: 125%;">{{valTxt}}</span> -->
+      <!-- <span class="unit">{{unitTxt}}</span> -->
     </span>
   </v-card-title>
   <div v-else class="flex-grow-1 d-flex justify-center align-center">
@@ -59,6 +117,9 @@ the high-threshold. For string values low and high colors are selected using reg
       if (typeof this.value == 'number') return Math.round(this.value*10.0)/10.0
       else if (this.value === null) return "--";
       else return this.value;
+    },
+    state() {
+      return (this.value == "ON" ? "background: " + this.color : "background: grey");
     },
     // compute the color for number values
     numColor() {
