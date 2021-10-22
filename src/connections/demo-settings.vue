@@ -5,7 +5,7 @@
 
 <template>
   <div>
-    <h3 class="mb-1">Demo</h3>
+    <!-- <h3 class="mb-1">Demo</h3>
     <p class="mb-2">The demo connection allows various demo tabs to be injected into the
     dashboard config.
     If FlexDash starts-up without config they are all injected as a "Welcome to FlexDash".</p>
@@ -14,7 +14,7 @@
     <p v-for="d in this.connection.demos" :key="d" class="mb-1">
       {{d}}
       <v-btn x-small @click="injectTab(d)">Inject</v-btn>
-    </p>
+    </p> -->
   </div>
 </template>
 

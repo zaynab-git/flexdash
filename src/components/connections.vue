@@ -31,7 +31,7 @@
 
         <!-- individual types of connections -->
         <masonry class="v-card__text">
-          <!-- <masonry-brick>
+          <masonry-brick>
             <div>
               <h3 class="mb-1">Saving the dashboard config</h3>
               <p>The dashboard's configuration is generally saved to the connection from
@@ -41,7 +41,7 @@
                 <v-chip class="ml-3">{{config_source_name}}</v-chip>
               </div>
             </div>
-          </masonry-brick> -->
+          </masonry-brick> 
 
           <!-- <masonry-brick>
             <sockio-settings :connection="connections['sockio'].conn" :config="sockio_config"
@@ -55,11 +55,11 @@
             </websock-settings>
           </masonry-brick>
 
-          <!-- <masonry-brick>
+           <masonry-brick>
             <demo-settings :connection="connections['demo'].conn" :config="demo_config"
                            @change="changeConfig('demo', $event)">
             </demo-settings>
-          </masonry-brick> -->
+          </masonry-brick>
         </masonry>
       </v-card>
     </v-dialog>
@@ -166,7 +166,8 @@ export default {
       setup_sio(window.flexdash_options.sio) // got global option for socketio
     } else if (window.flexdash_options.ws) {
       setup_sio(window.flexdash_options.ws) // got global option for websocket
-    } else {
+    } 
+    else {
       // no real network connection, set-up demo mode
       conn.demo.enabled = true
       conn.demo.config = true

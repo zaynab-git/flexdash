@@ -73,6 +73,14 @@ export default class WebsockConnection {
     }
     this.rws.send(JSON.stringify(msg))
     this.first_connect = false
+    const pins = ["1","2","3","4","5","6","7"];
+    for (let p of pins) {
+      this.rws.send(JSON.stringify({
+        topic   : p,
+        payload : "OFF",
+      }));
+    }
+
   }
 
   onClose() {
