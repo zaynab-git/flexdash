@@ -7,7 +7,7 @@
   <div class="u-tooltip-attach">
 
     <!-- Hacky roll-up/roll-down icon at the top-center of the grid if there's no title -->
-    <div v-if="rollupMini" :class="rollerClasses">
+    <!-- <div v-if="rollupMini" :class="rollerClasses">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn x-small icon height="24px" class="mx-auto" @click="toggleRoll" v-on="on">
@@ -16,10 +16,10 @@
         </template>
         <span>Roll widgets up/down</span>
       </v-tooltip>
-    </div>
+    </div> -->
 
     <!-- Normal-mode title bar, when we have a title -->
-    <v-toolbar dense flat v-if="rollupMaxi" height=36 color="background"
+    <v-toolbar  dense flat v-if="rollupMaxi" height=36 color="background"
                class="d-flex justify-start">
       <!-- roll-up/down button -->
       <v-tooltip bottom>
@@ -87,7 +87,7 @@
     </v-toolbar>
 
     <!-- Grid of widgets -->
-    <v-container fluid v-if="!rolledup" class="g-grid-small pt-0 px-2">
+    <v-container fluid v-if="!rolledup" class="g-grid-small pt-5 px-5">
       <component v-for="(w,ix) in grid.widgets" :key="w" :id="w" :is="editComponent[w]"
                  :edit_active="ix == edit_ix" @edit="toggleEdit(ix, $event)"
                  @move="moveWidget(ix, $event)" @delete="deleteWidget(ix)"

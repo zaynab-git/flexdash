@@ -329,9 +329,9 @@ const demo_tabs = {
     "widgets": {
       // "w0015": { "kind": "Markdown", "id": "w0015", "cols": 5, "rows": 7, "dynamic": {},
       //             "static": { "title": "", "text": websock_text } },
-      "w0016": { "kind": "seven-segment", "id": "w0016",
+      "w0016": { "kind": "seven-segment-2", "id": "w0016",
                   "static": { "title": "seven segment", "unit": "" },
-                  "dynamic": { "port_A": "GND", "port_B": "GND" }, "rows": 2, "cols": 1 },
+                  "dynamic": { "port_A": "GND", "port_B": "GND" }, "rows": 2, "cols": 2 },
       "w0017": { "kind": "Toggle", "id": "w0017",
                   "static": { "title": "input 1", "on_value":"ON", "off_value":"OFF"},
                   "dynamic": { "value": "ON" }, "output": "1", "rows": 1, "cols": 1 },

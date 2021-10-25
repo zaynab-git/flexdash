@@ -57,7 +57,7 @@ export {walkTree}
 // empty objects for addTab, addGrid, etc. The ID is missing and must be added!
 const empty_tab = { icon: 'rocket-launch', title: "" }
 const empty_grid = { kind: 'FixedGrid', title: "", widgets: [] }
-const empty_widget = { kind: 'Stat', rows:2, cols:1, static:{title:"Stat"}, dynamic:{} }
+const empty_widget = { kind: 'Stat', rows:1, cols:1, static:{title:"Stat"}, dynamic:{} }
 
 export class Store {
   constructor () {
@@ -393,9 +393,26 @@ export class Store {
     const grid = this.gridByID(grid_id)
     const widget_id = this.genId(this.config.widgets, "w")
     const widget_ix = grid.widgets.length
+    let col = 1;
+    let row = 1;
+    switch(kind) {
+      case 'seven-segment-1':
+        col = 1;
+        row = 2;
+        break;
+      case 'seven-segment-2':
+        col = 2;
+        row = 2;
+        break;
+      case 'toggle':
+          col = 1;
+          row = 1;
+          break;
+    }
+    const emp_widget = { kind: kind, rows:row, cols:col, static:{title:""}, dynamic:{} }
     this.qMutation("add a widget", [ // FIXME: add tab name when implemented
       [`widgets/${widget_id}`,
-        { ...cloneDeep(empty_widget), id: widget_id, kind, static:{title:kind}, dynamic:{} } ],
+        { ...cloneDeep(emp_widget), id: widget_id, kind, static:{title:kind}, dynamic:{} } ],
       [`grids/${grid_id}/widgets/${widget_ix}`, widget_id ],
     ])
     return widget_ix

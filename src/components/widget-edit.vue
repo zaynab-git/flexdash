@@ -21,7 +21,7 @@
   <div class="widget-edit" :style="widgetStyle">
     <!-- v-menu is used to display a floating v-card below the component for editing
          We control the activation and deactivation of the menu ourselves, though. -->
-    <v-menu :value="edit_active && reposition" offset-y allow-overflow min-width="80%"
+    <v-menu :value="edit_active && reposition" offset-y allow-overflow min-width="50%"
             content-class="popup-spacer"
             :close-on-content-click="false" :close-on-click="false">
 
@@ -333,7 +333,7 @@ export default {
     // list of child prop names for editing, excluding title
     edit_props() {
       const cp = Object.keys(this.child_props)
-      return cp.filter(p => p !== 'title').sort()
+      return cp.filter(p => p !== 'title')
     },
 
     // handle a non-vue-standard "help" option in a widget
@@ -365,7 +365,7 @@ export default {
     edit_active(val) {
       if (val) {
         this.propStatic()
-        this.sd_keys = Object.keys(this.$store.sd).sort()
+        this.sd_keys = Object.keys(this.$store.sd)
       }
     },
   },

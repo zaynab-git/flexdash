@@ -13,22 +13,22 @@
       <div style="
       position: relative;
       width: 60px;
-      height: 98px;
-      background: #ffffff;"
+      height: 98px;"
+      class="d-inline-block mx-1"
       >
         <div :style="{position: 'absolute',
         width: '9px',
         height: '36px',
         left: '46px',
         top: '10px',
-        background: state(port_B),
+        background: state('pin B', 'digit 1'),
         borderRadius: '10px 0px 0px 10px'}"></div>
         <div :style="{position: 'absolute',
         width: '9px',
         height: '36px',
         left: '6px',
         top: '10px',
-        background: state(port_F),
+        background: state('pin F', 'digit 1'),
         borderRadius: '0px 10px 10px 0px'}"
         :class="state"></div>
         <div :style="{position: 'absolute',
@@ -36,38 +36,102 @@
         height: '36px',
         left: '6px',
         top: '53px',
-        background: state(port_E),
+        background: state('pin E', 'digit 1'),
         borderRadius: '0px 10px 10px 0px'}"></div>
         <div :style="{position: 'absolute',
         width: '9px',
         height: '36px',
         left: '46px',
         top: '53px',
-        background: state(port_C),
+        background: state('pin C', 'digit 1'),
         borderRadius: '10px 0px 0px 10px'}"></div>
         <div :style="{position: 'absolute',
         width: '36px',
         height: '9px',
         left: '12px',
         top: '5px',
-        background: state(port_A),
+        background: state('pin A', 'digit 1'),
         borderRadius: '0px 0px 10px 10px'}"></div>
         <div :style="{position: 'absolute',
         width: '36px',
         height: '9px',
         left: '12px',
         top: '45px',
-        background: state(port_G),
+        background: state('pin G', 'digit 1'),
         borderRadius: '10px'}"></div>
         <div :style="{position: 'absolute',
         width: '36px',
         height: '9px',
         left: '12px',
         top: '84px',
-        background: state(port_D),
+        background: state('pin D', 'digit 1'),
         borderRadius: '10px 10px 0px 0px'}"></div>
       </div>
-
+      <div :style="{position: 'relative',
+        width: '9px',
+        height: '9px',
+        bottom: '10px',
+        background: state('pin DP'),
+        borderRadius: '10px'}"
+        class="d-inline-block">
+      </div>
+      <div style="
+      position: relative;
+      width: 60px;
+      height: 98px;"
+      class="d-inline-block mx-1"
+      >
+        <div :style="{position: 'absolute',
+        width: '9px',
+        height: '36px',
+        left: '46px',
+        top: '10px',
+        background: state('pin B', 'digit 2'),
+        borderRadius: '10px 0px 0px 10px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '9px',
+        height: '36px',
+        left: '6px',
+        top: '10px',
+        background: state('pin F', 'digit 2'),
+        borderRadius: '0px 10px 10px 0px'}"
+        :class="state"></div>
+        <div :style="{position: 'absolute',
+        width: '9px',
+        height: '36px',
+        left: '6px',
+        top: '53px',
+        background: state('pin E', 'digit 2'),
+        borderRadius: '0px 10px 10px 0px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '9px',
+        height: '36px',
+        left: '46px',
+        top: '53px',
+        background: state('pin C', 'digit 2'),
+        borderRadius: '10px 0px 0px 10px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '36px',
+        height: '9px',
+        left: '12px',
+        top: '5px',
+        background: state('pin A', 'digit 2'),
+        borderRadius: '0px 0px 10px 10px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '36px',
+        height: '9px',
+        left: '12px',
+        top: '45px',
+        background: state('pin G', 'digit 2'),
+        borderRadius: '10px'}"></div>
+        <div :style="{position: 'absolute',
+        width: '36px',
+        height: '9px',
+        left: '12px',
+        top: '84px',
+        background: state('pin D', 'digit 2'),
+        borderRadius: '10px 10px 0px 0px'}"></div>
+      </div>
       <!-- <span class="font-weight-medium" style="font-size: 125%; line-height: 125%;">{{valTxt}}</span> -->
       <!-- <span class="unit">{{unitTxt}}</span> -->
     </span>
@@ -80,7 +144,7 @@
 
 <script scoped>
 export default {
-  name: 'seven-segment',
+  name: 'seven-segment-2',
   // help displayed in the UI: the first line is used in the widgets menu and is always shown in
   // the edit card. Successive lines can be expanded in the card and are markdown-formatted.
   help: `Display colored numeric or text status value.
@@ -94,13 +158,17 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    port_A: { default: "", dynamic: "GND" },
-    port_B: { default: "", dynamic: "GND" },
-    port_C: { default: "", dynamic: "GND" },
-    port_D: { default: "", dynamic: "GND" },
-    port_E: { default: "", dynamic: "GND" },
-    port_F: { default: "", dynamic: "GND" },
-    port_G: { default: "", dynamic: "GND" },
+    "pin A": { default: "", dynamic: "GND" },
+    "pin B": { default: "", dynamic: "GND" },
+    "pin C": { default: "", dynamic: "GND" },
+    "pin D": { default: "", dynamic: "GND" },
+    "pin E": { default: "", dynamic: "GND" },
+    "pin F": { default: "", dynamic: "GND" },
+    "pin G": { default: "", dynamic: "GND" },
+    "pin DP": { default: "", dynamic: "GND" },
+    "pin COM": { default: "", dynamic: "GND" },
+    "digit 1": { default: "", dynamic: "GND" },
+    "digit 2": { default: "", dynamic: "GND" },
 
     color: { type: String, default: "red", tip: "value color, null->text color" }
   },
@@ -142,8 +210,11 @@ the high-threshold. For string values low and high colors are selected using reg
   },
 
   methods: {
-    state(port_val) {
-      return (port_val == "ON" ? this.color : 'grey');
+    state(port, digit) {
+     if (this.$props['pin COM'] == 'ON') {
+        return ((this.$props[port] != "ON" && (this.$props[digit] == "ON" || port == 'pin DP') ) ? this.color : 'grey');
+     }
+    return ((this.$props[port] == "ON" && (this.$props[digit] == "ON" || port == 'pin DP')) ? this.color : 'grey');
     }
   }
 

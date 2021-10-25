@@ -138,7 +138,7 @@ export default {
     // kind of inner component, really name of html element
     kind() { return this.$config.kind },
     // list of keys from this.$sd to show in editing combobox
-    sdKeys() { return this.propNames(this.$sd).sort() },
+    sdKeys() { return this.propNames(this.$sd)},
     // output binding, well, really just the topic for messages sent to the server
     outputBinding() {
       if (this.edit_active) {
@@ -153,9 +153,9 @@ export default {
     // list if child props for editing, includes title, which often is not in childProps
     editProps() {
       if (this.childProps.includes('title'))
-        return ['_output'].concat(this.childProps).sort()
+        return ['_output'].concat(this.childProps)
       else
-        return ['_output', 'title'].concat(this.childProps).sort()
+        return ['_output', 'title'].concat(this.childProps)
     },
   },
 
@@ -168,7 +168,6 @@ export default {
       let cp = []
       if (this.$refs.comp && this.$refs.comp._isVue)
         cp = self.propNames(this.$refs.comp.$props)
-      cp = cp.sort()
       self.childProps = cp
       //console.log(`childProps: ${self.childProps.join(",")}`)
 

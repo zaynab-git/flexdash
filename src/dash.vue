@@ -6,7 +6,7 @@
   <v-app>
 
     <!-- Navigation drawer opening from the left on small devices to show tabs -->
-    <v-navigation-drawer v-model="sidebar" app mini-variant clipped v-if="gotConfig">
+    <v-navigation-drawer v-model="sidebar" v-if="gotConfig" fixed app right=true mobile-breakpoint="960" width="300">
       <div v-if="false">
       <v-tabs vertical v-model=tab_ix>
         <v-tab v-for="t in dash_tabs" :key="t" class="px-0" style="min-width: auto">
@@ -17,7 +17,7 @@
     </v-navigation-drawer>
 
     <!-- Top title/navigation bar -->
-    <v-app-bar dense app clipped-left color="surface">
+    <v-app-bar  flat dense app color="surface">
       <!-- Hamburger menu shown on smallest devices only -->
       <span class="hidden-sm-and-up">
         <v-app-bar-nav-icon @click="sidebar = !sidebar"></v-app-bar-nav-icon>
@@ -28,7 +28,6 @@
                        style="font-variant: small-caps;">
         {{ title }}
       </v-toolbar-title>
-      <div class="version d-flex">alpha v{{version}}</div>
 
       <!-- Tabs -->
       <v-tabs v-model=tab_ix icons-and-text center-active class="hidden-xs-only" v-if="gotConfig">
@@ -78,9 +77,9 @@
         </template>
         <!-- Settings Menu -->
         <v-list dense>
-          <v-list-item>
+          <!-- <v-list-item>
             <v-switch v-model="$root.editMode" inset label="Edit"></v-switch>
-          </v-list-item>
+          </v-list-item> -->
           <v-list-item>
             <v-switch v-model="$vuetify.theme.dark" inset label="Dark"></v-switch>
           </v-list-item>
