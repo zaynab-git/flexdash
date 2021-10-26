@@ -404,6 +404,14 @@ export class Store {
         col = 2;
         row = 2;
         break;
+      case 'seven-segment-3':
+          col = 2;
+          row = 2;
+          break;
+      case 'seven-segment-4':
+            col = 3;
+            row = 2;
+            break;
       case 'toggle':
           col = 1;
           row = 1;
