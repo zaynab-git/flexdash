@@ -393,6 +393,8 @@ export class Store {
     const grid = this.gridByID(grid_id)
     const widget_id = this.genId(this.config.widgets, "w")
     const widget_ix = grid.widgets.length
+
+    let emp_widget = { kind: kind, rows:1, cols:1, static:{title:""}, dynamic:{} }
     let col = 1;
     let row = 1;
     switch(kind) {
@@ -416,12 +418,19 @@ export class Store {
               col = 1;
               row = 3;
               break;
-      case 'toggle':
+      case 'Toggle':
           col = 1;
           row = 1;
+          Object.assign(emp_widget, {output: ''})
           break;
+      case 'push-button':
+            col = 1;
+            row = 1;
+            Object.assign(emp_widget, {output: ''})
+            break;
     }
-    const emp_widget = { kind: kind, rows:row, cols:col, static:{title:""}, dynamic:{} }
+    emp_widget.cols = col
+    emp_widget.rows = row
     this.qMutation("add a widget", [ // FIXME: add tab name when implemented
       [`widgets/${widget_id}`,
         { ...cloneDeep(emp_widget), id: widget_id, kind, static:{title:kind}, dynamic:{} } ],

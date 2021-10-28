@@ -22,7 +22,6 @@ value input: the toggle will be "on" if the value is equal to the "on_value" inp
     color: { type: String, default: "primary" },
   },
 
-  output: { default: null },
 
   data() { return {
     val: 0,  // current value being displayed, separate from this.value to avoid mutating prop

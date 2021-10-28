@@ -3,50 +3,42 @@
 -->
 <template>
   <div class="pushbutton d-flex align-center justify-center">
-    <v-tooltip top :open-on-hover="!!tooltip">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn large dense class="ma-auto" max-width="95%"
+    
+    <v-btn-toggle class="mt-7"> 
+      <v-btn input-value="press" @click="clickEv($event)" depressed small :color="this.color">
+      <span class="white--text">{{ (press ? 'pressed' : 'unpressed') }}</span>
+    </v-btn>
+    <!-- <v-btn large dense class="ma-auto" max-width="95%"
                v-bind="Object.assign(bindings, attrs)" v-on="on" @click="clickEv($event)">
           <v-icon :large="!title"  v-if="icon">mdi-{{icon}}</v-icon> <span>{{ title }}</span>
-        </v-btn>
-      </template>
-      <span v-if="tooltip">{{ tooltip }}</span>
-    </v-tooltip>
+    </v-btn> -->
+    </v-btn-toggle>
   </div>
 </template>
 
 <script scoped>
 export default {
-  name: 'PushButton',
+  name: 'push-button',
 
   help: `Button to send an event.
 Pressing the button sends a message with a specified payload to a topic.
 The button may contain an icon and/or a title string and is centered in the widget.`,
 
   props: {
-    enabled: { default: true },
-    color: { default: "primary" },
-    output_value: { default: 25, tip: "value sent on click" },
-    icon: { default: null, tip: "material-design-icon name" },
-    title: { default: 'Button' },
-    tooltip: { default: null, tip: "tooltip to show on hover" },
+    color: { default: "primary" }
   },
 
-  output: { default: null },
 
-  computed: {
-    // actual bindings passed into v-btn
-    bindings() { return {
-      disabled: !this.enabled,
-      color: this.color,
-    }},
-
+  data() { return {
+      press: false,
+    }
   },
 
   methods: {
     clickEv(ev) {
-      console.log("PushButton event:", ev)
-      this.$emit('send', this.output_value)
+      this.press = !this.press
+      console.log("PushButton event:", (this.press ? 'ON' : 'OFF'))
+      this.$emit('send', (this.press ? 'ON' : 'OFF'))
     },
   },
 
