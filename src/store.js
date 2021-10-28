@@ -412,6 +412,10 @@ export class Store {
             col = 3;
             row = 2;
             break;
+      case 'traffic-light':
+              col = 1;
+              row = 3;
+              break;
       case 'toggle':
           col = 1;
           row = 1;
