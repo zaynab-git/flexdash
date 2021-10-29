@@ -14,17 +14,15 @@
         <source src="http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3">  
       </audio> 
       <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
-      <v-icon large :class="(state ? 'shake' : '')" :color="(state ? color : 'grey')"> {{ (state ? 'mdi-bell-ring' : 'mdi-bell') }}</v-icon>
+      <v-icon size="50px" :color="(state ? color : 'grey')" > {{ (state ? 'mdi-led-variant-on' : 'mdi-led-variant-off') }}</v-icon>
 
-      <!-- <span class="font-weight-medium" style="font-size: 125%; line-height: 125%;">{{valTxt}}</span> -->
-      <!-- <span class="unit">{{unitTxt}}</span> -->
     </span>
   </v-card-title>
 </template>
 
 <script scoped>
 export default {
-  name: 'buzzer',
+  name: 'LED',
   // help displayed in the UI: the first line is used in the widgets menu and is always shown in
   // the edit card. Successive lines can be expanded in the card and are markdown-formatted.
   help: `Display colored numeric or text status value.
@@ -45,13 +43,8 @@ the high-threshold. For string values low and high colors are selected using reg
 
   computed: {
     state() {
-      var sound = document.getElementById("myAudio");
       if (this.$props['pin GND'] == 'OFF' && this.$props['pin VDC'] == 'ON') {
-        sound.play();
         return true;
-      }
-      if (sound != null) {
-        sound.pause();
       }
       return false
     }
@@ -61,21 +54,4 @@ the high-threshold. For string values low and high colors are selected using reg
 
 <style scoped>
 .unit { vertical-align: 15%; margin-left: 0.1em; }
-.shake {
-  animation: shake 0.5s;
-  animation-iteration-count: infinite;
-  }
-  @keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
-}
 </style>
