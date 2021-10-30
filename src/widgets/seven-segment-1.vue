@@ -68,11 +68,11 @@
         borderRadius: '10px 10px 0px 0px'}"></div>
       </div>
       <div :style="{position: 'relative',
-        width: '9px',
-        height: '9px',
-        bottom: '10px',
+        width: '12px',
+        height: '12px',
+        bottom: '15px',
         background: state('pin DP'),
-        borderRadius: '10px'}"
+        borderRadius: '5px'}"
         class="d-inline-block">
       </div>
 

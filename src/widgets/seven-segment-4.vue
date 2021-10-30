@@ -68,11 +68,11 @@
         borderRadius: '10px 10px 0px 0px'}"></div>
       </div>
       <div :style="{position: 'relative',
-        width: '9px',
-        height: '9px',
-        bottom: '10px',
+        width: '12px',
+        height: '12px',
+        bottom: '15px',
         background: state('pin DP 1'),
-        borderRadius: '10px'}"
+        borderRadius: '5px'}"
         class="d-inline-block">
       </div>
       <div style="
@@ -132,13 +132,28 @@
         background: state('pin D', 'digit 2'),
         borderRadius: '10px 10px 0px 0px'}"></div>
       </div>
-      <div :style="{position: 'relative',
-        width: '9px',
-        height: '9px',
-        bottom: '10px',
+      <div style="
+      position: relative;
+      width: 13px;
+      height: 98px;"
+      class="d-inline-block mx-1"
+      > 
+      <div :style="{position: 'absolute',
+        width: '12px',
+        height: '12px',
+        bottom: '15px',
         background: state('pin DP 2'),
-        borderRadius: '10px'}"
+        borderRadius: '5px'}"
         class="d-inline-block">
+      </div>
+      <div :style="{position: 'absolute',
+        width: '12px',
+        height: '12px',
+        top: '20px',
+        background: state('pin DP 3'),
+        borderRadius: '5px'}"
+        class="d-inline-block">
+      </div>
       </div>
       <div style="
       position: relative;
@@ -198,11 +213,11 @@
         borderRadius: '10px 10px 0px 0px'}"></div>
       </div>
       <div :style="{position: 'relative',
-        width: '9px',
-        height: '9px',
-        bottom: '10px',
-        background: state('pin DP 3'),
-        borderRadius: '10px'}"
+        width: '12px',
+        height: '12px',
+        bottom: '15px',
+        background: state('pin DP 4'),
+        borderRadius: '5px'}"
         class="d-inline-block">
       </div>
       <div style="
@@ -298,6 +313,7 @@ the high-threshold. For string values low and high colors are selected using reg
     "pin DP 1": { default: "", dynamic: "GND" },
     "pin DP 2": { default: "", dynamic: "GND" },
     "pin DP 3": { default: "", dynamic: "GND" },
+    "pin DP 4": { default: "", dynamic: "GND" },
     "pin COM": { default: "", dynamic: "GND" },
     "digit 1": { default: "", dynamic: "GND" },
     "digit 2": { default: "", dynamic: "GND" },
@@ -346,9 +362,9 @@ the high-threshold. For string values low and high colors are selected using reg
   methods: {
     state(port, digit) {
      if (this.$props['pin COM'] == 'ON') {
-        return ((this.$props[port] != "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3') ) ? this.color : 'grey');
+        return ((this.$props[port] != "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4') ) ? this.color : 'grey');
      }
-    return ((this.$props[port] == "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3')) ? this.color : 'grey');
+    return ((this.$props[port] == "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4')) ? this.color : 'grey');
     }
   }
 

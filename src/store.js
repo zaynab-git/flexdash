@@ -407,27 +407,36 @@ export class Store {
         row = 2;
         break;
       case 'seven-segment-3':
-          col = 2;
-          row = 2;
-          break;
+        col = 2;
+        row = 2;
+        break;
       case 'seven-segment-4':
-            col = 3;
-            row = 2;
-            break;
+        col = 3;
+        row = 2;
+        break;
       case 'traffic-light':
-              col = 1;
-              row = 3;
-              break;
+        col = 1;
+        row = 3;
+        break;
       case 'Toggle':
-          col = 1;
-          row = 1;
-          Object.assign(emp_widget, {output: ''})
-          break;
+        col = 1;
+        row = 1;
+        Object.assign(emp_widget, {output: ''})
+        break;
       case 'push-button':
-            col = 1;
-            row = 1;
-            Object.assign(emp_widget, {output: ''})
-            break;
+        col = 1;
+        row = 1;
+        Object.assign(emp_widget, {output: ''})
+        break;
+      case 'analog-output':
+        col = 2;
+        row = 2;
+        break;
+      case 'analog-input':
+        col = 3;
+        row = 1;
+        Object.assign(emp_widget, {output: ''})
+        break;
     }
     emp_widget.cols = col
     emp_widget.rows = row

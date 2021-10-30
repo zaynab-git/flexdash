@@ -21,7 +21,7 @@
   <div class="widget-edit" :style="widgetStyle">
     <!-- v-menu is used to display a floating v-card below the component for editing
          We control the activation and deactivation of the menu ourselves, though. -->
-    <v-menu :value="edit_active && reposition" offset-y allow-overflow min-width="60%"
+    <v-menu :value="edit_active && reposition" offset-y allow-overflow min-width="50%"
             content-class="popup-spacer"
             :close-on-content-click="false" :close-on-click="false">
 
@@ -91,20 +91,18 @@
                   <span>Move widget towards the bottom-right of the grid</span>
                 </v-tooltip>
               </v-col>
-              <v-col class="d-flex" cols="12" sm="6" md="4">
-                <!-- adjust widget rows -->
+              <!-- <v-col class="d-flex" cols="12" sm="6" md="4">
                 <v-btn small icon @click="adjustRows(-1)" class="ml-2">
                   <v-icon>mdi-minus</v-icon></v-btn>
                 <v-chip small>{{widget.rows}} row{{widget.rows > 1?'s':''}}</v-chip>
                 <v-btn small icon @click="adjustRows(1)">
                   <v-icon>mdi-plus</v-icon></v-btn>
-                <!-- adjust widget columns -->
                 <v-btn small icon @click="adjustCols(-1)" class="ml-2">
                   <v-icon>mdi-minus</v-icon></v-btn>
                 <v-chip small>{{widget.cols}} col{{widget.cols > 1 ? 's' : ''}}</v-chip>
                 <v-btn small icon @click="adjustCols(1)">
                   <v-icon>mdi-plus</v-icon></v-btn>
-              </v-col>
+              </v-col> -->
             </v-row>
 
             <!-- Display component properties for editing -->
