@@ -70,19 +70,27 @@
       <connections @src="config_src=$event" ></connections>
 
       <!-- Settings menu at far right -->
-      <v-menu offset-y min-width="10em" v-model="settings_menu">
+            
+      <v-menu  min-width="15em" offset-y :close-on-content-click="false" >
         <!-- Menu activator, i.e. the button -->
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on"><v-icon>mdi-cog</v-icon></v-btn>
         </template>
         <!-- Settings Menu -->
-        <v-list dense>
-          <!-- <v-list-item>
-            <v-switch v-model="$root.editMode" inset label="Edit"></v-switch>
-          </v-list-item> -->
-          <v-list-item>
-            <v-switch v-model="$vuetify.theme.dark" inset label="Dark"></v-switch>
+          <v-list class="px-3">
+          <v-list-item >
+            <v-list-item-title>{{ $t('setting.theme') }}</v-list-item-title>
+            <v-switch  v-model="$vuetify.theme.dark" inset label="Dark"></v-switch>
           </v-list-item>
+              <v-divider></v-divider>
+          <v-list-item>
+            <v-list-item-title>{{ $t('setting.language') }}</v-list-item-title>
+            <v-select
+          :items="languages"
+          v-model="language"
+        ></v-select>
+          </v-list-item>
+          
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -174,11 +182,22 @@ export default {
 
     config_src: "",
     version: import.meta.env.PACKAGE_VERSION,
+    languages: ['English', 'فارسی']
+
   }),
 
   computed: {
     // gotConfig returns true once store.$config contains a full configuration,
     // don't start to render tabs before everything is there
+    language: {
+      get() {
+        return (this.$i18n.locale == 'fa' ? 'فارسی' : 'English')
+      },
+      set(value) {
+        this.$i18n.locale = (value == 'فارسی' ? 'fa' : 'en')
+      }
+    },
+
     gotConfig() {
       return this.$config.dash.title && this.$config.dash.tabs.length > 0
         && Object.keys(this.$config.tabs).length > 0

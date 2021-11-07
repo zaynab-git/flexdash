@@ -21,7 +21,7 @@
       <v-subheader>Add Widget to the end of the grid</v-subheader>
       <v-list-item v-for="(descr, kind) in widget_list" :key="kind"
                    @click="$emit('select', kind)" link>
-          <v-list-item-title>{{$t(kind)}}</v-list-item-title>
+          <v-list-item-title>{{$t('components.'+kind)}}</v-list-item-title>
           <v-list-item-subtitle v-if="descr">{{descr}}</v-list-item-subtitle>
       </v-list-item>
     </v-list>

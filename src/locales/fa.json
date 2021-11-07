@@ -1,3 +1,16 @@
 {
-    "seven-segment-2": "نمایشگر هفت قسمتی"
+    "components": {
+        "seven-segment-1": "نمایشگر هفت قسمتی 1 رقمی",
+        "seven-segment-2": "نمایشگر هفت قسمتی 2 رقمی",
+        "seven-segment-3": "نمایشگر هفت قسمتی 3 رقمی",
+        "seven-segment-4": "نمایشگر هفت قسمتی 4 رقمی",
+        "LED": "LED",
+        "Toggle": "کلید ساده",
+        "analog-input": "ورودی آنالوگ",
+        "analog-output": "خروجی آنالوگ",
+        "push-button": "کاید فشاری",
+        "traffic-light": "چراغ راهنمایی",
+        "Markdown": "متن",
+        "buzzer": "buzzer"
+    }
 }
