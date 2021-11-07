@@ -6,6 +6,8 @@ import Vue from 'vue'
 import vuetify from './plugins/vuetify.js'
 import Dash from './dash.vue'
 import store from './store'
+import i18n from './plugins/vue-i18n'
+
 
 Vue.config.productionTip = false
 
@@ -75,7 +77,7 @@ loadModule('/custom.vue', options)
 
 const app = new Vue({
   vuetify,
-
+  i18n,
   data: { // https://stackoverflow.com/questions/51275301/how-to-react-to-a-global-variable-with-vue
     // editMode encodes whether the edit toggle is on/off, access anywhere as this.$root.editMode
     editMode: true,
