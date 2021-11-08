@@ -437,6 +437,11 @@ export class Store {
         row = 1;
         Object.assign(emp_widget, {output: ''})
         break;
+      case 'hex-keypad':
+          col = 3;
+          row = 4;
+          Object.assign(emp_widget, {output: ''})
+          break;
     }
     emp_widget.cols = col
     emp_widget.rows = row

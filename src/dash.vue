@@ -195,6 +195,7 @@ export default {
       },
       set(value) {
         this.$i18n.locale = (value == 'فارسی' ? 'fa' : 'en')
+        this.$vuetify.rtl = (value == 'فارسی' ? true : false)
       }
     },
 

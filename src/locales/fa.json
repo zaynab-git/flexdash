@@ -11,6 +11,11 @@
         "push-button": "کاید فشاری",
         "traffic-light": "چراغ راهنمایی",
         "Markdown": "متن",
-        "buzzer": "buzzer"
+        "buzzer": "buzzer",
+        "hex-keypad": "صفحه کلید 4 در 4"
+    },
+    "setting": {
+        "theme": "تم",
+        "language": "زبان"
     }
 }

@@ -7,8 +7,8 @@ Vue.use(VueI18n)
 
 
 export default new VueI18n({
-  locale: 'fa',
-  fallbackLocale: 'fa',
+  locale: 'en',
+  fallbackLocale: 'en',
   messages: 
   {
     en: JSON.parse(JSON.stringify(en)),
