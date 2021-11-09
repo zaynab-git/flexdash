@@ -8,7 +8,7 @@
        that's so the value is more prominent than the title... ma-auto applies auto margins all
        around, which centers the value. -->
   <v-card-title class="headline pa-0 flex-grow-1">
-    <span class="ma-auto" :style="statStyle">
+    <span class="ma-auto">
       <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
       <div style="
       position: relative;
@@ -113,42 +113,6 @@ the high-threshold. For string values low and high colors are selected using reg
     "pin COM": { default: "", dynamic: "GND" },
 
     color: { type: String, default: "red", tip: "value color, null->text color" }
-  },
-
-  computed: {
-    // don't display a unit if there's no value
-    unitTxt() { return this.valTxt === "--" ? "" : this.unit; },
-    // round values to one decimal (should make that adjustable) and show "--" if the value is
-    // null or undefined
-    valTxt() {
-      if (typeof this.value == 'number') return Math.round(this.value*10.0)/10.0
-      else if (this.value === null) return "--";
-      else return this.value;
-    },
-    val() {
-      this.value
-    },
-    // compute the color for number values
-    numColor() {
-      if (typeof this.value !== 'number') return this.color
-      if (this.low_threshold !== null && this.value <= this.low_threshold) return this.low_color
-      if (this.high_threshold !== null && this.value >= this.high_threshold) return this.high_color
-      return this.color
-    },
-    // compute the color for text values
-    lowRegexp() { return this.low_regexp && new RegExp(this.low_regexp) },
-    highRegexp() { return this.high_regexp && new RegExp(this.high_regexp) },
-    textColor() {
-      if (typeof this.value !== 'string') return this.color
-      if (this.lowRegexp && this.lowRegexp.text(this.value)) return this.low_color
-      if (this.highRegexp && this.highRegexp.test(this.value)) return this.low_color
-      return this.color
-    },
-    finalColor() { return (typeof this.value === 'number') ? this.numColor : this.textColor },
-    // compute the CSS style for the value
-    statStyle() {
-      return this.finalColor ? { color: this.finalColor } : {}
-    },
   },
 
   methods: {

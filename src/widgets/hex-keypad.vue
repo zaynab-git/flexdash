@@ -8,13 +8,14 @@
        that's so the value is more prominent than the title... ma-auto applies auto margins all
        around, which centers the value. -->
   <v-card-title class="headline pa-0 flex-grow-1">
+    <span class="ma-auto" :style="statStyle">
     <v-container  style="height: 100%; width: 100%;" >
     <v-row no-gutters >
         <v-btn 
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(1)"
+          @click="keyPressed(1,1)"
         >
           1
         </v-btn>
@@ -22,7 +23,7 @@
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(2)"
+          @click="keyPressed(1,2)"
         >
           2
         </v-btn>
@@ -30,14 +31,14 @@
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(3)"
+          @click="keyPressed(1,3)"
         >
           3
         </v-btn>
         <v-btn
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
-          @click="keyPressed('A')"
+          @click="keyPressed(1,4)"
         >
           A
         </v-btn>
@@ -47,7 +48,7 @@
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(4)"
+          @click="keyPressed(2,1)"
         >
           4
         </v-btn>
@@ -55,7 +56,7 @@
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(5)"
+          @click="keyPressed(2,2)"
         >
           5
         </v-btn>
@@ -63,14 +64,14 @@
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(6)"
+          @click="keyPressed(2,3)"
         >
           6
         </v-btn>
         <v-btn
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
-          @click="keyPressed('B')"
+          @click="keyPressed(2,4)"
         >
           B
         </v-btn>
@@ -80,7 +81,7 @@
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(7)"
+          @click="keyPressed(3,1)"
         >
           7
         </v-btn>
@@ -88,7 +89,7 @@
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(8)"
+          @click="keyPressed(3,2)"
         >
           8
         </v-btn>
@@ -96,14 +97,14 @@
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(9)"
+          @click="keyPressed(3,3)"
         >
           9
         </v-btn>
         <v-btn
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
-          @click="keyPressed('C')"
+          @click="keyPressed(3,4)"
         >
           C
         </v-btn>
@@ -112,7 +113,7 @@
         <v-btn
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
-          @click="keyPressed('*')"
+          @click="keyPressed(4,1)"
         >
           *
         </v-btn>
@@ -120,26 +121,27 @@
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
           style="filter: brightness(1.5);"
-          @click="keyPressed(0)"
+          @click="keyPressed(4,2)"
         >
           0
         </v-btn>
         <v-btn
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
-          @click="keyPressed('#')"
+          @click="keyPressed(4,3)"
         >
           #
         </v-btn>
         <v-btn
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
-          @click="keyPressed('D')"
+          @click="keyPressed(4,4)"
         >
           D
         </v-btn>
     </v-row>
   </v-container>
+    </span>
   </v-card-title>
 </template>
 
@@ -163,90 +165,15 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    "pin C1": { default: "", dynamic: "GND" },
-    "pin C2": { default: "", dynamic: "GND" },
-    "pin C3": { default: "", dynamic: "GND" },
-    "pin C4": { default: "", dynamic: "GND" },
-    "pin R1": { default: "", dynamic: "GND" },
-    "pin R2": { default: "", dynamic: "GND" },
-    "pin R3": { default: "", dynamic: "GND" },
-    "pin R4": { default: "", dynamic: "GND" },
-
     color: { type: String, default: "grey darken-1", tip: "value color, null->text color" }
   },
 
 
 
   methods: {
-    keyPressed(k) {
-      let key = this.key(k)
-      if (key != '') {
-        console.log("hex keypad event:" + key)
-        this.$emit('send', key)
-      }
-    },
 
-    key(k) {
-      switch(k) {
-        case 1:
-          if (this.$props["pin C1"] == 'ON' && this.$props["pin R1"] == 'ON') return k;
-          break;
-        case 2:
-          if (this.$props["pin C2"] == 'ON' && this.$props["pin R1"] == 'ON') return k;
-          break;
-        case 3:
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R1"] == 'ON') return k;
-          break;
-        case 'A':
-          if (this.$props["pin C4"] == 'ON' && this.$props["pin R1"] == 'ON') return k;
-          break;
-        case 4:
-          if (this.$props["pin C1"] == 'ON' && this.$props["pin R2"] == 'ON') return k;
-          break;
-        case 5:
-          if (this.$props["pin C2"] == 'ON' && this.$props["pin R2"] == 'ON') return k;
-          break;
-        case 6:
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R2"] == 'ON') return k;
-          break;
-        case 'B':
-          if (this.$props["pin C4"] == 'ON' && this.$props["pin R2"] == 'ON') return k;
-          break;
-        case 7:
-          if (this.$props["pin C1"] == 'ON' && this.$props["pin R3"] == 'ON') return k;
-          break;
-        case 8:
-          if (this.$props["pin C2"] == 'ON' && this.$props["pin R3"] == 'ON') return k;
-          break;
-        case 9:
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R3"] == 'ON') return k;
-          break;
-        case 'C':
-          if (this.$props["pin C4"] == 'ON' && this.$props["pin R3"] == 'ON') return k;
-          break;
-        case 7:
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R4"] == 'ON') return k;
-          break;
-        case 8:
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R4"] == 'ON') return k;
-          break;
-        case 9:
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R4"] == 'ON') return k;
-          break;
-        case '*':
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R4"] == 'ON') return k;
-          break;
-        case 0:
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R1"] == 'ON') return k;
-          break;
-        case '#':
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R2"] == 'ON') return k;
-          break;
-        case 'D':
-          if (this.$props["pin C3"] == 'ON' && this.$props["pin R3"] == 'ON') return k;
-          break;
-      }
-      return ''
+    keyPressed(row, col) {
+      console.log('pin R'+ row + ' & pin C' + col)
     }
   }
 

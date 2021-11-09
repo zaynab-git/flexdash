@@ -190,6 +190,76 @@
                     @input="handleEditOutput($event)">
                 </v-combobox>
               </v-col>
+              <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
+                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
+                <v-combobox
+                    label="output binding" clearable dense persistent-hint
+                    :hint='output_tip'
+                    :items="sd_keys"
+                    :value="widget.output"
+                    @input="handleEditOutput($event)">
+                </v-combobox>
+              </v-col>
+              <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
+                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
+                <v-combobox
+                    label="output binding" clearable dense persistent-hint
+                    :hint='output_tip'
+                    :items="sd_keys"
+                    :value="widget.output"
+                    @input="handleEditOutput($event)">
+                </v-combobox>
+              </v-col>
+              <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
+                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
+                <v-combobox
+                    label="output binding" clearable dense persistent-hint
+                    :hint='output_tip'
+                    :items="sd_keys"
+                    :value="widget.output"
+                    @input="handleEditOutput($event)">
+                </v-combobox>
+              </v-col>
+              <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
+                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
+                <v-combobox
+                    label="output binding" clearable dense persistent-hint
+                    :hint='output_tip'
+                    :items="sd_keys"
+                    :value="widget.output"
+                    @input="handleEditOutput($event)">
+                </v-combobox>
+              </v-col>
+              <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
+                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
+                <v-combobox
+                    label="output binding" clearable dense persistent-hint
+                    :hint='output_tip'
+                    :items="sd_keys"
+                    :value="widget.output"
+                    @input="handleEditOutput($event)">
+                </v-combobox>
+              </v-col>
+              <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
+                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
+                <v-combobox
+                    label="output binding" clearable dense persistent-hint
+                    :hint='output_tip'
+                    :items="sd_keys"
+                    :value="widget.output"
+                    @input="handleEditOutput($event)">
+                </v-combobox>
+              </v-col>
+              <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
+                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
+                <v-combobox
+                    label="output binding" clearable dense persistent-hint
+                    :hint='output_tip'
+                    :items="sd_keys"
+                    :value="widget.output"
+                    @input="handleEditOutput($event)">
+                </v-combobox>
+              </v-col>
             </v-row>
 
           </v-container>

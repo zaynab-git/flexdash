@@ -432,6 +432,10 @@ export class Store {
         col = 2;
         row = 2;
         break;
+      case 'LCD':
+        col = 4;
+        row = 2;
+        break;
       case 'analog-input':
         col = 3;
         row = 1;
