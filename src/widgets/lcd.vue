@@ -10,42 +10,42 @@
        
   <v-card-title class="headline pa-0 flex-grow-1"> 
     <span class="ma-auto">
-      <v-container  style="height: 100%; width: 100%;" >
+      <v-container  style="height: 100%; width: 100%;">
         <v-row no-gutters class="ma-0 pa-0" style="width: 530px">
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
         </v-row>
         <v-row no-gutters class="ma-0 pa-0" style="width: 530px">
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
-            <lcd-part input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
+            <lcd-part :contrast="contrast" input="00100001"></lcd-part>
         </v-row>
       </v-container>
     </span>
@@ -73,8 +73,51 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
+    'VSS pin' : { default: "", dynamic: "GND" },
+    'VDD pin' : { default: "", dynamic: "GND" },
+    'VE pin' : { default: "", dynamic: "GND" },
+    'RS pin' : { default: "", dynamic: "GND" },
+    'RW pin' : { default: "", dynamic: "GND" },
+    EN_pin : { default: "", dynamic: "GND" },
+    'D0 pin' : { default: "", dynamic: "GND" },
+    'D1 pin' : { default: "", dynamic: "GND" },
+    'D2 pin' : { default: "", dynamic: "GND" },
+    'D3 pin' : { default: "", dynamic: "GND" },
+    'D4 pin' : { default: "", dynamic: "GND" },
+    'D5 pin' : { default: "", dynamic: "GND" },
+    'D6 pin' : { default: "", dynamic: "GND" },
+    'D7 pin' : { default: "", dynamic: "GND" },
+    '+ve pin' : { default: "", dynamic: "GND" },
+    '-ve pin' : { default: "", dynamic: "GND" },
     color: { default: "red" }
   },
+
+  computed: {
+    contrast() {
+      return (this.$props['VE pin'] == 'ON' ? 1 : 0.5)
+    }
+  },
+
+  watch: {
+    EN_pin: function () {
+      
+      if (this.$props.EN_pin == 'ON' && this.$props['VSS pin'] == 'OFF' && this.$props['VDD pin'] == 'ON') {
+        if (this.$props['RS pin'] == 'OFF' && this.$props['RW pin'] == 'OFF') {
+          this.command()
+        }
+      }
+    }
+  },
+
+  methods: {
+    command() {
+      console.log('comand')
+    },
+    data() {
+      console.log('data')
+    }
+  }
+
 }
 </script>
 
