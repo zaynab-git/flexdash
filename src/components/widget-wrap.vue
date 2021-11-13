@@ -14,24 +14,32 @@
           style="overflow: hidden">
 
     <!-- Widget title & buttons shown when the child component does _not_ show the title -->
-    <v-card-text v-if="!('title' in child_props) && title" class="d-flex pa-0 pt-1 mb-n1">
+    <v-card-text v-if="!('title' in child_props) && title" class="d-flex pa-0 py-2">
       <!-- title and edit button -->
       <span v-if="title" class="mx-auto text-no-wrap">{{title}}</span>
-      <v-btn small icon class="edit-btn" v-if="$root.editMode" @click="handleEdit">
+      <v-menu offset-y bottom transition="scale-transition">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn v-on="on" icon v-bind="attrs" class="edit-btn" >
+          <v-icon >mdi-dots-vertical</v-icon>
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item @click="handleEdit()">
+          <v-list-item-icon>
+            <v-icon size="20px">mdi-pencil</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Edit</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+      <!-- <v-btn small icon class="edit-btn" v-if="$root.editMode" @click="handleEdit">
         <v-icon small>mdi-pencil</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-card-text>
 
-    <!-- Widget edit button w/o title when the child component shows the title itself -->
-    <!--div display:content v-else-if="$root.editMode"-->
-      <!-- we need to make sure we're floating way above the widget content... -->
-      <div v-else-if="$root.editMode"
-           style="position:absolute; z-index:5; right:0; top:0px;">
-        <v-btn small icon class="edit-btn" @click="handleEdit">
-          <v-icon small>mdi-pencil</v-icon>
-        </v-btn>
-      </div>
-    <!--/div-->
 
     <div v-if="can_full_page && !$root.editMode" class="full-page-btn"
          style="position:absolute; right:0; top:0.5ex;">
@@ -44,7 +52,7 @@
 
     <!-- actual component, pass in its bindings -->
     <component :is="config.kind" :id="config.id" v-bind="bindings" ref="comp"
-               @send="sendData($event)" class="my-auto">
+               @send="sendData($event)" class="ma-0 pa-0">
     </component>
   </v-card>
 </template>
@@ -57,6 +65,7 @@
 .v-card .edit-btn {
   position: absolute; right: 0px; top: 0px; z-index: 1;
 }
+.v-list-item:hover {background-color: lightgray;}
 .theme--light.v-btn--icon { background-color: rgba(255, 255, 255, 0.6); }
 .theme--dark.v-btn--icon  { background-color: rgba(30, 30, 30, 0.6); }
 </style>

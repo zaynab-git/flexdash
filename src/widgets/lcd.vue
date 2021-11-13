@@ -8,10 +8,8 @@
        that's so the value is more prominent than the title... ma-auto applies auto margins all
        around, which centers the value. -->
        
-  <v-card-title class="headline pa-0 flex-grow-1"> 
-    <span class="ma-auto">
-      <v-container  style="height: 100%; width: 100%;">
-        <v-row no-gutters class="ma-0 pa-0" style="width: 530px">
+  <v-card-title class="pa-0 mt-0"> 
+        <v-row class="ma-0 pa-0" style="width: 530px">
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
@@ -29,7 +27,7 @@
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
         </v-row>
-        <v-row no-gutters class="ma-0 pa-0" style="width: 530px">
+        <v-row  class="ma-0 pa-0" style="width: 530px">
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
@@ -47,8 +45,6 @@
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
             <lcd-part :contrast="contrast" input="00100001"></lcd-part>
         </v-row>
-      </v-container>
-    </span>
   </v-card-title>
 </template>
 

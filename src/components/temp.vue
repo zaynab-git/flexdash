@@ -19,22 +19,31 @@
 <template>
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle">
-    <widget-wrap :config="widget" :no_border="no_border"
-      @edit="toggleEdit" >
-    </widget-wrap>
+    <!-- v-menu is used to display a floating v-card below the component for editing
+         We control the activation and deactivation of the menu ourselves, though. -->
+    <v-menu :value="edit_active && reposition" offset-y allow-overflow min-width="50%"
+            content-class="popup-spacer"
+            :close-on-content-click="false" :close-on-click="false">
 
-    <v-dialog
-      v-model="edit_active"
-      width="800"
-    >
+      <!-- Widget proper -->
+      <template v-slot:activator="on">
+        <widget-wrap :config="widget" :no_border="no_border"
+                     @edit="toggleEdit" :color="edit_active?'highlight':''" :not-used="on">
+        </widget-wrap>
+      </template>
 
-        <v-card color="panel">
+      <!-- Editing panel shown floating below widget -->
+      <v-card color="panel">
         <v-card-title class="d-flex align-baseline pb-6">
           <span>Edit {{widget.kind}} widget</span>
           <v-text-field dense class="ml-3 mt-0 text-h6 flex-grow-0"
                         :value="widget.static['title']" :hide-details="true"
                         @input="handleEdit('static', 'title', $event)">
           </v-text-field>
+          <v-spacer></v-spacer>
+          <v-btn elevation=0 icon @click="endEdit">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
         </v-card-title>
 
         <!-- Display widget help text -->
@@ -257,7 +266,7 @@
         </v-card-text>
 
         <!-- dialog box to edit a string input value full-page -->
-        <!-- <v-dialog v-model="dialog" content-class="height80 widget-edit-dialog" max-width="100ex">
+        <v-dialog v-model="dialog" content-class="height80 widget-edit-dialog" max-width="100ex">
           <v-card v-if="dialog" class="d-flex flex-column height100">
             <v-card-title class="d-flex align-baseline">
               <span>Edit <span style="font-weight: 700">{{dialog_prop}}</span></span>
@@ -272,23 +281,11 @@
                   @change="handleEdit('static', dialog_prop, $event)">
               </v-textarea>
             </v-card-text>
+          </v-card>
+        </v-dialog>
 
-        </v-dialog> -->
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            text
-            @click="endEdit"
-          >
-            I accept
-          </v-btn>
-        </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-menu>
   </div>
 </template>
 
