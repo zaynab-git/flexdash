@@ -50,6 +50,14 @@
             <v-list-item-title>Move Right</v-list-item-title>
           </v-list-item-content>
         </v-list-item >
+        <v-list-item dense @click="handleColor()">
+          <v-list-item-icon>
+            <v-icon size="20px" >mdi-palette</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title  >color</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item dense @click="handleClone()">
           <v-list-item-icon>
             <v-icon size="20px" >mdi-content-copy</v-icon>
@@ -270,6 +278,8 @@ export default {
     handleMoveUp() { console.log(`handleMoveUp() in widget-wrap`); this.$emit('moveup') },
 
     handleMoveDown() { console.log(`handleMoveDown() in widget-wrap`); this.$emit('movedown') },
+
+    handleColor() { console.log(`handleColor() in widget-wrap`); this.$emit('color') },
 
     toggleFullPage() { this.full_page = !this.full_page },
 

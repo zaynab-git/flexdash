@@ -5,43 +5,43 @@
 
 <template>
   <div style="display: content;">
-    <v-text-field dense :label="label" :hint="hint" :value="value"
+    <!-- <v-text-field dense :label="label" :hint="hint" :value="value"
                   @input="$emit('input',$event.hex)">
       <template v-slot:append-outer>
         <v-btn icon x-small @click="show_picker=!show_picker">
           <v-icon>mdi-palette</v-icon>
         </v-btn>
       </template>
-    </v-text-field>
-    <v-overlay v-model="show_picker" class="color-picker" :dark="false">
-      <v-card class="d-flex flex-column">
+    </v-text-field> -->
+    
+      <!-- <v-card class="d-flex flex-column" max-height="400px">
         <v-card-title class="d-flex align-baseline width100 pt-0 pb-0">
           <span>{{label}}</span>
           <v-spacer></v-spacer>
           <v-btn elevation=0 icon @click="show_picker=false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-        </v-card-title>
+        </v-card-title> -->
         <v-color-picker hide-canvas hide-sliders mode="hexa" show-swatches swatches-max-height="auto"
                         width="100%"
                         :swatches="swatches" :value="value" @update:color="changeColor">
         </v-color-picker>
-      </v-card>
-    </v-overlay>
+      <!-- </v-card> -->
+    
   </div>
 </template>
 
 <style>
-.color-picker .v-overlay__content { height: 95%; width: 95%; max-width: 500px;  }
-.color-picker .v-card { height: 100%; width: 100%; }
-.color-picker .v-color-picker {
+.v-overlay__content { width: 95%; max-width: 500px;  }
+.v-card {  width: 100%; }
+.v-color-picker {
   flex-grow: 1;  min-height: 0px;
   display: flex; flex-direction: column;
 }
-.color-picker .v-color-picker__edit { margin-top: 0px; }
-.color-picker .v-color-picker__controls { padding-bottom: 0px; }
-.color-picker .v-color-picker__input > input { margin-bottom: 0px; }
-.color-picker .v-color-picker__swatches { min-height: 0px; max-height: 80% !important; }
+.v-color-picker__edit { margin-top: 0px; padding-top: 0px; }
+.v-color-picker__controls { padding: 0px;  margin: 0px;}
+.v-color-picker__input > input { margin-bottom: 0px; }
+.v-color-picker__swatches { min-height: 0px; max-height: 80% !important; }
 </style>
 
 <script scoped>

@@ -178,7 +178,8 @@ export default {
   },
 
   methods: {
-    toggleEdit(ix, on) { this.edit_ix = on ? ix : null },
+    toggleEdit(ix, on) {
+      this.edit_ix = on ? ix : null },
 
     addWidget(kind) {
       const widget_ix = this.$store.addWidget(this.id, kind)
@@ -193,6 +194,7 @@ export default {
 
     // handle widget clone event coming up from widget-edit
     cloneWidget(ix) {
+
       // start by adding a new widget of the same kind to the end of the grid
       const old_w = this.$store.widgetByID(this.$store.widgetIDByIX(this.grid, ix))
       const widget_ix = this.$store.addWidget(this.id, old_w.kind)

@@ -72,7 +72,8 @@ changes and thus the positioning of the widgets remains fixed.`,
   },
 
   methods: {
-    toggleEdit(ix, on) { this.edit_ix = on ? ix : null },
+    toggleEdit(ix, on) {      
+      this.edit_ix = on ? ix : null },
 
     addWidget(kind) {
       const widget_ix = this.$store.addPanelWidget(this.id, kind)

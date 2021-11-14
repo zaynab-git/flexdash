@@ -20,15 +20,14 @@
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle">
     <widget-wrap :config="widget" :no_border="no_border"
-      @edit="toggleEdit" @delete="$emit('delete')" @clone="$emit('clone')" @help="toggleHelp" @moveup="moveWidget(1)" @movedown="moveWidget(-1)">
+      @edit="toggleEdit" @delete="$emit('delete')" @clone="$emit('clone')" 
+      @help="toggleHelp" @moveup="moveWidget(1)" @movedown="moveWidget(-1)"
+      @color="toggleColor">
     </widget-wrap>
 
-    <v-dialog
-      v-model="edit_help"
-      width="800"
-    >
+    <v-navigation-drawer right v-model="help" clipped app mobile-breakpoint="960" width="300">
     <v-card color="panel" >
-        <v-card-title class="d-flex align-baseline pb-6">
+        <v-card-title class="d-flex align-baseline">
           {{widget.kind}}
         </v-card-title>
         <v-card-text class="pb-6">
@@ -45,20 +44,39 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    </v-dialog>
+    </v-navigation-drawer>
 
-    <v-dialog
-      v-model="edit_active"
-      width="800"
-    >
+
+    <v-navigation-drawer right v-model="color" clipped app mobile-breakpoint="960" width="300">
+    <v-card color="wight"  >
+        <v-card-title class="d-flex align-baseline">
+          color
+        </v-card-title>
+        <v-card-text class="ma-0 px-2 py-0">
+          <color-picker
+                    label="color" :hint="prop_info['color'].hint"
+                    :value="widget.static['color']||prop_info['color'].default"
+                    @input="handleColorEdit('color', $event)">
+                </color-picker>
+        </v-card-text>
+    <v-divider></v-divider>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          text
+          @click="toggleColor"
+        >
+          close
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+    </v-navigation-drawer>
+
+    <v-navigation-drawer right v-model="edit_active" clipped app mobile-breakpoint="960" width="300">
 
         <v-card color="panel">
-        <v-card-title class="d-flex align-baseline pb-6">
-          <span>Edit {{widget.kind}} widget</span>
-          <v-text-field dense class="ml-3 mt-0 text-h6 flex-grow-0"
-                        :value="widget.static['title']" :hide-details="true"
-                        @input="handleEdit('static', 'title', $event)">
-          </v-text-field>
+        <v-card-title class="pb-6">
+          Edit {{widget.kind}}
         </v-card-title>
 
         <!-- Display widget help text -->
@@ -71,10 +89,10 @@
           <md v-if="edit_help">{{child_help_text}}</md>
         </v-card-text> -->
 
-        <v-card-text v-if="edit_active"><!-- v-if 'cause edited_xx vars not always set -->
-          <v-container fluid class="pa-0 ma-0">
+        <v-card-text><!-- v-if 'cause edited_xx vars not always set -->
+          <v-container class="pa-0" >
             <!-- Display row with delete button, move buttons, and resize controls -->
-            <v-row align="center">
+            <!-- <v-row align="center">
               <v-col class="d-flex" cols="6" sm="2">
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on }">
@@ -90,7 +108,7 @@
                   </template>
                   <span>Move widget towards the bottom-right of the grid</span>
                 </v-tooltip>
-              </v-col>
+              </v-col> -->
               <!-- <v-col class="d-flex" cols="12" sm="6" md="4">
                 <v-btn small icon @click="adjustRows(-1)" class="ml-2">
                   <v-icon>mdi-minus</v-icon></v-btn>
@@ -103,10 +121,17 @@
                 <v-btn small icon @click="adjustCols(1)">
                   <v-icon>mdi-plus</v-icon></v-btn>
               </v-col> -->
+            <v-row>
+              <v-col class="d-flex" cols="6">
+                 <v-text-field  label="Widget Name" 
+                        :value="widget.static['title']" :hide-details="true"
+                        @input="handleEdit('static', 'title', $event)">
+               </v-text-field>
+              </v-col>
             </v-row>
 
             <!-- Display component properties for editing -->
-            <v-row align="center">
+            <v-row >
               <!-- For each property of the component, show some type of edit field-->
               <v-col class="d-flex" cols="12" sm="6" md="4" v-for="prop in edit_props" :key=prop>
                 <!-- toggle buttons to select static vs. dynamic -->
@@ -158,11 +183,11 @@
                     @input="handleEdit('static', prop, $event)">
                 </v-text-field>
                 <!-- color -->
-                <color-picker v-else-if="prop === 'color' || prop.endsWith('_color')"
+                <!-- <color-picker v-else-if="prop === 'color' || prop.endsWith('_color')"
                     :label="prop" :hint="prop_info[prop].hint"
                     :value="widget.static[prop]||prop_info[prop].default"
                     @input="handleColorEdit(prop, $event)">
-                </color-picker>
+                </color-picker> -->
                 <!-- string -->
                 <v-text-field v-else class="w-edit"
                     :label="prop" dense
@@ -290,13 +315,13 @@
           <v-spacer></v-spacer>
           <v-btn
             text
-            @click="endEdit"
+            @click="toggleEdit"
           >
             close
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -322,7 +347,6 @@ export default {
 
   props: {
     id: { type: String, required: true }, // my widget ID
-    edit_active: { type: Boolean, default: false },
     no_border: { type: Boolean, default: false }, // true causes no "card" border, used by panel
   },
 
@@ -332,7 +356,9 @@ export default {
     // hack to reposition the edit window when changing widget shape/position, this will go
     // away once we have dragging...
     reposition: true,
-    edit_help: false, // more... help text expansion toggle
+    edit_active: false,
+    color: false,
+    help: false, // more... help text expansion toggle
     // child_props holds the description of the widget component's props
     child_props: {}, 
     // prop_info is child_props further massaged:
@@ -412,7 +438,10 @@ export default {
     // list of child prop names for editing, excluding title
     edit_props() {
       const cp = Object.keys(this.child_props)
-      return cp.filter(p => p !== 'title')
+      let filtered = cp.filter(p => p !== 'title')
+      filtered = filtered.filter(p => p !== 'color')
+      filtered = filtered.filter(p => p.endsWith('_color'))
+      return filtered
     },
 
     // handle a non-vue-standard "help" option in a widget
@@ -474,9 +503,11 @@ export default {
     },
 
     // toggle edit handles the edit event from the child component
-    toggleEdit() { this.$emit('edit', !this.edit_active) },
+    toggleEdit() {this.edit_active = !this.edit_active; this.$emit('edit', this.edit_active) },
 
-    toggleHelp() { this.edit_help = !this.edit_help },
+    toggleHelp() { this.help = !this.help },
+
+    toggleColor() { this.color = !this.color },
     // cancel button in edit panel
     endEdit() { this.$emit('edit', false) },
 
