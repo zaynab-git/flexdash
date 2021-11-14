@@ -8,13 +8,10 @@
        that's so the value is more prominent than the title... ma-auto applies auto margins all
        around, which centers the value. -->
        
-  <v-card-title class="headline pa-0 flex-grow-1"> 
+  <v-card-title class="headline pa-0 ma-0 flex-grow-1" > 
     <span class="ma-auto" :style="statStyle">
-      <audio id="myAudio">  
-        <source src="http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3">  
-      </audio> 
       <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
-      <v-icon size="50px" :color="(state ? color : 'grey')" > {{ (state ? 'mdi-led-variant-on' : 'mdi-led-variant-off') }}</v-icon>
+      <v-icon style="margin-top: -10px;" size="45px" :color="(state ? color : 'grey')" > {{ (state ? 'mdi-led-variant-on' : 'mdi-led-variant-off') }}</v-icon>
 
     </span>
   </v-card-title>

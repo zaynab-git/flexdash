@@ -6,7 +6,7 @@
   <v-app>
 
     <!-- Navigation drawer opening from the left on small devices to show tabs -->
-    <v-navigation-drawer v-model="sidebar" v-if="gotConfig" fixed app mobile-breakpoint="960" width="300">
+    <!-- <v-navigation-drawer v-model="sidebar" v-if="gotConfig" fixed app mobile-breakpoint="960" width="300">
       <div v-if="false">
       <v-tabs vertical v-model=tab_ix>
         <v-tab v-for="t in dash_tabs" :key="t" class="px-0" style="min-width: auto">
@@ -14,7 +14,7 @@
         </v-tab>
       </v-tabs>
       </div>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
 
     <!-- Top title/navigation bar -->
     <v-app-bar  flat dense app color="surface">

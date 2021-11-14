@@ -20,8 +20,32 @@
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle">
     <widget-wrap :config="widget" :no_border="no_border"
-      @edit="toggleEdit" >
+      @edit="toggleEdit" @delete="$emit('delete')" @clone="$emit('clone')" @help="toggleHelp" @moveup="moveWidget(1)" @movedown="moveWidget(-1)">
     </widget-wrap>
+
+    <v-dialog
+      v-model="edit_help"
+      width="800"
+    >
+    <v-card color="panel" >
+        <v-card-title class="d-flex align-baseline pb-6">
+          {{widget.kind}}
+        </v-card-title>
+        <v-card-text class="pb-6">
+          <h3>{{child_help_text}}</h3>
+        </v-card-text>
+    <v-divider></v-divider>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          text
+          @click="toggleHelp"
+        >
+          close
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+    </v-dialog>
 
     <v-dialog
       v-model="edit_active"
@@ -38,35 +62,20 @@
         </v-card-title>
 
         <!-- Display widget help text -->
-        <v-card-text v-if="child_help" class="pb-0">
+        <!-- <v-card-text v-if="child_help" class="pb-0">
           <h3 v-if="child_help_title">{{child_help_title}}
             <v-btn x-small text class="ml-1" v-if="child_help_text"
                    :value="edit_help" @click="edit_help=!edit_help">
               {{ edit_help ? "less..." : "more..." }}</v-btn>
           </h3>
           <md v-if="edit_help">{{child_help_text}}</md>
-        </v-card-text>
+        </v-card-text> -->
 
         <v-card-text v-if="edit_active"><!-- v-if 'cause edited_xx vars not always set -->
-          <v-container fluid class="pa-0">
+          <v-container fluid class="pa-0 ma-0">
             <!-- Display row with delete button, move buttons, and resize controls -->
             <v-row align="center">
-              <v-col class="d-flex" cols="6" sm="4">
-                <!-- delete widget -->
-                <v-btn small @click="$emit('delete')">Delete widget</v-btn>
-              </v-col>
               <v-col class="d-flex" cols="6" sm="2">
-                <!-- copy widget -->
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn small icon @click="copyWidget" v-on="on">
-                      <v-icon>mdi-content-copy</v-icon></v-btn>
-                  </template>
-                  <span>Copy widget to clipboard</span>
-                </v-tooltip>
-                <!-- clone widget -->
-                <v-btn small @click="$emit('clone')">Clone</v-btn>
-                <!-- move widget up/down -->
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on }">
                     <v-btn small icon @click="moveWidget(-1)" class="ml-2" v-on="on">
@@ -280,11 +289,10 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="primary"
             text
             @click="endEdit"
           >
-            I accept
+            close
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -314,7 +322,7 @@ export default {
 
   props: {
     id: { type: String, required: true }, // my widget ID
-    edit_active: { type: Boolean, default: false }, // we're being edited
+    edit_active: { type: Boolean, default: false },
     no_border: { type: Boolean, default: false }, // true causes no "card" border, used by panel
   },
 
@@ -467,6 +475,8 @@ export default {
 
     // toggle edit handles the edit event from the child component
     toggleEdit() { this.$emit('edit', !this.edit_active) },
+
+    toggleHelp() { this.edit_help = !this.edit_help },
     // cancel button in edit panel
     endEdit() { this.$emit('edit', false) },
 

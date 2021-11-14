@@ -24,13 +24,54 @@
         </v-btn>
       </template>
 
-      <v-list>
-        <v-list-item @click="handleEdit()">
+      <v-list >
+        <v-list-item dense @click="handleEdit()">
           <v-list-item-icon>
             <v-icon size="20px">mdi-pencil</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>Edit</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item >
+        
+        <v-list-item dense @click="handleMoveDown()">
+          <v-list-item-icon>
+            <v-icon size="20px">mdi-arrow-left-bold</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Move Left</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item >
+        <v-list-item dense @click="handleMoveUp()">
+          <v-list-item-icon>
+            <v-icon size="20px">mdi-arrow-right-bold</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Move Right</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item >
+        <v-list-item dense @click="handleClone()">
+          <v-list-item-icon>
+            <v-icon size="20px" >mdi-content-copy</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title  >Clone</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item >
+        <v-list-item dense @click="handleHelp()">
+          <v-list-item-icon>
+            <v-icon size="20px" >mdi-help-circle</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title  >Help</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item >
+        <v-list-item dense @click="handleDelete()">
+          <v-list-item-icon>
+            <v-icon size="20px" color="red darken-3" >mdi-trash-can</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title class="red--text text--darken-3" >Delete</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -219,6 +260,16 @@ export default {
     },
 
     handleEdit() { console.log(`handleEdit() in widget-wrap`); this.$emit('edit', 'toggle') },
+
+    handleDelete() { console.log(`handleDelete() in widget-wrap`); this.$emit('delete') },
+
+    handleClone() { console.log(`handleClone() in widget-wrap`); this.$emit('clone') },
+
+    handleHelp() { console.log(`handleHelp() in widget-wrap`); this.$emit('help') },
+
+    handleMoveUp() { console.log(`handleMoveUp() in widget-wrap`); this.$emit('moveup') },
+
+    handleMoveDown() { console.log(`handleMoveDown() in widget-wrap`); this.$emit('movedown') },
 
     toggleFullPage() { this.full_page = !this.full_page },
 
