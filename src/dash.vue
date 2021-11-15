@@ -17,7 +17,7 @@
     </v-navigation-drawer> -->
 
     <!-- Top title/navigation bar -->
-    <v-app-bar  flat dense app color="surface">
+    <v-app-bar clipped-right flat dense app color="surface">
       <!-- Hamburger menu shown on smallest devices only -->
       <span class="hidden-sm-and-up">
         <v-app-bar-nav-icon @click="sidebar = !sidebar"></v-app-bar-nav-icon>

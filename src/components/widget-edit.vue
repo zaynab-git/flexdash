@@ -25,34 +25,21 @@
       @color="toggleColor">
     </widget-wrap>
 
-    <v-navigation-drawer right v-model="help" clipped app mobile-breakpoint="960" width="300">
-    <v-card color="panel" >
-        <v-card-title class="d-flex align-baseline">
-          {{widget.kind}}
-        </v-card-title>
-        <v-card-text class="pb-6">
-          <h3>{{child_help_text}}</h3>
-        </v-card-text>
-    <v-divider></v-divider>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-          text
-          @click="toggleHelp"
-        >
-          close
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-    </v-navigation-drawer>
+    <!-- <v-navigation-drawer right v-model="help" clipped app mobile-breakpoint="960" width="400">
+    
+    </v-navigation-drawer> -->
 
 
-    <v-navigation-drawer right v-model="color" clipped app mobile-breakpoint="960" width="300">
-    <v-card color="wight"  >
+    <!-- <v-navigation-drawer right v-model="color" clipped app mobile-breakpoint="960" width="400">
+    
+    </v-navigation-drawer> -->
+
+    <v-navigation-drawer right v-model="edit_active" clipped app mobile-breakpoint="960"  width="400">
+      <v-card color="wight" v-if="color" height="100%">
         <v-card-title class="d-flex align-baseline">
           color
         </v-card-title>
-        <v-card-text class="ma-0 px-2 py-0">
+        <v-card-text class="ma-0 px-2 py-0" height="100%">
           <color-picker
                     label="color" :hint="prop_info['color'].hint"
                     :value="widget.static['color']||prop_info['color'].default"
@@ -64,17 +51,13 @@
         <v-spacer></v-spacer>
         <v-btn
           text
-          @click="toggleColor"
+          @click="endColor"
         >
           close
         </v-btn>
       </v-card-actions>
     </v-card>
-    </v-navigation-drawer>
-
-    <v-navigation-drawer right v-model="edit_active" clipped app mobile-breakpoint="960" width="300">
-
-        <v-card color="panel">
+        <v-card v-else-if="edit"  color="wight" height="100%" >
         <v-card-title class="pb-6">
           Edit {{widget.kind}}
         </v-card-title>
@@ -89,7 +72,7 @@
           <md v-if="edit_help">{{child_help_text}}</md>
         </v-card-text> -->
 
-        <v-card-text><!-- v-if 'cause edited_xx vars not always set -->
+        <v-card-text  height="100%"><!-- v-if 'cause edited_xx vars not always set -->
           <v-container class="pa-0" >
             <!-- Display row with delete button, move buttons, and resize controls -->
             <!-- <v-row align="center">
@@ -131,10 +114,11 @@
             </v-row>
 
             <!-- Display component properties for editing -->
-            <v-row >
+            <v-row align="center">
               <!-- For each property of the component, show some type of edit field-->
-              <v-col class="d-flex" cols="12" sm="6" md="4" v-for="prop in edit_props" :key=prop>
+              <v-col class="d-flex" cols="12" v-for="prop in edit_props" :key=prop>
                 <!-- toggle buttons to select static vs. dynamic -->
+                
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn-toggle mandatory dense class="mt-2 mr-1"
@@ -204,7 +188,7 @@
             </v-row>
 
             <!-- row for output binding -->
-            <v-row v-if="'output' in widget" align="center">
+            <v-row v-if="'output' in widget" >
               <v-col class="d-flex" cols="12" sm="6" md="4">
                 <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
@@ -315,12 +299,30 @@
           <v-spacer></v-spacer>
           <v-btn
             text
-            @click="toggleEdit"
+            @click="endEdit"
           >
             close
           </v-btn>
         </v-card-actions>
       </v-card>
+      <v-card color="panel" v-else-if="help">
+        <v-card-title class="d-flex align-baseline">
+          {{widget.kind}}
+        </v-card-title>
+        <v-card-text class="pb-6">
+          <h3>{{child_help_text}}</h3>
+        </v-card-text>
+    <v-divider></v-divider>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          text
+          @click="endHelp"
+        >
+          close
+        </v-btn>
+      </v-card-actions>
+    </v-card>
     </v-navigation-drawer>
   </div>
 </template>
@@ -347,6 +349,7 @@ export default {
 
   props: {
     id: { type: String, required: true }, // my widget ID
+    edit_active:  { type: Boolean, default: false },
     no_border: { type: Boolean, default: false }, // true causes no "card" border, used by panel
   },
 
@@ -356,7 +359,7 @@ export default {
     // hack to reposition the edit window when changing widget shape/position, this will go
     // away once we have dragging...
     reposition: true,
-    edit_active: false,
+    edit: false,
     color: false,
     help: false, // more... help text expansion toggle
     // child_props holds the description of the widget component's props
@@ -440,7 +443,7 @@ export default {
       const cp = Object.keys(this.child_props)
       let filtered = cp.filter(p => p !== 'title')
       filtered = filtered.filter(p => p !== 'color')
-      filtered = filtered.filter(p => p.endsWith('_color'))
+      filtered = filtered.filter(p => !p.endsWith('_color'))
       return filtered
     },
 
@@ -503,13 +506,17 @@ export default {
     },
 
     // toggle edit handles the edit event from the child component
-    toggleEdit() {this.edit_active = !this.edit_active; this.$emit('edit', this.edit_active) },
+    toggleEdit() { this.$emit('edit', true); this.edit = true},
 
-    toggleHelp() { this.help = !this.help },
+    toggleHelp() { this.$emit('edit', true); this.help = true; },
 
-    toggleColor() { this.color = !this.color },
-    // cancel button in edit panel
-    endEdit() { this.$emit('edit', false) },
+    toggleColor() { this.$emit('edit', true); this.color = true },
+
+    endHelp() {  this.$emit('edit', false); this.help = false },
+
+    endColor() {  this.$emit('edit', false); this.color = false },
+
+    endEdit() { this.$emit('edit', false); this.edit = false},
 
     handleEdit(which, prop, value) {
       console.log("edit:", which, prop, value)

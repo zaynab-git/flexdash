@@ -19,7 +19,7 @@ Sends a pre-determined value when toggled on or off. The current state can be se
 value input: the toggle will be "on" if the value is equal to the "on_value" input.`,
 
   props: {
-    color: { type: String, default: "primary" },
+    color: { type: String, default: "red" },
   },
 
 

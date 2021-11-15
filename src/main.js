@@ -7,8 +7,9 @@ import vuetify from './plugins/vuetify.js'
 import Dash from './dash.vue'
 import store from './store'
 import i18n from './plugins/vue-i18n'
-
-
+import vClickOutside from 'v-click-outside'
+ 
+Vue.use(vClickOutside)
 Vue.config.productionTip = false
 
 if (!window.flexdash_options) window.flexdash_options = {}
