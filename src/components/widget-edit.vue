@@ -19,48 +19,29 @@
 <template>
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle" >
-    <v-navigation-drawer right v-if="edit_active && (edit || color || help)" clipped app mobile-breakpoint="960"  width="400" >
-      <v-card color="wight" v-if="color" height="100%">
+    <v-navigation-drawer v-if="edit_active && (edit || color || help)" v-model="edit_active" clipped app mobile-breakpoint="960" width="400" >
+      <v-card color="wight" v-if="color" flat >
         <v-card-title class="d-flex align-baseline">
           color
         </v-card-title>
-        <v-card-text class="ma-0 px-2 py-0" height="100%">
+        <v-divider></v-divider>
+        <v-card-text class="ma-0 px-2 py-3" height="100%">
           <color-picker
                     label="color" :hint="prop_info['color'].hint"
                     :value="widget.static['color']||prop_info['color'].default"
                     @input="handleColorEdit('color', $event)">
                 </color-picker>
         </v-card-text>
-    <v-divider></v-divider>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-          text
-          @click="endColor"
-        >
-          close
-        </v-btn>
-      </v-card-actions>
     </v-card>
-      <v-card color="panel" v-else-if="help">
+      <v-card color="wight" v-else-if="help" flat>
         <v-card-title class="d-flex align-baseline">
           {{widget.kind}}
         </v-card-title>
         <v-card-text class="pb-6">
           <h3>{{child_help_text}}</h3>
         </v-card-text>
-    <v-divider></v-divider>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-          text
-          @click="endHelp"
-        >
-          close
-        </v-btn>
-      </v-card-actions>
     </v-card>
-    <v-card v-else-if="edit"  color="wight" height="100%" >
+    <v-card v-else-if="edit"  color="wight" flat>
         <v-card-title class="pb-6">
           Edit {{widget.kind}}
         </v-card-title>
@@ -108,7 +89,7 @@
                   <v-icon>mdi-plus</v-icon></v-btn>
               </v-col> -->
             <v-row>
-              <v-col class="d-flex" cols="6">
+              <v-col class="d-flex" cols="8">
                  <v-text-field  label="Widget Name" 
                         :value="widget.static['title']" :hide-details="true"
                         @input="handleEdit('static', 'title', $event)">
@@ -119,7 +100,7 @@
             <!-- Display component properties for editing -->
             <v-row align="center">
               <!-- For each property of the component, show some type of edit field-->
-              <v-col class="d-flex" cols="12" v-for="prop in edit_props" :key=prop>
+              <v-col class="d-flex" cols="6" v-for="prop in edit_props" :key=prop>
                 <!-- toggle buttons to select static vs. dynamic -->
                 
                 <v-tooltip bottom>
@@ -192,7 +173,7 @@
 
             <!-- row for output binding -->
             <v-row v-if="'output' in widget" >
-              <v-col class="d-flex" cols="12" sm="6" md="4">
+              <v-col class="d-flex" cols="6">
                 <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                     label="output binding" clearable dense persistent-hint
@@ -295,18 +276,6 @@
             </v-card-text>
 
         </v-dialog> -->
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            text
-            @click="endEdit"
-          >
-            close
-          </v-btn>
-        </v-card-actions>
       </v-card>
     </v-navigation-drawer>
 

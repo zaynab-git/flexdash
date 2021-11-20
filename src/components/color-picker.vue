@@ -14,34 +14,35 @@
       </template>
     </v-text-field> -->
     
-      <!-- <v-card class="d-flex flex-column" max-height="400px">
-        <v-card-title class="d-flex align-baseline width100 pt-0 pb-0">
-          <span>{{label}}</span>
-          <v-spacer></v-spacer>
-          <v-btn elevation=0 icon @click="show_picker=false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </v-card-title> -->
-        <v-color-picker hide-canvas hide-sliders mode="hexa" show-swatches swatches-max-height="auto"
-                        width="100%"
+      <v-card elevation="1" shaped outlined>
+        <v-card-title >
+          color
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-text class="pa-0 ma-0">
+          <v-color-picker hide-inputs hide-canvas hide-sliders mode="hexa" show-swatches swatches-max-height="auto"
                         :swatches="swatches" :value="value" @update:color="changeColor">
-        </v-color-picker>
-      <!-- </v-card> -->
+          </v-color-picker>
+        </v-card-text>
+        
+      </v-card>
     
   </div>
 </template>
 
-<style>
+<style scoped>
 .v-overlay__content { width: 95%; max-width: 500px;  }
-.v-card {  width: 100%; }
+.v-card {  width: 100%; padding: 0px; margin: 0px; padding-bottom: 1rem;}
 .v-color-picker {
+  padding: 0px; margin: 0px;
   flex-grow: 1;  min-height: 0px;
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: column; margin: auto;
 }
+.v-color-picker .v-sheet {min-width: 350px;}
 .v-color-picker__edit { margin-top: 0px; padding-top: 0px; }
 .v-color-picker__controls { padding: 0px;  margin: 0px;}
 .v-color-picker__input > input { margin-bottom: 0px; }
-.v-color-picker__swatches { min-height: 0px; max-height: 80% !important; }
+.v-color-picker__swatches { min-height: 0px; max-height: 90% !important; padding: 0px; margin: 0px;}
 </style>
 
 <script scoped>
