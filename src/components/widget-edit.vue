@@ -18,23 +18,8 @@
 
 <template>
   <!-- without div the v-for in parent gets confused by v-menu -->
-  <div class="widget-edit" :style="widgetStyle">
-    <widget-wrap :config="widget" :no_border="no_border"
-      @edit="toggleEdit" @delete="$emit('delete')" @clone="$emit('clone')" 
-      @help="toggleHelp" @moveup="moveWidget(1)" @movedown="moveWidget(-1)"
-      @color="toggleColor">
-    </widget-wrap>
-
-    <!-- <v-navigation-drawer right v-model="help" clipped app mobile-breakpoint="960" width="400">
-    
-    </v-navigation-drawer> -->
-
-
-    <!-- <v-navigation-drawer right v-model="color" clipped app mobile-breakpoint="960" width="400">
-    
-    </v-navigation-drawer> -->
-
-    <v-navigation-drawer right v-model="edit_active" clipped app mobile-breakpoint="960"  width="400">
+  <div class="widget-edit" :style="widgetStyle" >
+    <v-navigation-drawer right v-if="edit_active && (edit || color || help)" clipped app mobile-breakpoint="960"  width="400" >
       <v-card color="wight" v-if="color" height="100%">
         <v-card-title class="d-flex align-baseline">
           color
@@ -57,7 +42,25 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-        <v-card v-else-if="edit"  color="wight" height="100%" >
+      <v-card color="panel" v-else-if="help">
+        <v-card-title class="d-flex align-baseline">
+          {{widget.kind}}
+        </v-card-title>
+        <v-card-text class="pb-6">
+          <h3>{{child_help_text}}</h3>
+        </v-card-text>
+    <v-divider></v-divider>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          text
+          @click="endHelp"
+        >
+          close
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+    <v-card v-else-if="edit"  color="wight" height="100%" >
         <v-card-title class="pb-6">
           Edit {{widget.kind}}
         </v-card-title>
@@ -305,25 +308,24 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-      <v-card color="panel" v-else-if="help">
-        <v-card-title class="d-flex align-baseline">
-          {{widget.kind}}
-        </v-card-title>
-        <v-card-text class="pb-6">
-          <h3>{{child_help_text}}</h3>
-        </v-card-text>
-    <v-divider></v-divider>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-          text
-          @click="endHelp"
-        >
-          close
-        </v-btn>
-      </v-card-actions>
-    </v-card>
     </v-navigation-drawer>
+
+    <widget-wrap :config="widget" :no_border="no_border" 
+      @edit="toggleEdit" @delete="$emit('delete')" @clone="$emit('clone')" 
+      @help="toggleHelp" @moveup="moveWidget(1)" @movedown="moveWidget(-1)"
+      @color="toggleColor">
+    </widget-wrap>
+
+    <!-- <v-navigation-drawer right v-model="help" clipped app mobile-breakpoint="960" width="400">
+    
+    </v-navigation-drawer> -->
+
+
+    <!-- <v-navigation-drawer right v-model="color" clipped app mobile-breakpoint="960" width="400">
+    
+    </v-navigation-drawer> -->
+
+    
   </div>
 </template>
 
@@ -478,6 +480,7 @@ export default {
         this.propStatic()
         this.sd_keys = Object.keys(this.$store.sd)
       }
+      console.log('in')
     },
   },
 
@@ -506,11 +509,29 @@ export default {
     },
 
     // toggle edit handles the edit event from the child component
-    toggleEdit() { this.$emit('edit', true); this.edit = true},
+    toggleEdit() { 
+      this.$emit('edit', false);
+      this.$emit('edit', true); 
+      this.edit = true; 
+      this.help = false;
+      this.color = false;
+    },
 
-    toggleHelp() { this.$emit('edit', true); this.help = true; },
+    toggleHelp() { 
+      this.$emit('edit', false);
+      this.$emit('edit', true); 
+      this.help = true;  
+      this.edit = false;
+      this.color = false;
+    },
 
-    toggleColor() { this.$emit('edit', true); this.color = true },
+    toggleColor() { 
+      this.$emit('edit', false);
+      this.$emit('edit', true); 
+      this.color = true; 
+      this.help = false;
+      this.edit = false;
+    },
 
     endHelp() {  this.$emit('edit', false); this.help = false },
 

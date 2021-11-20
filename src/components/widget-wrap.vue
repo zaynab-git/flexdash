@@ -7,6 +7,7 @@
 -->
 
 <template>
+
   <!--class="d-flex flex-column justify-start align-center"-->
   <v-card :color="color" :class="full_page ? 'full-page' : undefined"
           :elevation="no_border ? 0 : undefined"
@@ -107,12 +108,12 @@
 </template>
 
 <style scoped>
-.v-card { height: 100%; width: 100% }
+.v-card { height: 100%; width: 100%;}
 .v-card { display: flex; flex-direction: column; justify-content: flex-start; align-items: center }
 .v-card.full-page { position: absolute; left: 1%; top: 1%; z-index: 10; width: 98%; height: 98% }
 .v-card.full-page .full-page-btn { z-index: 11 }
 .v-card .edit-btn {
-  position: absolute; right: 0px; top: 0px; z-index: 1;
+  position: absolute; right: 0px; top: 0px;
 }
 .v-list-item:hover {background-color: lightgray;}
 .theme--light.v-btn--icon { background-color: rgba(255, 255, 255, 0.6); }

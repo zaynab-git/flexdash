@@ -16,6 +16,50 @@
       </div>
     </v-navigation-drawer> -->
 
+    <!-- main area of the page with content -->
+    <v-main :style="{ backgroundColor: $vuetify.theme.themes[theme].background}">
+      <!-- "normal" tabs with grids and widgets -->
+      <v-tabs-items v-if="gotConfig" :value="tab_ix" :class="tabs_items_class">
+        <v-tab-item v-for="(id) in dash_tabs" :key="id" :ref="id"
+                    :style="{ backgroundColor: $vuetify.theme.themes[theme].background}"
+                    :class="{'is-active': id == tab_id}">
+                    <!-- set class above as work-around for vuetify issue #11405-->
+          <!-- key={{id}} grids:{{tabs[id].grids}}
+          <div v-for="(g, ix) in tabs[id].grids" :key="g">
+            Grid {{g}} kind {{grids[g].kind}} palette {{palette.grids}</div -->
+          <!-- "normal" tab with grids with widgets -->
+          <component v-if="tabs[id].grids"
+                     v-for="(g, ix) in tabs[id].grids" :key="g" :id="g"
+                     v-bind:is="grids[g].kind in palette.grids ? grids[g].kind : 'div'"
+                     @delete="deleteGrid(id, ix)">
+          </component>
+        </v-tab-item>
+      </v-tabs-items>
+      <!-- iframe tabs, we have two "slots" where content can persist -->
+      <div v-if="gotConfig" :class="iframe_a_class">
+        <iframe v-if="iframe_a_src" :src="iframe_a_src"
+                frameborder="0" marginheight="0" marginwidth="0"></iframe>
+      </div>
+      <div v-if="gotConfig" :class="iframe_b_class">
+        <iframe v-if="iframe_b_src" :src="iframe_b_src"
+                frameborder="0" marginheight="0" marginwidth="0"></iframe>
+      </div>
+      <!-- loading... -->
+      <div v-if="!gotConfig">
+        <v-container style="height: 400px;">
+          <v-row class="fill-height" align-content="center" justify="center">
+            <v-col class="text-subtitle-1 text-center" cols="12">
+              Loading configuration from<br>{{config_src}}
+            </v-col>
+            <v-col cols="6">
+              <v-progress-linear color="primary" indeterminate rounded height="6">
+              </v-progress-linear>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
+    </v-main>
+
     <!-- Top title/navigation bar -->
     <v-app-bar clipped-right flat dense app color="surface">
       <!-- Hamburger menu shown on smallest devices only -->
@@ -109,49 +153,6 @@
       <tab-edit v-model="tab_edit" :tab_ix="tab_ix" :tab_id="tab_id" @reload="reload"></tab-edit>
     </v-menu>
 
-    <!-- main area of the page with content -->
-    <v-main :style="{ backgroundColor: $vuetify.theme.themes[theme].background}">
-      <!-- "normal" tabs with grids and widgets -->
-      <v-tabs-items v-if="gotConfig" :value="tab_ix" :class="tabs_items_class">
-        <v-tab-item v-for="(id) in dash_tabs" :key="id" :ref="id"
-                    :style="{ backgroundColor: $vuetify.theme.themes[theme].background}"
-                    :class="{'is-active': id == tab_id}">
-                    <!-- set class above as work-around for vuetify issue #11405-->
-          <!-- key={{id}} grids:{{tabs[id].grids}}
-          <div v-for="(g, ix) in tabs[id].grids" :key="g">
-            Grid {{g}} kind {{grids[g].kind}} palette {{palette.grids}</div -->
-          <!-- "normal" tab with grids with widgets -->
-          <component v-if="tabs[id].grids"
-                     v-for="(g, ix) in tabs[id].grids" :key="g" :id="g"
-                     v-bind:is="grids[g].kind in palette.grids ? grids[g].kind : 'div'"
-                     @delete="deleteGrid(id, ix)">
-          </component>
-        </v-tab-item>
-      </v-tabs-items>
-      <!-- iframe tabs, we have two "slots" where content can persist -->
-      <div v-if="gotConfig" :class="iframe_a_class">
-        <iframe v-if="iframe_a_src" :src="iframe_a_src"
-                frameborder="0" marginheight="0" marginwidth="0"></iframe>
-      </div>
-      <div v-if="gotConfig" :class="iframe_b_class">
-        <iframe v-if="iframe_b_src" :src="iframe_b_src"
-                frameborder="0" marginheight="0" marginwidth="0"></iframe>
-      </div>
-      <!-- loading... -->
-      <div v-if="!gotConfig">
-        <v-container style="height: 400px;">
-          <v-row class="fill-height" align-content="center" justify="center">
-            <v-col class="text-subtitle-1 text-center" cols="12">
-              Loading configuration from<br>{{config_src}}
-            </v-col>
-            <v-col cols="6">
-              <v-progress-linear color="primary" indeterminate rounded height="6">
-              </v-progress-linear>
-            </v-col>
-          </v-row>
-        </v-container>
-      </div>
-    </v-main>
 
   </v-app>
 </template>
