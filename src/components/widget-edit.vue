@@ -20,17 +20,33 @@
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle" >
     <v-navigation-drawer v-if="edit_active && (edit || color || help)" v-model="edit_active" clipped app mobile-breakpoint="960" width="400" >
-      <v-card color="wight" v-if="color" flat >
-        <v-card-title class="d-flex align-baseline">
-          color
+      <v-card color="wight" v-if="color" flat height="100%">
+        <v-card-title class="text-h5 font-weight-medium d-flex align-baseline">
+          Appearance
         </v-card-title>
         <v-divider></v-divider>
-        <v-card-text class="ma-0 px-2 py-3" height="100%">
+        <v-card shaped outlined class="mx-4 mb-0 mt-4">
+            <v-card-title class="ma-0 py-2 px-4">
+              order
+            </v-card-title>
+            <v-divider></v-divider>
+            <v-card-text class="d-inline mx-3 pa-0">
+              <v-btn outlined class="text-body-2 pl-1 pr-2 mx-1 my-4" @click="moveWidget(-1)">
+                <v-icon large  >mdi-arrow-left-bold</v-icon>
+                Move To Left
+              </v-btn>
+              <v-btn outlined class="text-body-2 pl-2 pr-1 mx-1 my-4" @click="moveWidget(1)">
+                Move To Right
+                <v-icon large>mdi-arrow-right-bold</v-icon>
+              </v-btn>
+            </v-card-text>
+          </v-card>
+        <v-card-text class="ma-0 pa-4" height="100%">
           <color-picker
                     label="color" :hint="prop_info['color'].hint"
                     :value="widget.static['color']||prop_info['color'].default"
                     @input="handleColorEdit('color', $event)">
-                </color-picker>
+          </color-picker>
         </v-card-text>
     </v-card>
       <v-card color="wight" v-else-if="help" flat>
@@ -279,9 +295,9 @@
       </v-card>
     </v-navigation-drawer>
 
-    <widget-wrap :config="widget" :no_border="no_border" 
+    <widget-wrap :config="widget" :no_border="no_border"  :color="selected"
       @edit="toggleEdit" @delete="$emit('delete')" @clone="$emit('clone')" 
-      @help="toggleHelp" @moveup="moveWidget(1)" @movedown="moveWidget(-1)"
+      @help="toggleHelp"
       @color="toggleColor">
     </widget-wrap>
 
@@ -429,6 +445,11 @@ export default {
     },
     child_help_text() {
       return this.child_help ? this.child_help.replace(/^.*?[.\n]\s/s, "") : null
+    },
+
+    selected() {
+      if (this.edit_active) return this.$vuetify.theme.dark ? 'grey' : 'grey lighten-2'
+      return this.$vuetify.theme.dark ? 'grey darken-3' : 'white'
     },
 
     // style attribute for widget to determine size

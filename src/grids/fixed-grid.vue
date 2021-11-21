@@ -19,9 +19,8 @@
     </div> -->
 
     <!-- Normal-mode title bar, when we have a title -->
-    <v-toolbar  dense flat v-if="rollupMaxi" height=36 color="background"
+    <!-- <v-toolbar  dense flat v-if="rollupMaxi" height=36 color="background"
                class="d-flex justify-start">
-      <!-- roll-up/down button -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn x-small icon height="24px" class="mx-auto" @click="toggleRoll" v-on="on">
@@ -30,13 +29,11 @@
         </template>
         <span>Roll widgets up/down</span>
       </v-tooltip>
-      <!-- grid title -->
       <v-toolbar-title>{{grid.title}}</v-toolbar-title>
-    </v-toolbar>
+    </v-toolbar> -->
 
     <!-- Editing toolbar above grid proper -->
-    <v-toolbar v-if="$root.editMode" dense flat color="background" class="editmode">
-      <!-- roll-up/down button -->
+    <!-- <v-toolbar v-if="$root.editMode" dense flat color="background" class="editmode">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn small icon color="grey" @click="toggleRoll" class="mr-4" v-on="on">
@@ -44,23 +41,23 @@
           </v-btn>
         </template>
         <span>Roll widgets up/down</span>
-      </v-tooltip>
+      </v-tooltip> -->
 
       <!-- grid title text field -->
-      <v-tooltip bottom>
+      <!-- <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-text-field single-line dense hide-details label="grid title" class="mr-6 flex-grow-0"
                         v-on="on" :value="grid.title" @change="changeTitle" style="width: 20ex">
           </v-text-field>
         </template>
         <span>Title to show at top of grid, if empty the grid bar is thinner</span>
-      </v-tooltip>
+      </v-tooltip> -->
 
       <!-- Menu to add widget -->
       <widget-menu @select="addWidget"></widget-menu>
 
       <!-- Paste button/text field -->
-      <v-tooltip bottom>
+      <!-- <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn small icon @click="pasting=!pasting" class="mc-auto" v-on="on">
             <v-icon>mdi-content-paste</v-icon>
@@ -71,11 +68,11 @@
       <div ref="pasteDiv" class="d-flex">
         <input type="text" v-if="pasting" size="15"
                placeholder="paste widget here" class="pasteinput">
-      </div>
+      </div> -->
 
-      <v-spacer></v-spacer>
+      <!-- <v-spacer></v-spacer> -->
       <!-- Button to delete the grid -->
-      <v-tooltip bottom>
+      <!-- <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn small @click="$emit('delete')" class="mc-auto" v-on="on">
             Delete grid
@@ -84,7 +81,7 @@
         <span>Delete this grid and all its widgets</span>
       </v-tooltip>
 
-    </v-toolbar>
+    </v-toolbar> -->
 
     <!-- Grid of widgets -->
     <v-container fluid v-if="!rolledup" class="g-grid-small pt-5 px-5">

@@ -34,7 +34,7 @@
             <v-list-item-title>Edit</v-list-item-title>
           </v-list-item-content>
         </v-list-item >
-        
+<!--         
         <v-list-item dense @click="handleMoveDown()">
           <v-list-item-icon>
             <v-icon size="20px">mdi-arrow-left-bold</v-icon>
@@ -50,7 +50,7 @@
           <v-list-item-content>
             <v-list-item-title>Move Right</v-list-item-title>
           </v-list-item-content>
-        </v-list-item >
+        </v-list-item > -->
         <v-list-item dense @click="handleColor()">
           <v-list-item-icon>
             <v-icon size="20px" >mdi-palette</v-icon>
