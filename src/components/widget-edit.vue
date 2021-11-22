@@ -20,14 +20,31 @@
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle" >
     <v-navigation-drawer v-if="edit_active && (edit || color || help)" v-model="edit_active" clipped app mobile-breakpoint="960" width="400" >
-      <v-card color="wight" v-if="color" flat height="100%">
+      <v-card color="wight" v-if="color" flat >
         <v-card-title class="text-h5 font-weight-medium d-flex align-baseline">
           Appearance
+          <v-spacer></v-spacer>
+          <v-btn icon @click="endEdit">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
         </v-card-title>
         <v-divider></v-divider>
         <v-card shaped outlined class="mx-4 mb-0 mt-4">
+                    <v-card-title class="ma-0 py-2 px-4">
+                      Name
+                    </v-card-title>
+                    <v-divider></v-divider>
+                    <v-card-text class=" ma-0 pa-4">
+                      <v-text-field 
+                      class="ma-0 pa-0"
+                        :value="widget.static['title']" :hide-details="true"
+                        @input="handleEdit('static', 'title', $event)">
+                      </v-text-field>
+                    </v-card-text>
+                </v-card>
+        <v-card shaped outlined class="mx-4 mb-0 mt-4">
             <v-card-title class="ma-0 py-2 px-4">
-              order
+              Order
             </v-card-title>
             <v-divider></v-divider>
             <v-card-text class="d-inline mx-3 pa-0">
@@ -41,77 +58,47 @@
               </v-btn>
             </v-card-text>
           </v-card>
-        <v-card-text class="ma-0 pa-4" height="100%">
           <color-picker
                     label="color" :hint="prop_info['color'].hint"
-                    :value="widget.static['color']||prop_info['color'].default"
+                    :value="widget.static['color']"
                     @input="handleColorEdit('color', $event)">
           </color-picker>
-        </v-card-text>
     </v-card>
-      <v-card color="wight" v-else-if="help" flat>
-        <v-card-title class="d-flex align-baseline">
-          {{widget.kind}}
+      <v-card color="wight" v-else-if="help" flat >
+        <v-card-title class="text-h5 font-weight-medium d-flex align-baseline">
+          Help
+          <v-spacer></v-spacer>
+          <v-btn icon @click="endEdit">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
         </v-card-title>
-        <v-card-text class="pb-6">
-          <h3>{{child_help_text}}</h3>
-        </v-card-text>
+        <v-divider></v-divider>
+          <v-card shaped outlined class="mx-4 mb-0 mt-4">
+              <v-card-title class="ma-0 py-2 px-4">
+                What Is {{widget.kind}} ?
+              </v-card-title>
+              <v-divider></v-divider>
+              <v-card-text class="d-inline mx-3 pa-0">
+                <h3 class="px-4 py-1 ma-0">{{child_help_text}}</h3>
+              </v-card-text>
+          </v-card>
     </v-card>
-    <v-card v-else-if="edit"  color="wight" flat>
-        <v-card-title class="pb-6">
-          Edit {{widget.kind}}
+    <v-card color="wight" v-else-if="edit" flat >
+        <v-card-title class="text-h5 font-weight-medium d-flex align-baseline">
+          Edit
+          <v-spacer></v-spacer>
+          <v-btn icon @click="endEdit">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
         </v-card-title>
-
-        <!-- Display widget help text -->
-        <!-- <v-card-text v-if="child_help" class="pb-0">
-          <h3 v-if="child_help_title">{{child_help_title}}
-            <v-btn x-small text class="ml-1" v-if="child_help_text"
-                   :value="edit_help" @click="edit_help=!edit_help">
-              {{ edit_help ? "less..." : "more..." }}</v-btn>
-          </h3>
-          <md v-if="edit_help">{{child_help_text}}</md>
-        </v-card-text> -->
-
-        <v-card-text  height="100%"><!-- v-if 'cause edited_xx vars not always set -->
-          <v-container class="pa-0" >
-            <!-- Display row with delete button, move buttons, and resize controls -->
-            <!-- <v-row align="center">
-              <v-col class="d-flex" cols="6" sm="2">
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn small icon @click="moveWidget(-1)" class="ml-2" v-on="on">
-                      <v-icon>mdi-arrow-up-bold</v-icon></v-btn>
-                  </template>
-                  <span>Move widget towards the top-left of the grid</span>
-                </v-tooltip>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn small icon @click="moveWidget(1)" v-on="on">
-                      <v-icon>mdi-arrow-down-bold</v-icon></v-btn>
-                  </template>
-                  <span>Move widget towards the bottom-right of the grid</span>
-                </v-tooltip>
-              </v-col> -->
-              <!-- <v-col class="d-flex" cols="12" sm="6" md="4">
-                <v-btn small icon @click="adjustRows(-1)" class="ml-2">
-                  <v-icon>mdi-minus</v-icon></v-btn>
-                <v-chip small>{{widget.rows}} row{{widget.rows > 1?'s':''}}</v-chip>
-                <v-btn small icon @click="adjustRows(1)">
-                  <v-icon>mdi-plus</v-icon></v-btn>
-                <v-btn small icon @click="adjustCols(-1)" class="ml-2">
-                  <v-icon>mdi-minus</v-icon></v-btn>
-                <v-chip small>{{widget.cols}} col{{widget.cols > 1 ? 's' : ''}}</v-chip>
-                <v-btn small icon @click="adjustCols(1)">
-                  <v-icon>mdi-plus</v-icon></v-btn>
-              </v-col> -->
-            <v-row>
-              <v-col class="d-flex" cols="8">
-                 <v-text-field  label="Widget Name" 
-                        :value="widget.static['title']" :hide-details="true"
-                        @input="handleEdit('static', 'title', $event)">
-               </v-text-field>
-              </v-col>
-            </v-row>
+        <v-divider></v-divider>
+            <v-card shaped outlined class="mx-4 mb-0 mt-4">
+                    <v-card-title class="ma-0 py-2 px-4">
+                      Inputs
+                    </v-card-title>
+                    <v-divider></v-divider>
+                    <v-card-text class=" ma-0 pa-4">
+                      <v-container class="ma-0 pa-1">
 
             <!-- Display component properties for editing -->
             <v-row align="center">
@@ -166,13 +153,7 @@
                     :rules="[validateObject]"
                     @input="handleEdit('static', prop, $event)">
                 </v-text-field>
-                <!-- color -->
-                <!-- <color-picker v-else-if="prop === 'color' || prop.endsWith('_color')"
-                    :label="prop" :hint="prop_info[prop].hint"
-                    :value="widget.static[prop]||prop_info[prop].default"
-                    @input="handleColorEdit(prop, $event)">
-                </color-picker> -->
-                <!-- string -->
+               
                 <v-text-field v-else class="w-edit"
                     :label="prop" dense
                     :hint="prop_info[prop].hint"
@@ -187,10 +168,32 @@
               </v-col>
             </v-row>
 
+          </v-container>
+                    </v-card-text>
+            
+            </v-card>
+             <v-card shaped outlined class="mx-4 mb-0 mt-4">
+                <v-card-title class="ma-0 py-2 px-4">
+                  Outputs
+                </v-card-title>
+                <v-divider></v-divider>
+                <v-card-text class=" ma-0 px-4 pb-1 pt-4">
+                  <v-container class="ma-0 pa-0">
+
             <!-- row for output binding -->
-            <v-row v-if="'output' in widget" >
-              <v-col class="d-flex" cols="6">
+            <v-row v-if="'output' in widget"  class="ma-0 pa-0">
+              <v-col class="d-flex ma-0 pa-0" cols="6">
                 <!--h4 class="mt-2 mr-3">Output binding:</h4-->
+                <v-combobox
+                class="ma-0 pa-0"
+                    clearable dense persistent-hint
+                    :hint='output_tip'
+                    :items="sd_keys"
+                    :value="widget.output"
+                    @input="handleEditOutput($event)">
+                </v-combobox>
+              </v-col>
+              <!-- <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
                 <v-combobox
                     label="output binding" clearable dense persistent-hint
                     :hint='output_tip'
@@ -200,7 +203,6 @@
                 </v-combobox>
               </v-col>
               <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
-                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                     label="output binding" clearable dense persistent-hint
                     :hint='output_tip'
@@ -210,7 +212,6 @@
                 </v-combobox>
               </v-col>
               <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
-                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                     label="output binding" clearable dense persistent-hint
                     :hint='output_tip'
@@ -220,7 +221,6 @@
                 </v-combobox>
               </v-col>
               <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
-                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                     label="output binding" clearable dense persistent-hint
                     :hint='output_tip'
@@ -230,7 +230,6 @@
                 </v-combobox>
               </v-col>
               <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
-                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                     label="output binding" clearable dense persistent-hint
                     :hint='output_tip'
@@ -240,7 +239,6 @@
                 </v-combobox>
               </v-col>
               <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
-                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                     label="output binding" clearable dense persistent-hint
                     :hint='output_tip'
@@ -250,7 +248,6 @@
                 </v-combobox>
               </v-col>
               <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
-                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                     label="output binding" clearable dense persistent-hint
                     :hint='output_tip'
@@ -258,40 +255,12 @@
                     :value="widget.output"
                     @input="handleEditOutput($event)">
                 </v-combobox>
-              </v-col>
-              <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
-                <!--h4 class="mt-2 mr-3">Output binding:</h4-->
-                <v-combobox
-                    label="output binding" clearable dense persistent-hint
-                    :hint='output_tip'
-                    :items="sd_keys"
-                    :value="widget.output"
-                    @input="handleEditOutput($event)">
-                </v-combobox>
-              </v-col>
+              </v-col> -->
             </v-row>
 
           </v-container>
-        </v-card-text>
-
-        <!-- dialog box to edit a string input value full-page -->
-        <!-- <v-dialog v-model="dialog" content-class="height80 widget-edit-dialog" max-width="100ex">
-          <v-card v-if="dialog" class="d-flex flex-column height100">
-            <v-card-title class="d-flex align-baseline">
-              <span>Edit <span style="font-weight: 700">{{dialog_prop}}</span></span>
-              <v-spacer></v-spacer>
-              <v-btn elevation=0 icon @click="dialog=false">
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
-            </v-card-title>
-            <v-card-text class="flex-grow-1">
-              <v-textarea dense hide-details filled class="height100"
-                  :value="widget.static[dialog_prop]||prop_info[dialog_prop].default"
-                  @change="handleEdit('static', dialog_prop, $event)">
-              </v-textarea>
-            </v-card-text>
-
-        </v-dialog> -->
+          </v-card-text>
+        </v-card>
       </v-card>
     </v-navigation-drawer>
 
@@ -523,11 +492,7 @@ export default {
       this.edit = false;
     },
 
-    endHelp() {  this.$emit('edit', false); this.help = false },
-
-    endColor() {  this.$emit('edit', false); this.color = false },
-
-    endEdit() { this.$emit('edit', false); this.edit = false},
+    endEdit() {  this.$emit('edit', false); this.help = false; this.color = false; this.edit = false },
 
     handleEdit(which, prop, value) {
       console.log("edit:", which, prop, value)

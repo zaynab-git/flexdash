@@ -56,7 +56,7 @@
             <v-icon size="20px" >mdi-palette</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title  >color</v-list-item-title>
+            <v-list-item-title  >Appearance</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item dense @click="handleClone()">
