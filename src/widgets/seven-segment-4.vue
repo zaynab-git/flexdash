@@ -303,22 +303,24 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    "pin A": { default: "", dynamic: "GND" },
-    "pin B": { default: "", dynamic: "GND" },
-    "pin C": { default: "", dynamic: "GND" },
-    "pin D": { default: "", dynamic: "GND" },
-    "pin E": { default: "", dynamic: "GND" },
-    "pin F": { default: "", dynamic: "GND" },
-    "pin G": { default: "", dynamic: "GND" },
-    "pin DP 1": { default: "", dynamic: "GND" },
-    "pin DP 2": { default: "", dynamic: "GND" },
-    "pin DP 3": { default: "", dynamic: "GND" },
-    "pin DP 4": { default: "", dynamic: "GND" },
-    "pin COM": { default: "", dynamic: "GND" },
-    "digit 1": { default: "", dynamic: "GND" },
-    "digit 2": { default: "", dynamic: "GND" },
-    "digit 3": { default: "", dynamic: "GND" },
-    "digit 4": { default: "", dynamic: "GND" },
+    inputs: {
+      "pin A": { default: "", dynamic: "GND" },
+      "pin B": { default: "", dynamic: "GND" },
+      "pin C": { default: "", dynamic: "GND" },
+      "pin D": { default: "", dynamic: "GND" },
+      "pin E": { default: "", dynamic: "GND" },
+      "pin F": { default: "", dynamic: "GND" },
+      "pin G": { default: "", dynamic: "GND" },
+      "pin DP 1": { default: "", dynamic: "GND" },
+      "pin DP 2": { default: "", dynamic: "GND" },
+      "pin DP 3": { default: "", dynamic: "GND" },
+      "pin DP 4": { default: "", dynamic: "GND" },
+      "pin COM": { default: "", dynamic: "GND" },
+      "digit 1": { default: "", dynamic: "GND" },
+      "digit 2": { default: "", dynamic: "GND" },
+      "digit 3": { default: "", dynamic: "GND" },
+      "digit 4": { default: "", dynamic: "GND" },
+    },
 
     color: { type: String, default: "red", tip: "value color, null->text color" }
   },
@@ -361,10 +363,11 @@ the high-threshold. For string values low and high colors are selected using reg
 
   methods: {
     state(port, digit) {
-     if (this.$props['pin COM'] == 'ON') {
-        return ((this.$props[port] != "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4') ) ? this.color : 'grey');
+      console.log(this.$props)
+     if (this.$props.inputs['pin COM'] == 'ON') {
+        return ((this.$props.inputs[port] != "ON" && (this.$props.inputs[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4') ) ? this.color : 'grey');
      }
-    return ((this.$props[port] == "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4')) ? this.color : 'grey');
+    return ((this.$props.inputs[port] == "ON" && (this.$props.inputs[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4')) ? this.color : 'grey');
     }
   }
 

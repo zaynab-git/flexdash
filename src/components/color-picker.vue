@@ -37,7 +37,6 @@ export default {
     const swatches = []
     for (let c in md_colors) {
       const color = md_colors[c]
-      console.log(color)
       if ('black' in color) break;
       if (color.base == '#9e9e9e') break;
       if (c == 'shades') {

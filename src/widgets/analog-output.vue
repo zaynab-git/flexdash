@@ -36,7 +36,10 @@ export default {
   },
 
   props: {
-    value: { type: Number, default: 0, dynamic: "" },
+    inputs: {
+      value: { type: Number, default: 0, dynamic: "" },
+    },
+    
     color: { type: String, default: 'green', tip: "color of filled segment" },
   },
 

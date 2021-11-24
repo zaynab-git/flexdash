@@ -19,7 +19,7 @@
 <template>
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle" >
-    <v-navigation-drawer v-if="edit_active && (edit || color || help)" v-model="edit_active" clipped app mobile-breakpoint="960" width="400" >
+    <v-navigation-drawer v-if="edit_active && (edit || color || help)" v-model="drawer" clipped app mobile-breakpoint="960" width="400" >
       <v-card color="wight" v-if="color" flat >
         <v-card-title class="text-h5 font-weight-medium d-flex align-baseline">
           Appearance
@@ -92,21 +92,21 @@
           </v-btn>
         </v-card-title>
         <v-divider></v-divider>
-            <v-card shaped outlined class="mx-4 mb-0 mt-4">
+            <v-card shaped outlined class="mx-4 mb-0 mt-4" v-if="edit_props.includes('inputs')">
                     <v-card-title class="ma-0 py-2 px-4">
                       Inputs
                     </v-card-title>
                     <v-divider></v-divider>
                     <v-card-text class=" ma-0 pa-4">
-                      <v-container class="ma-0 pa-1">
+                      <v-container class="ma-0 pa-1 mt-3">
 
             <!-- Display component properties for editing -->
             <v-row align="center">
               <!-- For each property of the component, show some type of edit field-->
-              <v-col class="d-flex" cols="6" v-for="prop in edit_props" :key=prop>
+              <v-col class="d-flex" cols="6" v-for="prop in Object.keys(this.child_props.inputs)" :key=prop>
                 <!-- toggle buttons to select static vs. dynamic -->
                 
-                <v-tooltip bottom>
+                <!-- <v-tooltip bottom>
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn-toggle mandatory dense class="mt-2 mr-1"
                                   :value="prop_static[prop]" @change="toggleStatic(prop, $event)"
@@ -118,34 +118,39 @@
                     </v-btn-toggle>
                   </template>
                   <span>Toggle dynamic link vs. literal value</span>
-                </v-tooltip>
+                </v-tooltip> -->
                 <!-- dynamic link -->
-                <topic-tree v-if="!prop_static[prop]"
+                 <v-combobox
+                class="ma-0 pa-0"
+                    clearable dense persistent-hint 
+                    :label="prop"
+                    hint='will add later'
+                    :items="sd_keys"
+                    :value="widget.dynamic[prop]"
+                    @input="handleEdit('dynamic', prop, $event)">
+                </v-combobox>
+                <!-- <topic-tree v-if="!prop_static[prop]"
                     :label="prop" hint='topic (/-separated path)' :value="widget.dynamic[prop]"
                     @input="handleEdit('dynamic', prop, $event)">
                 </topic-tree>
-                <!-- number -->
                 <v-text-field v-else-if="prop_info[prop].type === Number"
                     :label="prop" type="number" dense
                     :hint="prop_info[prop].hint"
                     :value="propVal(prop)"
                     @input="handleEdit('static', prop, $event)">
                 </v-text-field>
-                <!-- boolean -->
                 <v-switch v-else-if="prop_info[prop].type === Boolean"
                     :label="prop" class="mt-0 ml-2"
                     :hint="prop_info[prop].hint"
                     :input-value="propVal(prop)"
                     @change="handleEdit('static', prop, $event)">
                 </v-switch>
-                <!-- array -->
                 <v-text-field v-else-if="prop_info[prop].type === Array"
                     :label="prop" dense
                     :value="JSON.stringify(widget.static[prop]||prop_info[prop].default)"
                     :rules="[validateArray]"
                     @input="handleEdit('static', prop, $event)">
                 </v-text-field>
-                <!-- object -->
                 <v-text-field v-else-if="prop_info[prop].type === Object"
                     :label="prop" dense
                     :hint="prop_info[prop].hint"
@@ -164,30 +169,31 @@
                       <v-icon>mdi-arrow-expand-all</v-icon>
                     </v-btn>
                   </template>
-                </v-text-field>
+                </v-text-field> -->
               </v-col>
             </v-row>
 
           </v-container>
                     </v-card-text>
             
-            </v-card>
-             <v-card shaped outlined class="mx-4 mb-0 mt-4">
+            </v-card >
+             <v-card shaped outlined class="mx-4 mb-0 mt-4"  v-if="edit_props.includes('outputs')">
                 <v-card-title class="ma-0 py-2 px-4">
                   Outputs
                 </v-card-title>
                 <v-divider></v-divider>
-                <v-card-text class=" ma-0 px-4 pb-1 pt-4">
-                  <v-container class="ma-0 pa-0">
+                <v-card-text class=" ma-0 pa-4">
+                  <v-container class="ma-0 pa-1 mt-3">
 
             <!-- row for output binding -->
-            <v-row v-if="'output' in widget"  class="ma-0 pa-0">
-              <v-col class="d-flex ma-0 pa-0" cols="6">
+            <v-row  class="ma-0 pa-0">
+              <v-col class="d-flex ma-0 pa-0" cols="6" v-for="prop in Object.keys(this.child_props.inputs)" :key=prop>
                 <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                 class="ma-0 pa-0"
                     clearable dense persistent-hint
-                    :hint='output_tip'
+                    hint='will add later'
+                    :label="prop"
                     :items="sd_keys"
                     :value="widget.output"
                     @input="handleEditOutput($event)">
@@ -400,6 +406,7 @@ export default {
       let filtered = cp.filter(p => p !== 'title')
       filtered = filtered.filter(p => p !== 'color')
       filtered = filtered.filter(p => !p.endsWith('_color'))
+      console.log(filtered)
       return filtered
     },
 
@@ -419,6 +426,15 @@ export default {
     selected() {
       if (this.edit_active) return this.$vuetify.theme.dark ? 'grey' : 'grey lighten-2'
       return this.$vuetify.theme.dark ? 'grey darken-3' : 'white'
+    },
+
+    drawer: {
+      get() {
+        return this.edit_active;
+      },
+      set(val) {
+        this.$emit('edit', val);
+      }
     },
 
     // style attribute for widget to determine size
@@ -495,11 +511,11 @@ export default {
     endEdit() {  this.$emit('edit', false); this.help = false; this.color = false; this.edit = false },
 
     handleEdit(which, prop, value) {
-      console.log("edit:", which, prop, value)
       if (!(which in this.widget)) return
 
       if (prop != 'title') {
         if (!(prop in this.child_props)) return
+      console.log("edit:", which, prop, value)
 
         // for static values we get a string from the text_field and may need to convert
         if (which == 'static') {
