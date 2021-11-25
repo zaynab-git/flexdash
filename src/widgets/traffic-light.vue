@@ -67,12 +67,11 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    inputs: {
-      "pin red": { default: "", dynamic: "GND" },
-      "pin yellow": { default: "", dynamic: "GND" },
-      "pin green": { default: "", dynamic: "GND" },
-      "pin GND": { default: "", dynamic: "GND" },
-    },
+    inputs: { type: Object, value: ["pin red", 'pin yellow', 'pin green', 'pin GND']},
+    "pin red": { default: "", dynamic: "GND" },
+    "pin yellow": { default: "", dynamic: "GND" },
+    "pin green": { default: "", dynamic: "GND" },
+    "pin GND": { default: "", dynamic: "GND" },
   },
 
   computed: {

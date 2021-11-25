@@ -5,7 +5,7 @@
      Copyright ©2021 Thorsten von Eicken, MIT license, see LICENSE file
 -->
 <template>
-    <v-card-text  class="pa-3  pt-0">
+    <v-card-text  class="pa-3">
           <v-slider
               v-model="slider"
               max= 255
@@ -39,11 +39,7 @@ Sends a pre-determined value when toggled on or off. The current state can be se
 value input: the toggle will be "on" if the value is equal to the "on_value" input.`,
 
   props: {
-    
-    outputs: { 
-      'The 8 bit number': { default: "", dynamic: "GND" }
-      },
-
+    outputs: { type: Object, value: ["value"]},
     color: { type: String, default: "primary" },
   },
 

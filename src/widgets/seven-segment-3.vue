@@ -223,22 +223,21 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    inputs: {
-      "pin A": { default: "", dynamic: "GND" },
-      "pin B": { default: "", dynamic: "GND" },
-      "pin C": { default: "", dynamic: "GND" },
-      "pin D": { default: "", dynamic: "GND" },
-      "pin E": { default: "", dynamic: "GND" },
-      "pin F": { default: "", dynamic: "GND" },
-      "pin G": { default: "", dynamic: "GND" },
-      "pin DP 1": { default: "", dynamic: "GND" },
-      "pin DP 2": { default: "", dynamic: "GND" },
-      "pin COM": { default: "", dynamic: "GND" },
-      "digit 1": { default: "", dynamic: "GND" },
-      "digit 2": { default: "", dynamic: "GND" },
-      "digit 3": { default: "", dynamic: "GND" },
+    inputs: { type: Object, value: ["pin A", "pin B", "pin C", "pin D", "pin E", "pin G", "pin DP 1", "pin DP 2",  "pin COM", "digit 1", "digit 2", "digit 3"] },
+    "pin A": { default: "", dynamic: "GND" },
+    "pin B": { default: "", dynamic: "GND" },
+    "pin C": { default: "", dynamic: "GND" },
+    "pin D": { default: "", dynamic: "GND" },
+    "pin E": { default: "", dynamic: "GND" },
+    "pin F": { default: "", dynamic: "GND" },
+    "pin G": { default: "", dynamic: "GND" },
+    "pin DP 1": { default: "", dynamic: "GND" },
+    "pin DP 2": { default: "", dynamic: "GND" },
+    "pin COM": { default: "", dynamic: "GND" },
+    "digit 1": { default: "", dynamic: "GND" },
+    "digit 2": { default: "", dynamic: "GND" },
+    "digit 3": { default: "", dynamic: "GND" },
 
-    },
 
     color: { type: String, default: "red", tip: "value color, null->text color" }
   },

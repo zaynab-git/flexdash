@@ -92,7 +92,7 @@
           </v-btn>
         </v-card-title>
         <v-divider></v-divider>
-            <v-card shaped outlined class="mx-4 mb-0 mt-4" v-if="edit_props.includes('inputs')">
+            <v-card shaped outlined class="mx-4 mb-0 mt-4" v-if="Object.keys(this.child_props).includes('inputs')">
                     <v-card-title class="ma-0 py-2 px-4">
                       Inputs
                     </v-card-title>
@@ -103,7 +103,7 @@
             <!-- Display component properties for editing -->
             <v-row align="center">
               <!-- For each property of the component, show some type of edit field-->
-              <v-col class="d-flex" cols="6" v-for="prop in Object.keys(this.child_props.inputs)" :key=prop>
+              <v-col class="d-flex" cols="6" v-for="prop in this.child_props.inputs.value" :key=prop>
                 <!-- toggle buttons to select static vs. dynamic -->
                 
                 <!-- <v-tooltip bottom>
@@ -177,7 +177,7 @@
                     </v-card-text>
             
             </v-card >
-             <v-card shaped outlined class="mx-4 mb-0 mt-4"  v-if="edit_props.includes('outputs')">
+             <v-card shaped outlined class="mx-4 mb-0 mt-4"  v-if="Object.keys(this.child_props).includes('outputs')">
                 <v-card-title class="ma-0 py-2 px-4">
                   Outputs
                 </v-card-title>
@@ -187,7 +187,7 @@
 
             <!-- row for output binding -->
             <v-row  class="ma-0 pa-0">
-              <v-col class="d-flex ma-0 pa-0" cols="6" v-for="prop in Object.keys(this.child_props.inputs)" :key=prop>
+              <v-col class="d-flex ma-0 pa-0" cols="6" v-for="prop of this.child_props.outputs.value" :key=prop>
                 <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                 class="ma-0 pa-0"
@@ -401,14 +401,13 @@ export default {
     //sd_keys() { return Object.keys(this.$store.sd).sort() }, // reactivity failure...
 
     // list of child prop names for editing, excluding title
-    edit_props() {
-      const cp = Object.keys(this.child_props)
-      let filtered = cp.filter(p => p !== 'title')
-      filtered = filtered.filter(p => p !== 'color')
-      filtered = filtered.filter(p => !p.endsWith('_color'))
-      console.log(filtered)
-      return filtered
-    },
+    // edit_props() {
+    //   const cp = Object.keys(this.child_props)
+    //   let filtered = cp.filter(p => p !== 'title')
+    //   filtered = filtered.filter(p => p !== 'color')
+    //   filtered = filtered.filter(p => !p.endsWith('_color'))
+    //   return filtered
+    // },
 
     // handle a non-vue-standard "help" option in a widget
     child_help() {
@@ -531,7 +530,7 @@ export default {
         }
       }
 
-      this.$store.updateWidgetProp(this.id, which, prop, value)
+      this.$store.updateWidgetProp(this.id, which, prop, value, 'inputs')
     },
 
     handleColorEdit(prop, value) {

@@ -2,9 +2,9 @@
      Copyright ©2021 Thorsten von Eicken, MIT license, see LICENSE file
 -->
 <template>
-  <div class="pushbutton d-flex align-center justify-center">
+  <div class="pushbutton d-flex align-center justify-center mt-1">
     
-    <v-btn-toggle class="mt-7"> 
+    <v-btn-toggle> 
       <v-btn input-value="press" @click="clickEv($event)" depressed small :color="this.color">
       <span class="white--text">{{ (press ? 'pressed' : 'unpressed') }}</span>
     </v-btn>
@@ -25,6 +25,10 @@ Pressing the button sends a message with a specified payload to a topic.
 The button may contain an icon and/or a title string and is centered in the widget.`,
 
   props: {
+    inputs: { type: Object, value: ["pin VCD", " pin GND"]},
+    "pin VDC": { default: "", dynamic: "GND" },
+    "pin GND": { default: "", dynamic: "GND" },
+    outputs: { type: Object, value: ["output"]},
     color: { default: "primary" }
   },
 
@@ -44,7 +48,3 @@ The button may contain an icon and/or a title string and is centered in the widg
 
 }
 </script>
-
-<style scoped>
-.pushbutton { height: 100%; }
-</style>

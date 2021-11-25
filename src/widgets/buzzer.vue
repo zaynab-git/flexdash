@@ -7,19 +7,16 @@
        the title is rendered as v-card-text while the value is rendered here as v-card-title,
        that's so the value is more prominent than the title... ma-auto applies auto margins all
        around, which centers the value. -->
-       
-  <v-card-title class="headline pa-0 flex-grow-1"> 
-    <span class="ma-auto" :style="statStyle">
-      <audio id="myAudio">  
+    <span class="ma-auto mt-0 pa-0">
+      <audio class="mt-0 pa-0" id="myAudio">  
         <source src="http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3">  
       </audio> 
       <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
-      <v-icon large :class="(state ? 'shake' : '')" :color="(state ? color : 'grey')"> {{ (state ? 'mdi-bell-ring' : 'mdi-bell') }}</v-icon>
+      <v-icon class="mt-0 pa-0" large :class="(state ? 'shake' : '')" :color="(state ? color : 'grey')"> {{ (state ? 'mdi-bell-ring' : 'mdi-bell') }}</v-icon>
 
       <!-- <span class="font-weight-medium" style="font-size: 125%; line-height: 125%;">{{valTxt}}</span> -->
       <!-- <span class="unit">{{unitTxt}}</span> -->
     </span>
-  </v-card-title>
 </template>
 
 <script scoped>
@@ -38,11 +35,9 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    inputs: {
-      "pin VDC": { default: "", dynamic: "GND" },
-      "pin GND": { default: "", dynamic: "GND" },
-    },
-    
+    inputs: { type: Object, value: ["pin VDC", "pin GND"]},
+    "pin VDC": { default: "", dynamic: "GND" },
+    "pin GND": { default: "", dynamic: "GND" },
     color: { default: "red" }
   },
 
@@ -63,7 +58,6 @@ the high-threshold. For string values low and high colors are selected using reg
 </script>
 
 <style scoped>
-.unit { vertical-align: 15%; margin-left: 0.1em; }
 .shake {
   animation: shake 0.5s;
   animation-iteration-count: infinite;
