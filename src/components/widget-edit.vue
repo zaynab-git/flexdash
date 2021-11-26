@@ -186,8 +186,8 @@
                   <v-container class="ma-0 pa-1 mt-3">
 
             <!-- row for output binding -->
-            <v-row  class="ma-0 pa-0">
-              <v-col class="d-flex ma-0 pa-0" cols="6" v-for="prop of this.child_props.outputs.value" :key=prop>
+            <v-row  align="center">
+              <v-col class="d-flex" cols="6" v-for="prop of this.child_props.outputs.value" :key=prop>
                 <!--h4 class="mt-2 mr-3">Output binding:</h4-->
                 <v-combobox
                 class="ma-0 pa-0"
@@ -195,8 +195,8 @@
                     hint='will add later'
                     :label="prop"
                     :items="sd_keys"
-                    :value="widget.output"
-                    @input="handleEditOutput($event)">
+                    :value="widget.static[prop]"
+                    @input="handleEdit('static', prop, $event)">
                 </v-combobox>
               </v-col>
               <!-- <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
@@ -510,6 +510,8 @@ export default {
     endEdit() {  this.$emit('edit', false); this.help = false; this.color = false; this.edit = false },
 
     handleEdit(which, prop, value) {
+      console.log(this.widget)
+
       if (!(which in this.widget)) return
 
       if (prop != 'title') {
@@ -530,7 +532,7 @@ export default {
         }
       }
 
-      this.$store.updateWidgetProp(this.id, which, prop, value, 'inputs')
+      this.$store.updateWidgetProp(this.id, which, prop, value)
     },
 
     handleColorEdit(prop, value) {
@@ -538,9 +540,12 @@ export default {
       this.handleEdit('static', prop, value)
     },
 
-    handleEditOutput(value) {
+    handleEditOutput(prop, value) {
+      console.log(this.widget)
+      let p = {};
+      p[`outputs/${prop}`] = value;
       console.log("edit: output:", value)
-      this.$store.updateWidget(this.id, {output: value})
+      this.$store.updateWidget(this.id, p)
     },
 
     validateArray(v) {

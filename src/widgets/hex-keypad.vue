@@ -7,10 +7,8 @@
        the title is rendered as v-card-text while the value is rendered here as v-card-title,
        that's so the value is more prominent than the title... ma-auto applies auto margins all
        around, which centers the value. -->
-  <v-card-title class="headline pa-0 flex-grow-1">
-    <span class="ma-auto" :style="statStyle">
-    <v-container  style="height: 100%; width: 100%;" >
-    <v-row no-gutters >
+    <v-container>
+    <v-row no-gutters align="center" justify="center" >
         <v-btn 
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
@@ -43,7 +41,7 @@
           A
         </v-btn>
     </v-row>
-    <v-row no-gutters>
+    <v-row no-gutters align="center" justify="center">
         <v-btn
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
@@ -76,7 +74,7 @@
           B
         </v-btn>
     </v-row>
-    <v-row no-gutters>
+    <v-row no-gutters align="center" justify="center">
         <v-btn
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
@@ -109,7 +107,7 @@
           C
         </v-btn>
     </v-row>
-    <v-row no-gutters>
+    <v-row no-gutters align="center" justify="center">
         <v-btn
           class="px-1 py-8 text-h5 ma-1"
           :color="color"
@@ -141,8 +139,6 @@
         </v-btn>
     </v-row>
   </v-container>
-    </span>
-  </v-card-title>
 </template>
 
 <style scoped>
@@ -165,7 +161,10 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    color: { type: String, default: "grey darken-1", tip: "value color, null->text color" }
+    outputs: { type: Object, value: ['output 1', 'output 2']},
+    "output 1": { default: "", static: "" },
+    "output 2": { default: "", static: "" },
+    color: { tdefault: "primary", tip: "value color, null->text color" }
   },
 
 

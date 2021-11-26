@@ -394,7 +394,7 @@ export class Store {
     const widget_id = this.genId(this.config.widgets, "w")
     const widget_ix = grid.widgets.length
 
-    let emp_widget = { kind: kind, rows:1, cols:1, static:{title:""}, dynamic:{} }
+    let emp_widget = { kind: kind, rows:1, cols:1, static:{title:""}, dynamic:{}, outputs: {} }
     let col = 1;
     let row = 1;
     switch(kind) {
@@ -421,12 +421,10 @@ export class Store {
       case 'Toggle':
         col = 1;
         row = 1;
-        Object.assign(emp_widget, {output: ''})
         break;
       case 'push-button':
         col = 1;
         row = 1;
-        Object.assign(emp_widget, {output: ''})
         break;
       case 'analog-output':
         col = 2;
@@ -439,19 +437,17 @@ export class Store {
       case 'analog-input':
         col = 3;
         row = 1;
-        Object.assign(emp_widget, {output: ''})
         break;
       case 'hex-keypad':
           col = 3;
           row = 4;
-          Object.assign(emp_widget, {output: ''})
           break;
     }
     emp_widget.cols = col
     emp_widget.rows = row
     this.qMutation("add a widget", [ // FIXME: add tab name when implemented
       [`widgets/${widget_id}`,
-        { ...cloneDeep(emp_widget), id: widget_id, kind, static:{title:kind}, dynamic:{} } ],
+        { ...cloneDeep(emp_widget), id: widget_id, kind, static:{title:kind}, dynamic:{}, outputs:{} } ],
       [`grids/${grid_id}/widgets/${widget_ix}`, widget_id ],
     ])
     return widget_ix
@@ -465,7 +461,7 @@ export class Store {
     const widget_ix = panel.static.widgets.length
     this.qMutation("add a widget", [ // FIXME: add tab name when implemented
       [`widgets/${widget_id}`,
-        { ...cloneDeep(empty_widget), id: widget_id, kind, static:{title:kind}, dynamic:{} } ],
+        { ...cloneDeep(empty_widget), id: widget_id, kind, static:{title:kind}, dynamic:{}, outputs: {} } ],
       [`widgets/${panel_id}/static/widgets/${widget_ix}`, widget_id ],
     ])
     return widget_ix
@@ -495,7 +491,6 @@ export class Store {
 
   // updateWidget given ID and props to update (an object that gets merged into existing props)
   updateWidget(widget_id, props) {
-    this.widgetByID(widget_id) // just for the sanity check
     this.qMutation(`update widget ${Object.keys(props).join(",")}`,
       Object.entries(props).map(([k,v]) => [`widgets/${widget_id}/${k}`, v])
     )

@@ -7,8 +7,7 @@
        the title is rendered as v-card-text while the value is rendered here as v-card-title,
        that's so the value is more prominent than the title... ma-auto applies auto margins all
        around, which centers the value. -->
-  <v-card-title class="headline pa-0 flex-grow-1">
-    <span class="ma-auto" :style="statStyle">
+    <div class="mt-2">
       <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
       <div style="
       position: relative;
@@ -134,8 +133,7 @@
       </div>
       <!-- <span class="font-weight-medium" style="font-size: 125%; line-height: 125%;">{{valTxt}}</span> -->
       <!-- <span class="unit">{{unitTxt}}</span> -->
-    </span>
-  </v-card-title>
+    </div>
 </template>
 
 <style scoped>

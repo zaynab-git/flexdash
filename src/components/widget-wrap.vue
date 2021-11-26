@@ -286,11 +286,11 @@ export default {
 
     // handler for 'send' events emitted by widget
     sendData(data) {
-      let o = this.config.output
-      if (o) {
-        if (!o.startsWith("$demo"))
-          console.log(`Widget ${this.config.kind}[${this.config.id}] sending ${o} <-`, data)
-        this.$root.serverSend(o, data)
+      console.log(data)
+      if (data.title) {
+        // if (!data.title.startsWith("$demo"))
+        //   console.log(`Widget ${this.config.kind}[${this.config.id}] sending ${o} <-`, data)
+        this.$root.serverSend(data.title, data.value)
       }
     },
   },

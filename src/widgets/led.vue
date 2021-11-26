@@ -8,12 +8,10 @@
        that's so the value is more prominent than the title... ma-auto applies auto margins all
        around, which centers the value. -->
        
-  <v-card-title class="headline pa-0 ma-0 flex-grow-1" > 
-    <span class="ma-auto" :style="statStyle">
+  <v-card-title class=" pa-0 ma-0 " > 
       <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
-      <v-icon style="margin-top: -10px;" size="45px" :color="(state ? color : 'grey')" > {{ (state ? 'mdi-led-variant-on' : 'mdi-led-variant-off') }}</v-icon>
+      <v-icon style="margin-top: -5px;" size="45px" :color="(state ? color : 'grey')" > {{ (state ? 'mdi-led-variant-on' : 'mdi-led-variant-off') }}</v-icon>
 
-    </span>
   </v-card-title>
 </template>
 
@@ -33,7 +31,7 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    inputs: { type: Object, value: ["pin VCD", " pin GND"]},
+    inputs: { type: Object, value: ["pin VDC", "pin GND"]},
     "pin VDC": { default: "", dynamic: "GND" },
     "pin GND": { default: "", dynamic: "GND" },
     color: { default: "red" }

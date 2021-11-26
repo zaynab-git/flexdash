@@ -20,6 +20,7 @@ value input: the toggle will be "on" if the value is equal to the "on_value" inp
 
   props: {
     outputs: { type: Object, value: ["output"]},
+    "output": { default: "", static: "" },
     color: { type: String, default: "red" },
   },
 
@@ -59,8 +60,9 @@ value input: the toggle will be "on" if the value is equal to the "on_value" inp
   methods: {
     // change from v-switch is only emitted when the user toggles, not when input value changes
     change(ev) {
-      console.log("toggle event:", ev)
-      this.$emit('send', ev)
+      console.log(this.$props)
+      this.$emit('send', {title: this.$props.output.toString() ,value: ev})
+      console.log(ev)
       this.val = ev
     },
   },

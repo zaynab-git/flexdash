@@ -25,10 +25,11 @@ Pressing the button sends a message with a specified payload to a topic.
 The button may contain an icon and/or a title string and is centered in the widget.`,
 
   props: {
-    inputs: { type: Object, value: ["pin VCD", " pin GND"]},
+    inputs: { type: Object, value: ["pin VDC", "pin GND"]},
     "pin VDC": { default: "", dynamic: "GND" },
     "pin GND": { default: "", dynamic: "GND" },
     outputs: { type: Object, value: ["output"]},
+    "output": { default: "", static: "" },
     color: { default: "primary" }
   },
 
@@ -42,7 +43,9 @@ The button may contain an icon and/or a title string and is centered in the widg
     clickEv(ev) {
       this.press = !this.press
       console.log("PushButton event:", (this.press ? 'ON' : 'OFF'))
-      this.$emit('send', (this.press ? 'ON' : 'OFF'))
+      if (this.$props['pin VDC'] == 'ON' && this.$props['pin GND'] == 'OFF') {
+        this.$emit('send', {title: this.$props.output.toString(),value:(this.press ? 'ON' : 'OFF')})
+      }
     },
   },
 
