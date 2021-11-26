@@ -115,7 +115,6 @@
 .v-card .edit-btn {
   position: absolute; right: 0px; top: 0px;
 }
-.v-list-item:hover {background-color: lightgray;}
 .theme--light.v-btn--icon { background-color: rgba(255, 255, 255, 0.6); }
 .theme--dark.v-btn--icon  { background-color: rgba(30, 30, 30, 0.6); }
 </style>

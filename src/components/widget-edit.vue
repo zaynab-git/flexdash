@@ -536,7 +536,7 @@ export default {
     },
 
     handleColorEdit(prop, value) {
-      if (value == "") value = null
+      if (value == "" || value == '#FF0000') value = '#00838F'
       this.handleEdit('static', prop, value)
     },
 

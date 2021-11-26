@@ -161,10 +161,16 @@ the high-threshold. For string values low and high colors are selected using reg
   // field and also to convert data (ex: string to number). Dynamic is used to bind an input
   // to a data topic right when the widget is created so it animates tight off the bat.
   props: {
-    outputs: { type: Object, value: ['output 1', 'output 2']},
-    "output 1": { default: "", static: "" },
-    "output 2": { default: "", static: "" },
-    color: { tdefault: "primary", tip: "value color, null->text color" }
+    outputs: { type: Object, value: ['R1', 'R2', 'R3', 'R4', 'C1', 'C2', 'C3', 'C4']},
+    "R1": { default: "", static: "" },
+    "R2": { default: "", static: "" },
+    "R3": { default: "", static: "" },
+    "R4": { default: "", static: "" },
+    "C1": { default: "", static: "" },
+    "C2": { default: "", static: "" },
+    "C3": { default: "", static: "" },
+    "C4": { default: "", static: "" },
+    color: { default: "#00838F", tip: "value color, null->text color" }
   },
 
 
@@ -172,7 +178,8 @@ the high-threshold. For string values low and high colors are selected using reg
   methods: {
 
     keyPressed(row, col) {
-      console.log('pin R'+ row + ' & pin C' + col)
+        this.$emit('send', {title: this.$props['R' + row.toString()].toString(), value: 'ON'});
+        this.$emit('send', {title: this.$props['C' + col.toString()].toString(), value: 'ON'});
     }
   }
 

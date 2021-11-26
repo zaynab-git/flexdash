@@ -41,6 +41,7 @@ The button may contain an icon and/or a title string and is centered in the widg
 
   methods: {
     clickEv(ev) {
+      console.log(this.color)
       this.press = !this.press
       console.log("PushButton event:", (this.press ? 'ON' : 'OFF'))
       if (this.$props['pin VDC'] == 'ON' && this.$props['pin GND'] == 'OFF') {
