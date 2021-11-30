@@ -21,10 +21,10 @@
     </v-text-field>
     <v-checkbox hide-details label="enable" :disabled="disable"
                 :input-value="config.enabled" @change="config.enabled=$event"></v-checkbox>
-    <div class="mt-3">
+    <!-- <div class="mt-3">
       Reload the dashboard from this server (looses current config):
       <v-btn :disabled="status_txt!='OK'" x-small @click="reload()">reload</v-btn>
-    </div>
+    </div> -->
   </div>
 </template>
 

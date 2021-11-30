@@ -4,13 +4,13 @@
 -->
 
 <template>
-<v-card shaped outlined class="mx-4 mb-0 mt-4">
-            <v-card-title class="ma-0 py-2 px-4">
+<v-card shaped outlined class="mx-3 mb-0 mt-3 pa-0">
+            <v-card-title class="ma-0 py-1 px-4">
               Color
             </v-card-title>
             <v-divider></v-divider>
             <v-card-text class="ma-0 pa-0">
-              <v-color-picker class="py-2  ma-0" hide-inputs hide-canvas hide-sliders mode="hexa" show-swatches swatches-max-height="auto"
+              <v-color-picker class="py-3 ma-0" hide-inputs hide-canvas hide-sliders mode="hexa" show-swatches swatches-max-height="auto"
                         :swatches="swatches" :value="value" @update:color="changeColor">
           </v-color-picker>
             </v-card-text>

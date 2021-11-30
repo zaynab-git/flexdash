@@ -4,19 +4,33 @@
 -->
 
 <template>
-  <v-menu offset-y v-model="show">
-    <!-- Menu activator, i.e. the button -->
+<div>
+      <v-navigation-drawer v-model="drawer" app right mobile-breakpoint="960" width="200" >
+        <v-list dense>
+      <v-list-item v-for="(descr, kind) in widget_list" :key="kind" @click="$emit('select', kind)">
+          <v-list-item-icon class="mx-2">
+            <v-icon  size="20px">mdi-pencil</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title><span style="white-space: normal;">{{$t('components.'+kind)}}</span></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        </v-list>
+      </v-navigation-drawer >  
+        
+</div>
+
+  <!-- <v-menu offset-y v-model="show">
     <template v-slot:activator="{ on:menu, attrs }">
       <v-tooltip bottom>
         <template v-slot:activator="{ on:tt }">
           <v-btn small icon :class="button_class" color="primary" v-bind="attrs" v-on="{...tt, ...menu}">
-            <v-icon>mdi-card-plus</v-icon>
+            <v-icon  size="3rem">mdi-plus-circle</v-icon>
           </v-btn>
         </template>
         <span>Add a widget to the end of the grid</span>
       </v-tooltip>
     </template>
-    <!-- Menu content -->
     <v-list>
       <v-subheader>Add Widget to the end of the grid</v-subheader>
       <v-list-item v-for="(descr, kind) in widget_list" :key="kind"
@@ -25,7 +39,7 @@
           <v-list-item-subtitle v-if="descr">{{descr}}</v-list-item-subtitle>
       </v-list-item>
     </v-list>
-  </v-menu>
+  </v-menu> -->
 </template>
 
 <style scoped>
@@ -42,11 +56,12 @@ export default {
 
   props: {
     button_class: [],
+    drawer: {default: false}
   },
 
-  data() { return {
-    show: false,
-  }},
+  // data() { return {
+  //   drawer: false
+  // }},
 
   computed: {
     // list of available widgets for the menu

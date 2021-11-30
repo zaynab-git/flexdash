@@ -4,12 +4,41 @@
 
 <template>
   <!-- Editing panel shown floating below tab -->
-  <v-card color="surface" class="pb-2">
-    <v-card-text class="d-flex px-2">
+  <v-card color="surface" class="px-3 py-3" width="200">
+    <v-card-title class="d-flex px-2">
       <!-- move tab left/right -->
+      Edit Tab
+      <v-spacer></v-spacer>
+
+      <!-- delete tab -->
+
+      <!-- close dialog button -->
+      <v-btn small elevation=0 icon @click="$emit('change', false)">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-card-title>
+
+    <v-card-text>
+      <!-- icon selector -->
+      <!-- <v-text-field dense label="icon" persistent-hint hint="yes" class="flex-grow-0"
+                    :value="tab.icon" @input="handleEdit('icon', $event)">
+        <template v-slot:message>
+          <span>See
+            <a target="_blank" href='https://materialdesignicons.com'>
+               materialdesignicons.com
+               <v-icon color="primary" x-small>mdi-open-in-new</v-icon>
+            </a>
+          </span>
+        </template>
+      </v-text-field> -->
+      <v-container>
+<v-row >
+   <v-btn small @click="deleteTab">Delete tab</v-btn>
+</v-row>
+<v-row>
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn small icon @click="moveTab(-1)" class="" v-on="on">
+          <v-btn small icon @click="moveTab(-1)" v-on="on">
             <v-icon>mdi-arrow-left-bold</v-icon></v-btn>
         </template>
         <span>Move tab left</span>
@@ -21,38 +50,16 @@
         </template>
         <span>Move tab right</span>
       </v-tooltip>
-      <v-spacer></v-spacer>
-
-      <!-- delete tab -->
-      <v-btn small @click="deleteTab" class="mx-auto">Delete tab</v-btn>
-      <v-spacer></v-spacer>
-
-      <!-- close dialog button -->
-      <v-btn small elevation=0 icon @click="$emit('change', false)">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-    </v-card-text>
-
-    <v-card-text class="d-flex flex-column">
-      <!-- icon selector -->
-      <v-text-field dense label="icon" persistent-hint hint="yes" class="flex-grow-0"
-                    :value="tab.icon" @input="handleEdit('icon', $event)">
-        <template v-slot:message>
-          <span>See
-            <a target="_blank" href='https://materialdesignicons.com'>
-               materialdesignicons.com
-               <v-icon color="primary" x-small>mdi-open-in-new</v-icon>
-            </a>
-          </span>
-        </template>
-      </v-text-field>
 
       <!-- tab title -->
       <v-text-field dense label="tab title" class="flex-grow-0 mt-6"
                     :value="tab.title" @input="handleEdit('title', $event)">
       </v-text-field>
+</v-row>
+      </v-container>
+           
 
-      <div class="d-flex align-baseline justify-start mt-2">
+      <!-- <div class="d-flex align-baseline justify-start mt-2">
         <span class="text-body-1 font-weight-medium">Tab type:</span>
         <v-chip small class="ml-2">{{tab_kind}}</v-chip>
       </div>
@@ -72,9 +79,9 @@
           <v-radio label="B" value="b" @click="handleEdit('slot', 'b')"></v-radio>
         </v-radio-group>
         <v-text-field dense label="url" :value="tab.url" @input="handleEdit('url', $event)"
-                      class="mt-4" style="width:40ex;"> <!-- push v-card to max-width-->
+                      class="mt-4" style="width:40ex;">
         </v-text-field>
-      </div>
+      </div> -->
     </v-card-text>
 
   </v-card>

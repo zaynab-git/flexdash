@@ -31,7 +31,7 @@
 
         <!-- individual types of connections -->
         <masonry class="v-card__text">
-          <masonry-brick>
+          <!-- <masonry-brick>
             <div>
               <h3 class="mb-1">Saving the dashboard config</h3>
               <p>The dashboard's configuration is generally saved to the connection from
@@ -41,7 +41,7 @@
                 <v-chip class="ml-3">{{config_source_name}}</v-chip>
               </div>
             </div>
-          </masonry-brick> 
+          </masonry-brick>  -->
 
           <!-- <masonry-brick>
             <sockio-settings :connection="connections['sockio'].conn" :config="sockio_config"
@@ -55,11 +55,11 @@
             </websock-settings>
           </masonry-brick>
 
-           <masonry-brick>
+           <!-- <masonry-brick>
             <demo-settings :connection="connections['demo'].conn" :config="demo_config"
                            @change="changeConfig('demo', $event)">
             </demo-settings>
-          </masonry-brick>
+          </masonry-brick> -->
         </masonry>
       </v-card>
     </v-dialog>
@@ -95,18 +95,16 @@ export default {
   computed: {
     // compute the color of the connections status icon
     icon_color() {
-      let num_ok = 0, num_bad = 0
-      for (const c in this.connections) {
-        if (!('conn' in this.connections[c])) continue
-        switch (this.connections[c].conn.data.status) {
-          case 'ok': num_ok++; break;
-          case 'bad': num_bad++; break;
-        }
-      }
+      // for (const c in this.connections) {
+      //   if (!('conn' in this.connections[c])) continue
+      return this.connections['websocket'].conn.data.status == 'ok' ? 'green' : 'grey'
+        // switch (this.connections[c].conn.data.status) {
+        //   case 'ok': num_ok++; break;
+        //   case 'bad': num_bad++; break;
+        // }
+      // }
       // if all connections are OK: green, if some OK, some BAD: warning,
       // if all BAD: error, if all disabled: grey
-      if (num_ok) return num_bad ? "warning" : "success"
-      return num_bad ? "error" : "grey"
     },
 
     gotConfig() { return this.$config.dash.title !== undefined },

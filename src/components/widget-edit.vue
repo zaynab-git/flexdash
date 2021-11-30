@@ -20,8 +20,8 @@
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle" >
     <v-navigation-drawer v-if="edit_active && (edit || color || help)" v-model="drawer" clipped app mobile-breakpoint="960" width="400" >
-      <v-card color="wight" v-if="color" flat >
-        <v-card-title class="text-h5 font-weight-medium d-flex align-baseline">
+      <v-card color="wight" v-if="color" flat  class="pb-3" >
+        <v-card-title class="text-h5 font-weight-medium pt-0 pb-2">
           Appearance
           <v-spacer></v-spacer>
           <v-btn icon @click="endEdit">
@@ -29,7 +29,7 @@
           </v-btn>
         </v-card-title>
         <v-divider></v-divider>
-        <v-card shaped outlined class="mx-4 mb-0 mt-4">
+        <v-card shaped outlined class="mx-3 mb-0 mt-3">
                     <v-card-title class="ma-0 py-2 px-4">
                       Name
                     </v-card-title>
@@ -42,8 +42,8 @@
                       </v-text-field>
                     </v-card-text>
                 </v-card>
-        <v-card shaped outlined class="mx-4 mb-0 mt-4">
-            <v-card-title class="ma-0 py-2 px-4">
+        <v-card shaped outlined class="mx-3 mb-0 mt-3">
+            <v-card-title class="ma-0 py-1 px-4">
               Order
             </v-card-title>
             <v-divider></v-divider>
@@ -64,8 +64,8 @@
                     @input="handleColorEdit('color', $event)">
           </color-picker>
     </v-card>
-      <v-card color="wight" v-else-if="help" flat >
-        <v-card-title class="text-h5 font-weight-medium d-flex align-baseline">
+      <v-card color="wight" v-else-if="help" flat  class="pb-3" >
+        <v-card-title class="text-h5 font-weight-medium pt-0 pb-2">
           Help
           <v-spacer></v-spacer>
           <v-btn icon @click="endEdit">
@@ -74,7 +74,7 @@
         </v-card-title>
         <v-divider></v-divider>
           <v-card shaped outlined class="mx-4 mb-0 mt-4">
-              <v-card-title class="ma-0 py-2 px-4">
+              <v-card-title class="ma-0 py-1 px-4">
                 What Is {{widget.kind}} ?
               </v-card-title>
               <v-divider></v-divider>
@@ -83,8 +83,8 @@
               </v-card-text>
           </v-card>
     </v-card>
-    <v-card color="wight" v-else-if="edit" flat >
-        <v-card-title class="text-h5 font-weight-medium d-flex align-baseline">
+    <v-card color="wight" v-else-if="edit" flat class="pb-3">
+        <v-card-title class="text-h5 font-weight-medium pt-0 pb-2">
           Edit
           <v-spacer></v-spacer>
           <v-btn icon @click="endEdit">
@@ -93,7 +93,7 @@
         </v-card-title>
         <v-divider></v-divider>
             <v-card shaped outlined class="mx-4 mb-0 mt-4" v-if="Object.keys(this.child_props).includes('inputs')">
-                    <v-card-title class="ma-0 py-2 px-4">
+                    <v-card-title class="ma-0 py-1 px-4">
                       Inputs
                     </v-card-title>
                     <v-divider></v-divider>
@@ -178,7 +178,7 @@
             
             </v-card >
              <v-card shaped outlined class="mx-4 mb-0 mt-4"  v-if="Object.keys(this.child_props).includes('outputs')">
-                <v-card-title class="ma-0 py-2 px-4">
+                <v-card-title class="ma-0 py-1 px-4">
                   Outputs
                 </v-card-title>
                 <v-divider></v-divider>

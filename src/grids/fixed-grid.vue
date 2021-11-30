@@ -54,9 +54,10 @@
       </v-tooltip> -->
 
       <!-- Menu to add widget -->
-      <widget-menu @select="addWidget"></widget-menu>
-
       <!-- Paste button/text field -->
+      
+            <widget-menu :drawer=drawer @select="addWidget"></widget-menu>
+
       <!-- <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn small icon @click="pasting=!pasting" class="mc-auto" v-on="on">
@@ -84,7 +85,7 @@
     </v-toolbar> -->
 
     <!-- Grid of widgets -->
-    <v-container fluid v-if="!rolledup" class="g-grid-small pt-5 px-5">
+    <v-container fluid v-if="!rolledup" class="g-grid-small py-5">
       <component v-for="(w,ix) in grid.widgets" :key="w" :id="w" :is="editComponent[w]"
                  :edit_active="ix == edit_ix" @edit="toggleEdit(ix, $event)"
                  @move="moveWidget(ix, $event)" @delete="deleteWidget(ix)"
@@ -107,7 +108,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   grid-auto-rows: 78px;
-  gap: 8px;
+  gap: 10px;
   grid-auto-flow: dense;
 }
 .g-grid-margin { margin: 0.5em; }
@@ -137,6 +138,7 @@ export default {
 
   props: {
     id: { type: String }, // this grid's ID
+    drawer: {default: false}
   },
 
   data() { return {

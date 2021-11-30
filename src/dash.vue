@@ -16,8 +16,14 @@
       </div>
     </v-navigation-drawer> -->
 
+    <div style="position: relative;">
+      
+      </div>
+
+
     <!-- main area of the page with content -->
-    <v-main :style="{ backgroundColor: $vuetify.theme.themes[theme].background}">
+    <v-main  :style="{ backgroundColor: $vuetify.theme.themes[theme].background}">
+      
       <!-- "normal" tabs with grids and widgets -->
       <v-tabs-items v-if="gotConfig" :value="tab_ix" :class="tabs_items_class">
         <v-tab-item v-for="(id) in dash_tabs" :key="id" :ref="id"
@@ -31,7 +37,7 @@
           <component v-if="tabs[id].grids"
                      v-for="(g, ix) in tabs[id].grids" :key="g" :id="g"
                      v-bind:is="grids[g].kind in palette.grids ? grids[g].kind : 'div'"
-                     @delete="deleteGrid(id, ix)">
+                     @delete="deleteGrid(id, ix)" :drawer=drawer>
           </component>
         </v-tab-item>
       </v-tabs-items>
@@ -61,11 +67,11 @@
     </v-main>
 
     <!-- Top title/navigation bar -->
-    <v-app-bar clipped-left flat dense app color="surface">
+    <v-app-bar clipped-left height="80"  flat  app color="surface">
       <!-- Hamburger menu shown on smallest devices only -->
-      <span class="hidden-sm-and-up">
+      <!-- <span class="hidden-sm-and-up">
         <v-app-bar-nav-icon @click="sidebar = !sidebar"></v-app-bar-nav-icon>
-      </span>
+      </span> -->
 
       <!-- Title -->
       <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
@@ -74,33 +80,29 @@
       </v-toolbar-title>
 
       <!-- Tabs -->
-      <v-tabs v-model=tab_ix icons-and-text center-active class="hidden-xs-only" v-if="gotConfig">
+      <v-tabs hidden v-model=tab_ix icons-and-text center-active class="hidden-xs-only" v-if="gotConfig">
         <v-tab v-for="(tid, ix) in dash_tabs" :key="tid+ix" :id="'tab-'+tid"
                :class="{'is-active': ix == tab_ix}">
-               <!-- set class above as work-around for vuetify issue #11405-->
-          <!-- Text and icon for the tab -->
-          {{tabs[tid].title}}
+             
+          <!-- {{tabs[tid].title}}
           <v-icon :large="!tabs[tid].title" class="mb-0">mdi-{{tabs[tid].icon}}</v-icon>
-          <!-- Button to edit the tab -->
           <div v-if="$root.editMode && ix==tab_ix"
                style="position:absolute; z-index:5; right:0; top:0.5ex;">
             <v-btn small icon
                    @click.stop="tab_edit=!tab_edit">
               <v-icon small>mdi-pencil</v-icon>
             </v-btn>
-          </div>
+          </div> -->
         </v-tab>
-        <!-- Button to add a tab -->
-        <v-btn v-if="$root.editMode" x-small fab class="my-auto ml-6" id="tab-add"
-               @click.stop="tab_add=!tab_add">
+        <!-- <v-btn x-small fab class="my-auto ml-6" id="tab-add"
+               @click.stop="addTab('grid')">
           <v-icon>mdi-plus</v-icon>
-        </v-btn>
+        </v-btn> -->
       </v-tabs>
 
       <v-spacer></v-spacer>
-
       <!-- Undo button -->
-      <v-tooltip v-if="$root.editMode" bottom :disabled="!canUndo">
+      <!-- <v-tooltip v-if="$root.editMode" bottom :disabled="!canUndo">
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on"
                  :disabled="!canUndo" @click="$store.performUndo()">
@@ -108,10 +110,10 @@
           </v-btn>
         </template>
         <span>undo {{ canUndo && $store.undo.buf[$store.undo.buf.length-1].tagline }}</span>
-      </v-tooltip>
+      </v-tooltip> -->
 
       <!-- Connection icon -->
-      <connections @src="config_src=$event" ></connections>
+      <connections @src="config_src=$event"></connections>
 
       <!-- Settings menu at far right -->
             
@@ -137,21 +139,36 @@
           
         </v-list>
       </v-menu>
+                <v-btn
+                  color="red darken-2"
+                  class="mx-3"
+                  fab
+                  dark
+                  large
+                  @click="drawer = !drawer"
+                >
+                  <v-icon>{{ (drawer ? 'mdi-close' : 'mdi-plus')}}</v-icon>
+                </v-btn>
     </v-app-bar>
 
+    
+
     <!-- Menu used to show tab addition-->
-    <v-menu v-model="tab_add" offset-y allow-overflow activator="#tab-add">
+    <!-- <v-menu v-model="tab_add" offset-y allow-overflow activator="#tab-add">
         <v-list dense>
           <v-list-item @click="addTab('grid')">Grid with Widgets</v-list-item>
           <v-list-item @click="addTab('iframe')">IFrame</v-list-item>
         </v-list>
-    </v-menu>
+    </v-menu> -->
+
 
     <!-- Menu used to show editing panel floating below tab -->
     <v-menu v-model="tab_edit" offset-y allow-overflow :activator="'#tab-'+tab_id"
             max-width="40ex" content-class="popup-spacer" :close-on-content-click="false">
       <tab-edit v-model="tab_edit" :tab_ix="tab_ix" :tab_id="tab_id" @reload="reload"></tab-edit>
+
     </v-menu>
+
 
 
   </v-app>
@@ -160,16 +177,18 @@
 <script scoped>
 import Connections from '/src/components/connections.vue'
 import TabEdit from '/src/components/tab-edit.vue'
+import widgetMenu from '/src/components/widget-menu.vue'
 import randomStepper from '/src/utils/random-stepper.js'
 //const J = JSON.stringify
 
 export default {
   name: 'Dash',
 
-  components: { Connections, TabEdit },
+  components: { Connections, TabEdit, widgetMenu },
   inject: [ '$config', '$store', 'palette' ],
 
   data: () => ({
+    drawer: false,
     sidebar: false, // disabled for now
     tab_ix: null, // which tab we're on
     tab_edit: false, // turns tab editing drawer on/off
