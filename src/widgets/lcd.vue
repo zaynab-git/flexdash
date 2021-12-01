@@ -55,7 +55,7 @@ import LcdPart from '../components/lcd-part.vue'
 export default {
   name: 'LCD',
   components: { LcdPart },
-
+  icon: '$lcd',
   // help displayed in the UI: the first line is used in the widgets menu and is always shown in
   // the edit card. Successive lines can be expanded in the card and are markdown-formatted.
   help: `Display colored numeric or text status value.

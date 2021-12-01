@@ -55,11 +55,11 @@
             </websock-settings>
           </masonry-brick>
 
-           <!-- <masonry-brick>
+           <masonry-brick hidden>
             <demo-settings :connection="connections['demo'].conn" :config="demo_config"
                            @change="changeConfig('demo', $event)">
             </demo-settings>
-          </masonry-brick> -->
+          </masonry-brick>
         </masonry>
       </v-card>
     </v-dialog>

@@ -13,6 +13,7 @@
 <script scoped>
 export default {
   name: 'Toggle',
+  icon: 'mdi-toggle-switch',
 
   help: `Simple on/off toggle switch.
 Sends a pre-determined value when toggled on or off. The current state can be set via the

@@ -10,7 +10,7 @@
        
   <v-card-title class=" pa-0 ma-0 " > 
       <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
-      <v-icon style="margin-top: -5px;" size="45px" :color="(state ? color : 'grey')" > {{ (state ? 'mdi-led-variant-on' : 'mdi-led-variant-off') }}</v-icon>
+      <v-icon style="margin-top: -5px;" size="45px" :color="(state ? color : 'grey')" > {{ (state ? 'mdi-led-on' : 'mdi-led-variant-off') }}</v-icon>
 
   </v-card-title>
 </template>
@@ -18,6 +18,7 @@
 <script scoped>
 export default {
   name: 'LED',
+  icon: 'mdi-led-variant-on',
   // help displayed in the UI: the first line is used in the widgets menu and is always shown in
   // the edit card. Successive lines can be expanded in the card and are markdown-formatted.
   help: `Display colored numeric or text status value.

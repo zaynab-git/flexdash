@@ -2,23 +2,20 @@
      Copyright ©2021 Thorsten von Eicken, MIT license, see LICENSE file
 -->
 <template>
-  <div class="pushbutton d-flex align-center justify-center mt-1">
-    
-    <v-btn-toggle> 
-      <v-btn input-value="press" @click="clickEv($event)" depressed small :color="this.color">
-      <span class="white--text">{{ (press ? 'pressed' : 'unpressed') }}</span>
-    </v-btn>
+  <div >
+      <v-icon large @click="clickEv($event)" :color="this.color"> {{ (press ? 'mdi-radiobox-marked' : 'mdi-radiobox-blank') }} </v-icon>
+      <span class="grey--text px-1 text--darken-2">{{ (press ? 'ON' : 'OFF') }}</span>
     <!-- <v-btn large dense class="ma-auto" max-width="95%"
                v-bind="Object.assign(bindings, attrs)" v-on="on" @click="clickEv($event)">
           <v-icon :large="!title"  v-if="icon">mdi-{{icon}}</v-icon> <span>{{ title }}</span>
     </v-btn> -->
-    </v-btn-toggle>
   </div>
 </template>
 
 <script scoped>
 export default {
   name: 'push-button',
+  icon: 'mdi-radiobox-marked',
 
   help: `Button to send an event.
 Pressing the button sends a message with a specified payload to a topic.

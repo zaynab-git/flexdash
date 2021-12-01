@@ -23,6 +23,7 @@ import '@fontsource/roboto/400-italic.css'
 import '@fontsource/roboto/500-italic.css'
 import '@fontsource/roboto/700-italic.css'
 import '@fontsource/roboto/900-italic.css'
+import lcd from '../icons/lcd.vue'
 
 
 Vue.use(Vuetify)
@@ -53,6 +54,13 @@ export default new Vuetify({
         primary_dark: '#760000',
         error: '#ec7422',
         highlight: '#716741',
+      },
+    },
+  },
+  icons: {
+    values: {
+      lcd: { // name of our custom icon
+        component: lcd, // our custom component
       },
     },
   },

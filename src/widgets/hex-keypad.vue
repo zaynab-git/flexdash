@@ -148,6 +148,7 @@
 <script scoped>
 export default {
   name: 'hex-keypad',
+  icon: 'mdi-dialpad',
   // help displayed in the UI: the first line is used in the widgets menu and is always shown in
   // the edit card. Successive lines can be expanded in the card and are markdown-formatted.
   help: `Display colored numeric or text status value.

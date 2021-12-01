@@ -34,7 +34,7 @@
           <div v-for="(g, ix) in tabs[id].grids" :key="g">
             Grid {{g}} kind {{grids[g].kind}} palette {{palette.grids}</div -->
           <!-- "normal" tab with grids with widgets -->
-          <component v-if="tabs[id].grids"
+          <component
                      v-for="(g, ix) in tabs[id].grids" :key="g" :id="g"
                      v-bind:is="grids[g].kind in palette.grids ? grids[g].kind : 'div'"
                      @delete="deleteGrid(id, ix)" :drawer=drawer>
@@ -67,17 +67,14 @@
     </v-main>
 
     <!-- Top title/navigation bar -->
-    <v-app-bar clipped-left height="80"  flat  app color="surface">
+    <v-app-bar :clipped-right="!$vuetify.rtl" :clipped-left="$vuetify.rtl" height="80" class="px-3"  flat  app color="surface">
       <!-- Hamburger menu shown on smallest devices only -->
       <!-- <span class="hidden-sm-and-up">
         <v-app-bar-nav-icon @click="sidebar = !sidebar"></v-app-bar-nav-icon>
       </span> -->
 
       <!-- Title -->
-      <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
-                       style="font-variant: small-caps;">
-        {{ title }}
-      </v-toolbar-title>
+    
 
       <!-- Tabs -->
       <v-tabs hidden v-model=tab_ix icons-and-text center-active class="hidden-xs-only" v-if="gotConfig">
@@ -100,7 +97,6 @@
         </v-btn> -->
       </v-tabs>
 
-      <v-spacer></v-spacer>
       <!-- Undo button -->
       <!-- <v-tooltip v-if="$root.editMode" bottom :disabled="!canUndo">
         <template v-slot:activator="{ on, attrs }">
@@ -113,11 +109,33 @@
       </v-tooltip> -->
 
       <!-- Connection icon -->
-      <connections @src="config_src=$event"></connections>
+      
 
       <!-- Settings menu at far right -->
             
-      <v-menu  min-width="15em" offset-y :close-on-content-click="false" >
+      
+      <v-btn
+                  color="red darken-2"
+                  fab
+                  dark
+                  large
+                  @click="drawer = !drawer"
+                >
+                  <v-icon>{{ (drawer ? 'mdi-close' : 'mdi-plus')}}</v-icon>
+                </v-btn>
+                      <v-spacer></v-spacer>
+
+                      <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
+                       style="font-variant: small-caps;">
+        {{ title }}
+      </v-toolbar-title>
+
+                      <v-spacer></v-spacer>
+
+                            <connections @src="config_src=$event"></connections>
+
+
+                      <v-menu  min-width="15em" offset-y :close-on-content-click="false" >
         <!-- Menu activator, i.e. the button -->
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on"><v-icon>mdi-cog</v-icon></v-btn>
@@ -139,16 +157,9 @@
           
         </v-list>
       </v-menu>
-                <v-btn
-                  color="red darken-2"
-                  class="mx-3"
-                  fab
-                  dark
-                  large
-                  @click="drawer = !drawer"
-                >
-                  <v-icon>{{ (drawer ? 'mdi-close' : 'mdi-plus')}}</v-icon>
-                </v-btn>
+
+
+                
     </v-app-bar>
 
     

@@ -19,7 +19,7 @@
 <template>
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle" >
-    <v-navigation-drawer v-if="edit_active && (edit || color || help)" v-model="drawer" clipped app mobile-breakpoint="960" width="400" >
+    <v-navigation-drawer :right="!$vuetify.rtl" v-if="edit_active && (edit || color || help)" v-model="drawer" clipped app mobile-breakpoint="960" width="400" >
       <v-card color="wight" v-if="color" flat  class="pb-3" >
         <v-card-title class="text-h5 font-weight-medium pt-0 pb-2">
           Appearance

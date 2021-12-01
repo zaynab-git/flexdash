@@ -112,7 +112,6 @@ the high-threshold. For string values low and high colors are selected using reg
     "pin G": { default: "", dynamic: "GND" },
     "pin DP": { default: "", dynamic: "GND" },
     "pin COM": { default: "", dynamic: "GND" },
-
     color: { type: String, default: "red", tip: "value color, null->text color" }
   },
 

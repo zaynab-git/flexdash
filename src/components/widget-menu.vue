@@ -5,11 +5,11 @@
 
 <template>
 <div>
-      <v-navigation-drawer v-model="drawer" app right mobile-breakpoint="960" width="200" >
+      <v-navigation-drawer v-model="drawer" app :right="$vuetify.rtl" mobile-breakpoint="960" width="200" >
         <v-list dense>
-      <v-list-item v-for="(descr, kind) in widget_list" :key="kind" @click="$emit('select', kind)">
+      <v-list-item class="py-1" v-for="(icon, kind) in widget_list" :key="kind" @click="$emit('select', kind)">
           <v-list-item-icon class="mx-2">
-            <v-icon  size="20px">mdi-pencil</v-icon>
+            <v-icon left size="30px">{{icon}}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title><span style="white-space: normal;">{{$t('components.'+kind)}}</span></v-list-item-title>
@@ -17,7 +17,6 @@
         </v-list-item>
         </v-list>
       </v-navigation-drawer >  
-        
 </div>
 
   <!-- <v-menu offset-y v-model="show">
@@ -59,16 +58,13 @@ export default {
     drawer: {default: false}
   },
 
-  // data() { return {
-  //   drawer: false
-  // }},
 
   computed: {
     // list of available widgets for the menu
     widget_list() {
       // the map() below extracts the first line from the help for inclusion in the menu
       return Object.fromEntries(Object.keys(this.palette.widgets).sort().map(w =>
-        [ w, (this.palette.widgets[w].help||"").replace(/^([^.\n]{0,80}).*/s, "$1") ]
+        [ w, (this.palette.widgets[w].icon||"").replace(/^([^.\n]{0,80}).*/s, "$1") ]
       ))
     },
   },
