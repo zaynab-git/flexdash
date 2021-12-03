@@ -442,6 +442,10 @@ export class Store {
           col = 3;
           row = 4;
           break;
+      case 'myvideo':
+            col = 4;
+            row = 5;
+            break;
     }
     emp_widget.cols = col
     emp_widget.rows = row
