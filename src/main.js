@@ -88,6 +88,7 @@ const app = new Vue({
     // sending of messages, this global variable is "provided" by the connections component
     // and primarily used by the widget-wrapper
     serverSend: null,
+    serverSendFile: null,
   },
 
   provide: {

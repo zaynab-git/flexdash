@@ -539,4 +539,6 @@ export default class DemoConnection {
 
   // send a message to the server -- we're a demo, we have no server...
   serverSend(topic, payload) { }
+  serverSendFile(topic, payload) { }
+
 }

@@ -123,6 +123,8 @@
                 >
                   <v-icon>{{ (drawer ? 'mdi-close' : 'mdi-plus')}}</v-icon>
                 </v-btn>
+
+        <upload-file/>
                       <v-spacer></v-spacer>
 
                       <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
@@ -186,6 +188,7 @@
 </template>
 
 <script scoped>
+import UploadFile from './components/upload-file.vue'
 import Connections from '/src/components/connections.vue'
 import TabEdit from '/src/components/tab-edit.vue'
 import widgetMenu from '/src/components/widget-menu.vue'
@@ -195,7 +198,7 @@ import randomStepper from '/src/utils/random-stepper.js'
 export default {
   name: 'Dash',
 
-  components: { Connections, TabEdit, widgetMenu },
+  components: { Connections, TabEdit, widgetMenu, UploadFile },
   inject: [ '$config', '$store', 'palette' ],
 
   data: () => ({

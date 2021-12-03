@@ -87,7 +87,7 @@ export default {
     connections: {
       demo: { connClass: DemoConnection, settClass: DemoSettings },
       websocket: { connClass: WebsockConnection, settClass: WebsockSettings },
-      sockio: { connClass: SockioConnection, settClass: SockioSettings },
+      // sockio: { connClass: SockioConnection, settClass: SockioSettings },
     },
     config_source: null,
   }),
@@ -178,6 +178,7 @@ export default {
     // data on behalf of widgets
     // using a lambda here to get the correct 'this'
     this.$root.serverSend = (topic, payload) => this.serverSend(topic, payload)
+    this.$root.serverSendFile = (topic, payload) => this.serverSendFile(topic, payload)
     this.$store.serverSend = (topic, payload) => this.serverSend(topic, payload)
   },
 
@@ -263,6 +264,14 @@ inject buttons in the demo section.`)
         }
       }
 
+    },
+
+    serverSendFile(topic, payload) {
+        for (let c in this.connections) {
+          const conn = this.connections[c].conn
+          console.log(c, conn, this.$config.conn[c])
+          if (conn && this.$config.conn[c].enabled) conn.serverSendFile(topic, payload)
+      }
     },
 
     changeConfig(conn, config) {

@@ -126,4 +126,27 @@ export default class WebsockConnection {
       }
     }
   }
+
+  serverSendFile(topic, payload) {
+    if (this.rws) {
+      console.log(btoa(payload))
+        var reader = new FileReader();
+        let ws = this.rws
+        reader.onload = function(event) {
+          console.log(event.target.result)
+            let payload = event.target.result
+            ws.send(JSON.stringify({topic, payload}));
+        }
+        reader.readAsDataURL(payload);      
+      }
+      if (this.rws.bufferedAmount > 0 && this.checker === null) {
+        this.checker = window.setInterval(()=> {
+          this.setStatus()
+          if (this.rws.bufferedAmount === 0) {
+            window.clearInterval(this.checker)
+            this.checker = null
+          }
+        }, 1000)
+      }
+    }
 }
