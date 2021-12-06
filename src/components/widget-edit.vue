@@ -311,7 +311,7 @@ export default {
 
   props: {
     id: { type: String, required: true }, // my widget ID
-    edit_active:  { type: Boolean, default: false },
+    edit_active:  { type: Boolean, default: true },
     no_border: { type: Boolean, default: false }, // true causes no "card" border, used by panel
   },
 

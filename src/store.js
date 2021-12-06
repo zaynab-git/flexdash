@@ -334,6 +334,12 @@ export class Store {
     ])
   }
 
+  switchWebcam(on) {
+    if (on) {
+      this.deleteWidget("g0001", 0);
+    }
+  }
+
   // updateTab given ID and props to update (an object that gets merged into existing props)
   updateTab(tab_id, props) {
     this.tabByID(tab_id) // just for the sanity check
@@ -442,10 +448,6 @@ export class Store {
           col = 3;
           row = 4;
           break;
-      case 'myvideo':
-            col = 4;
-            row = 5;
-            break;
     }
     emp_widget.cols = col
     emp_widget.rows = row
@@ -454,6 +456,7 @@ export class Store {
         { ...cloneDeep(emp_widget), id: widget_id, kind, static:{title:kind}, dynamic:{}, outputs:{} } ],
       [`grids/${grid_id}/widgets/${widget_ix}`, widget_id ],
     ])
+    console.log(widget_ix)
     return widget_ix
   }
 
@@ -474,6 +477,7 @@ export class Store {
   // deleteWidget with index ix from grid grid_id
   deleteWidget(grid_id, ix) {
     const grid = this.gridByID(grid_id)
+    console.log()
     const widget_id = this.widgetIDByIX(grid, ix)
     // construct mutation to delete the widget
     this.qMutation("delete a widget", [ // add tab title to the message once implemented

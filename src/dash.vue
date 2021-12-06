@@ -16,11 +16,6 @@
       </div>
     </v-navigation-drawer> -->
 
-    <div style="position: relative;">
-      
-      </div>
-
-
     <!-- main area of the page with content -->
     <v-main  :style="{ backgroundColor: $vuetify.theme.themes[theme].background}">
       
@@ -37,7 +32,7 @@
           <component
                      v-for="(g, ix) in tabs[id].grids" :key="g" :id="g"
                      v-bind:is="grids[g].kind in palette.grids ? grids[g].kind : 'div'"
-                     @delete="deleteGrid(id, ix)" :drawer=drawer>
+                     @delete="deleteGrid(id, ix)" :drawer=drawer :webcam=webcam>
           </component>
         </v-tab-item>
       </v-tabs-items>
@@ -125,6 +120,15 @@
                 </v-btn>
 
         <upload-file/>
+
+        <v-btn
+                  fab
+                  icon
+                  @click="webcam = !webcam"
+                >
+                  <v-icon>{{ (webcam ? 'mdi-video' : 'mdi-video-off')}}</v-icon>
+                </v-btn>
+
                       <v-spacer></v-spacer>
 
                       <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
@@ -203,6 +207,7 @@ export default {
 
   data: () => ({
     drawer: false,
+    webcam: false,
     sidebar: false, // disabled for now
     tab_ix: null, // which tab we're on
     tab_edit: false, // turns tab editing drawer on/off

@@ -83,21 +83,30 @@
       </v-tooltip>
 
     </v-toolbar> -->
-
-    <!-- Grid of widgets -->
-    <v-container fluid v-if="!rolledup" class="g-grid-small py-5">
-      <component v-for="(w,ix) in grid.widgets" :key="w" :id="w" :is="editComponent[w]"
+  
+<v-container fluid v-if="!rolledup" class="g-grid-small py-5 ">
+    <v-card :style=webcamcardstyle v-if="webcam"> 
+      <v-card-title ><span class="mx-auto">FPGA board Webcam</span></v-card-title>
+      <v-card-text>
+          <video width="100%" height="auto" :style=webcamstyle  ref="camera" autoplay ></video>
+      </v-card-text>
+    </v-card>
+    <component v-for="(w,ix) in grid.widgets" :key="w" :id="w" :is="editComponent[w]"
                  :edit_active="ix == edit_ix" @edit="toggleEdit(ix, $event)"
                  @move="moveWidget(ix, $event)" @delete="deleteWidget(ix)"
-                 @clone="cloneWidget(ix)">
+                 @clone="cloneWidget(ix)" >
       </component>
     </v-container>
-  </div>
+    </div>
+ 
+    <!-- Grid of widgets -->
+   
+        
 </template>
 
 <style scoped>
 /* style for button groups in the edit toolbar */
-.v-toolbar__content div { margin-right: 4ex; }
+
 
 /* style for roll-up/roll-down bar when there's no toolbar */
 .roller { width: 100% }
@@ -138,7 +147,8 @@ export default {
 
   props: {
     id: { type: String }, // this grid's ID
-    drawer: {default: false}
+    drawer: {default: false},
+    webcam: {default: true}
   },
 
   data() { return {
@@ -148,6 +158,12 @@ export default {
   }},
 
   computed: {
+    webcamcardstyle() {
+      return (this.$vuetify.breakpoint.xs ? 'grid-column: span 5; grid-row: span 5;' : 'grid-column: span 5; grid-row: span 6;')
+    },
+    webcamstyle() {
+      return (this.$vuetify.breakpoint.xs ? 'max-height: 300px;' : 'max-height: 440px;')
+    },
     // grid config: {id, kind, icon, widgets}
     grid() { return this.$store.gridByID(this.id) },
     rollupMini() { return !this.$root.editMode && !this.grid.title },
@@ -174,6 +190,22 @@ export default {
         this.$refs.pasteDiv.removeEventListener('paste', this.pasteWidget)
       }
     },
+
+    webcam(on) {
+      let refs = this.$refs
+      if (on) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
+            refs.camera.srcObject = stream;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } 
+      else {
+            refs.camera.srcObject = null;
+      }
+    }
   },
 
   methods: {
