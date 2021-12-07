@@ -7,7 +7,7 @@
 <div>
       <v-navigation-drawer v-model="drawer" app :right="$vuetify.rtl" mobile-breakpoint="960" width="200" >
         <v-list dense>
-      <v-list-item class="py-1" v-for="(icon, kind) in widget_list" :key="kind" @click="$emit('select', kind)">
+      <v-list-item class="py-1 px-1" v-for="(icon, kind) in widget_list" :key="kind" @click="$emit('select', kind)">
           <v-list-item-icon class="mx-2">
             <v-icon left size="30px">{{icon}}</v-icon>
           </v-list-item-icon>

@@ -33,6 +33,7 @@
 <script scoped>
 export default {
   name: 'analog-input',
+  icon: '$anlgin',
 
   help: `Simple on/off toggle switch.
 Sends a pre-determined value when toggled on or off. The current state can be set via the

@@ -28,6 +28,7 @@ import SvgGauge from '/src/components/svg-gauge.vue'
 
 export default {
   name: 'analog-output',
+  icon: '$anlgout',
 
   help: `Simple SVG gauge.`,
 

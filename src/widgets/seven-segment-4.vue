@@ -290,6 +290,8 @@
 <script scoped>
 export default {
   name: 'seven-segment-4',
+  icon: '$sevseg4',
+
   // help displayed in the UI: the first line is used in the widgets menu and is always shown in
   // the edit card. Successive lines can be expanded in the card and are markdown-formatted.
   help: `Display colored numeric or text status value.
@@ -363,9 +365,9 @@ the high-threshold. For string values low and high colors are selected using reg
   methods: {
     state(port, digit) {
      if (this.$props['pin COM'] == 'ON') {
-        return ((this.$props[port] != "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4') ) ? this.color : 'grey');
+        return ((this.$props[port] != "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4') ) ? this.color : 'black');
      }
-    return ((this.$props[port] == "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4')) ? this.color : 'grey');
+    return ((this.$props[port] == "ON" && (this.$props[digit] == "ON" || port == 'pin DP 1' || port == 'pin DP 2' || port == 'pin DP 3' || port == 'pin DP 4')) ? this.color : 'black');
     }
   }
 

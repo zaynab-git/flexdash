@@ -139,9 +139,17 @@
                       <v-spacer></v-spacer>
 
                             <connections @src="config_src=$event"></connections>
+<v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+            <v-btn icon @click="dialog = true" class="mc-auto" v-on="on">
+              <v-icon>mdi-trash-can</v-icon>
+            </v-btn>
+                      </template>
 
+            <span>Delete All Widgets</span>
+        </v-tooltip>
 
-                      <v-menu  min-width="15em" offset-y :close-on-content-click="false" >
+                      <v-menu  min-width="15em" offset-y :close-on-content-click="false">
         <!-- Menu activator, i.e. the button -->
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on"><v-icon>mdi-cog</v-icon></v-btn>
@@ -177,6 +185,37 @@
           <v-list-item @click="addTab('iframe')">IFrame</v-list-item>
         </v-list>
     </v-menu> -->
+    <v-dialog
+      v-model="dialog"
+      width="350"
+    >
+         <v-card>
+
+        <v-card-title >
+          are you shure you want to delete all widgets ? 
+        </v-card-title>
+
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="red darken-2"
+            text
+            @click="dialog = false; "
+          >
+            CANCEL
+          </v-btn>
+          <v-btn
+            color="green darken-2"
+            text
+            @click="dialog = false; deleteGrid('t0001', 0)"
+          >
+            ACCEPT
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+</v-dialog>
+    
 
 
     <!-- Menu used to show editing panel floating below tab -->
@@ -206,6 +245,7 @@ export default {
   inject: [ '$config', '$store', 'palette' ],
 
   data: () => ({
+    dialog: false,
     drawer: false,
     webcam: false,
     sidebar: false, // disabled for now

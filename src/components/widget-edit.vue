@@ -19,8 +19,8 @@
 <template>
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle" >
-    <v-navigation-drawer :right="!$vuetify.rtl" v-if="edit_active && (edit || color || help)" v-model="drawer" clipped app mobile-breakpoint="960" width="400" >
-      <v-card color="wight" v-if="color" flat  class="pb-3" >
+    <v-navigation-drawer :color="this.$vuetify.theme.dark ? '#212121' : 'white'" :right="!$vuetify.rtl" v-if="edit_active && (edit || color || help)" v-model="drawer" clipped app mobile-breakpoint="960" width="400" >
+      <v-card v-if="color" flat  class="pb-3" >
         <v-card-title class="text-h5 font-weight-medium pt-0 pb-2">
           Appearance
           <v-spacer></v-spacer>
@@ -311,7 +311,7 @@ export default {
 
   props: {
     id: { type: String, required: true }, // my widget ID
-    edit_active:  { type: Boolean, default: true },
+    edit_active:  { type: Boolean, default: false },
     no_border: { type: Boolean, default: false }, // true causes no "card" border, used by panel
   },
 

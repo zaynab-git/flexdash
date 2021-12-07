@@ -73,16 +73,8 @@
 
       <!-- <v-spacer></v-spacer> -->
       <!-- Button to delete the grid -->
-      <!-- <v-tooltip bottom>
-        <template v-slot:activator="{ on }">
-          <v-btn small @click="$emit('delete')" class="mc-auto" v-on="on">
-            Delete grid
-          </v-btn>
-        </template>
-        <span>Delete this grid and all its widgets</span>
-      </v-tooltip>
 
-    </v-toolbar> -->
+    <!-- </v-toolbar> -->
   
 <v-container fluid v-if="!rolledup" class="g-grid-small py-5 ">
     <v-card :style=webcamcardstyle v-if="webcam"> 
@@ -214,7 +206,6 @@ export default {
 
     addWidget(kind) {
       const widget_ix = this.$store.addWidget(this.id, kind)
-      this.edit_ix = widget_ix // start editing the new widget
     },
 
     // handle widget delete event coming up from widget-edit

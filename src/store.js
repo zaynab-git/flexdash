@@ -377,9 +377,9 @@ export class Store {
     const grid = this.gridByID(grid_id)
     // construct mutation to delete the grid and its widgets
     this.qMutation("delete a grid", [ // FIXME: add tab title to the message once implemented
-      [ `tabs/${tab_id}/grids`, tab.grids.filter((g,i) => i != ix) ],
-      [ `grids/${grid_id}`, undefined ],
-      ...grid.widgets.map(w => [ `widgets/${w}`, undefined ]),
+      // [ `tabs/${tab_id}/grids`, tab.grids.filter((g,i) => i != ix) ],
+      [ `grids/${grid_id}`, { ...cloneDeep(empty_grid), id: grid_id } ],
+      // ...grid.widgets.map(w => [ `widgets/${w}`, undefined ]),
     ])
   }
 
