@@ -6,17 +6,15 @@
   <div class="mx-2">
     <v-tooltip bottom>
       <template v-slot:activator="{on}">
-        <v-btn small icon :color="icon_color" v-on="{click:showDialog, ...on}">
-          <v-icon>mdi-network</v-icon>
-        </v-btn>
+          <v-icon v-on="on" :color="icon_color">{{icon}}</v-icon>
       </template>
-      <span>Server connections</span>
+      <span>{{status}}</span>
     </v-tooltip>
 
     <!-- connections pop-up dialog, rendered eagerly 'cause we want those components to
          do work for us from the get-go -->
-    <v-dialog width="30rem" eager v-model="show_dialog">
-      <v-card>
+    <!-- <v-dialog width="30rem" eager v-model="show_dialog">
+      <v-card flat outlined>
         <v-card-title class="d-flex">
           <span>Server Connections</span>
           <v-spacer></v-spacer>
@@ -27,10 +25,10 @@
         <v-card-text v-if="config_wait">
           <v-chip small class="mr-1" color="error">error</v-chip>
           {{config_source}} connected but server is not sending configuration
-        </v-card-text>
+        </v-card-text> -->
 
         <!-- individual types of connections -->
-        <masonry class="v-card__text">
+        <!-- <masonry class="v-card__text"> -->
           <!-- <masonry-brick>
             <div>
               <h3 class="mb-1">Saving the dashboard config</h3>
@@ -49,7 +47,7 @@
             </sockio-settings>
           </masonry-brick> -->
 
-          <masonry-brick>
+          <masonry-brick hidden>
             <websock-settings :connection="connections['websocket'].conn" :config="websock_config"
                               @change="changeConfig('websock', $event)">
             </websock-settings>
@@ -60,9 +58,9 @@
                            @change="changeConfig('demo', $event)">
             </demo-settings>
           </masonry-brick>
-        </masonry>
-      </v-card>
-    </v-dialog>
+        <!-- </masonry> -->
+      <!-- </v-card>
+    </v-dialog> -->
   </div>
 </template>
 
@@ -95,16 +93,13 @@ export default {
   computed: {
     // compute the color of the connections status icon
     icon_color() {
-      // for (const c in this.connections) {
-      //   if (!('conn' in this.connections[c])) continue
-      return this.connections['websocket'].conn.data.status == 'ok' ? 'green' : 'grey'
-        // switch (this.connections[c].conn.data.status) {
-        //   case 'ok': num_ok++; break;
-        //   case 'bad': num_bad++; break;
-        // }
-      // }
-      // if all connections are OK: green, if some OK, some BAD: warning,
-      // if all BAD: error, if all disabled: grey
+      return this.connections['websocket'].conn.data.status == 'ok' ? 'green darken-2' : 'red darken-2'
+    },
+     icon() {
+      return this.connections['websocket'].conn.data.status == 'ok' ? 'mdi-wifi' : 'mdi-wifi-off'
+    },
+    status() {
+        return this.connections['websocket'].conn.data.status == 'ok' ? 'connection status: ok' : 'connection status: off'
     },
 
     gotConfig() { return this.$config.dash.title !== undefined },
@@ -128,7 +123,7 @@ export default {
     console.log("Connection: created")
     const conn = this.$config.conn
     this.$set(conn, 'demo', { enabled: false, config: false })
-    this.$set(conn, 'websocket', { enabled: false, config: false, address: "" })
+    this.$set(conn, 'websocket', { enabled: true, config: false, address: "ws://localhost:1880/ws/flexdash" })
     this.$set(conn, 'sockio', { enabled: false, config: false, hostname:"", path:"", tls:false })
 
     // instantiate all the connection objects (they all wait for a start() call)

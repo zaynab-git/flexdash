@@ -15,6 +15,9 @@
       </v-tabs>
       </div>
     </v-navigation-drawer> -->
+    <!-- <pins></pins> -->
+            <upload-file :uploadDrawer=upload @dialog="upload = $event"></upload-file>
+
 
     <!-- main area of the page with content -->
     <v-main  :style="{ backgroundColor: $vuetify.theme.themes[theme].background}">
@@ -32,7 +35,8 @@
           <component
                      v-for="(g, ix) in tabs[id].grids" :key="g" :id="g"
                      v-bind:is="grids[g].kind in palette.grids ? grids[g].kind : 'div'"
-                     @delete="deleteGrid(id, ix)" :drawer=drawer :webcam=webcam>
+                     @delete="deleteGrid(id, ix)" :drawer=drawer :webcam=webcam @dialog="upload = $event"
+                     :leftDrawer="upload">
           </component>
         </v-tab-item>
       </v-tabs-items>
@@ -62,7 +66,7 @@
     </v-main>
 
     <!-- Top title/navigation bar -->
-    <v-app-bar :clipped-right="!$vuetify.rtl" :clipped-left="$vuetify.rtl" height="80" class="px-3"  flat  app color="surface">
+    <v-app-bar :clipped-right="!$vuetify.rtl" :clipped-left="$vuetify.rtl" height="80"  flat  app color="surface">
       <!-- Hamburger menu shown on smallest devices only -->
       <!-- <span class="hidden-sm-and-up">
         <v-app-bar-nav-icon @click="sidebar = !sidebar"></v-app-bar-nav-icon>
@@ -108,10 +112,11 @@
 
       <!-- Settings menu at far right -->
             
-      
+
       <v-btn
                   color="red darken-2"
                   fab
+                  class="mx-2"
                   dark
                   large
                   @click="drawer = !drawer"
@@ -119,40 +124,52 @@
                   <v-icon>{{ (drawer ? 'mdi-close' : 'mdi-plus')}}</v-icon>
                 </v-btn>
 
-        <upload-file/>
+      <v-btn text tile @click="upload = true" class="py-8 mx-3">
+          <div class="d-flex flex-column ">
+            <v-icon >mdi-file-upload</v-icon>
+            <span class="mt-2" style="font-size: 10px;">Send File</span>
+          </div>
+      </v-btn>
 
         <v-btn
-                  fab
-                  icon
+                  text tile
                   @click="webcam = !webcam"
+                  class="py-8 mx-1"
                 >
+                <div class="d-flex flex-column ">
                   <v-icon>{{ (webcam ? 'mdi-video' : 'mdi-video-off')}}</v-icon>
+                  <span class="mt-2" style="font-size: 10px;">Board Webcam</span>
+          </div>
                 </v-btn>
+                <v-btn text tile  @click="dialog = true" class="py-8 mx-1">
+                  <div class="d-flex flex-column ">
+              <v-icon>mdi-trash-can</v-icon>
+              <span class="mt-2" style="font-size: 10px;">Remove Widgets</span>
+          </div>
+            </v-btn>
+
+                <v-btn text tile class="py-8 mx-1">
+                  <div class="d-flex flex-column ">
+              <v-icon>mdi-connection</v-icon>
+              <span class="mt-2" style="font-size: 10px;">I/O pins</span>
+          </div>
+            </v-btn>
 
                       <v-spacer></v-spacer>
 
-                      <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
+                      <!-- <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
                        style="font-variant: small-caps;">
         {{ title }}
-      </v-toolbar-title>
+      </v-toolbar-title> -->
 
                       <v-spacer></v-spacer>
 
                             <connections @src="config_src=$event"></connections>
-<v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-            <v-btn icon @click="dialog = true" class="mc-auto" v-on="on">
-              <v-icon>mdi-trash-can</v-icon>
-            </v-btn>
-                      </template>
-
-            <span>Delete All Widgets</span>
-        </v-tooltip>
 
                       <v-menu  min-width="15em" offset-y :close-on-content-click="false">
         <!-- Menu activator, i.e. the button -->
         <template v-slot:activator="{ on, attrs }">
-          <v-btn icon v-bind="attrs" v-on="on"><v-icon>mdi-cog</v-icon></v-btn>
+          <v-btn class="mx-2" icon v-bind="attrs" v-on="on"><v-icon>mdi-cog</v-icon></v-btn>
         </template>
         <!-- Settings Menu -->
           <v-list class="px-3">
@@ -187,26 +204,26 @@
     </v-menu> -->
     <v-dialog
       v-model="dialog"
-      width="350"
+      width="400"
     >
          <v-card>
 
-        <v-card-title >
-          are you shure you want to delete all widgets ? 
-        </v-card-title>
+        <v-card-text class="text-h5 pt-4">
+          are you sure you want to delete all widgets ? 
+        </v-card-text>
 
 
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="red darken-2"
+            color="red darken-3"
             text
             @click="dialog = false; "
           >
             CANCEL
           </v-btn>
           <v-btn
-            color="green darken-2"
+            color="green darken-3"
             text
             @click="dialog = false; deleteGrid('t0001', 0)"
           >
@@ -236,15 +253,17 @@ import Connections from '/src/components/connections.vue'
 import TabEdit from '/src/components/tab-edit.vue'
 import widgetMenu from '/src/components/widget-menu.vue'
 import randomStepper from '/src/utils/random-stepper.js'
+import Pins from './components/pins.vue'
 //const J = JSON.stringify
 
 export default {
   name: 'Dash',
 
-  components: { Connections, TabEdit, widgetMenu, UploadFile },
+  components: { Connections, TabEdit, widgetMenu, UploadFile, Pins },
   inject: [ '$config', '$store', 'palette' ],
 
   data: () => ({
+    upload: false,
     dialog: false,
     drawer: false,
     webcam: false,

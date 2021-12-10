@@ -213,9 +213,9 @@ the high-threshold. For string values low and high colors are selected using reg
   methods: {
     state(port, digit) {
      if (this.$props['pin COM'] == 'ON') {
-        return ((this.$props[port] != "ON" && (this.$props[digit] == "ON" || port == 'pin DP') ) ? this.color : 'black');
+        return ((this.$props[port] != "ON" && (this.$props[digit] == "ON" || port == 'pin DP') ) ? this.color : 'grey');
      }
-    return ((this.$props[port] == "ON" && (this.$props[digit] == "ON" || port == 'pin DP')) ? this.color : 'black');
+    return ((this.$props[port] == "ON" && (this.$props[digit] == "ON" || port == 'pin DP')) ? this.color : 'grey');
     }
   }
 

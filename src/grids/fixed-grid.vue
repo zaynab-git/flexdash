@@ -140,7 +140,8 @@ export default {
   props: {
     id: { type: String }, // this grid's ID
     drawer: {default: false},
-    webcam: {default: true}
+    webcam: {default: true},
+    leftDrawer: {default: false}
   },
 
   data() { return {
@@ -183,6 +184,10 @@ export default {
       }
     },
 
+    leftDrawer(val) {
+      if(val) this.edit_ix = null
+    },
+
     webcam(on) {
       let refs = this.$refs
       if (on) {
@@ -202,6 +207,7 @@ export default {
 
   methods: {
     toggleEdit(ix, on) {
+      this.$emit('dialog',false)
       this.edit_ix = on ? ix : null },
 
     addWidget(kind) {
