@@ -67,11 +67,11 @@ export default class WebsockConnection {
   onOpen() {
     console.log("WS opened")
     this.setStatus()
-    const msg = {
-      topic   : "$ctrl",
-      payload : this.get_config && this.first_connect ? "start" : "continue",
-    }
-    this.rws.send(JSON.stringify(msg))
+    // const msg = {
+    //   topic   : "$ctrl",
+    //   payload : this.get_config && this.first_connect ? "start" : "continue",
+    // }
+    // this.rws.send(JSON.stringify(msg))
     this.first_connect = false
     const pins = ["1","2","3","4","5","6","7"];
     for (let p of pins) {

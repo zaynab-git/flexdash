@@ -10,6 +10,14 @@
   <v-card-title class="headline pa-0 flex-grow-1">
     <span class="ma-auto">
       <!-- <v-icon :color="state">mdi-adjust</v-icon> -->
+      <div v-if="this.$vuetify.rtl" :style="{position: 'relative',
+        width: '12px',
+        height: '12px',
+        bottom: '15px',
+        background: state('pin DP'),
+        borderRadius: '5px'}"
+        class="d-inline-block">
+      </div>
       <div style="
       position: relative;
       width: 60px;
@@ -67,7 +75,7 @@
         background: state('pin D'),
         borderRadius: '10px 10px 0px 0px'}"></div>
       </div>
-      <div :style="{position: 'relative',
+      <div v-if="! this.$vuetify.rtl" :style="{position: 'relative',
         width: '12px',
         height: '12px',
         bottom: '15px',

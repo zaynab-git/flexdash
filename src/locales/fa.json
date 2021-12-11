@@ -12,10 +12,24 @@
         "traffic-light": "چراغ راهنمایی",
         "Markdown": "متن",
         "buzzer": "buzzer",
-        "hex-keypad": "صفحه کلید 4 در 4"
+        "hex-keypad": "صفحه کلید 4 در 4",
+        "LCD": "صفحه نمایش 16 در 2"
     },
     "setting": {
         "theme": "تم",
         "language": "زبان"
+    },
+    "toolbar": {
+        "file": "ارسال فایل",
+        "webcam": "ویدئو از برد",
+        "remove": "حذف ویدجت ها",
+        "pins": "پین های ورودی و خروجی"
+    },
+    "editmenu": {
+        "edit": "ویرایش",
+        "appearance": "ظاهر",
+        "help": "کمک",
+        "clone": "شبیه سازی",
+        "delete": "خذف"
     }
 }

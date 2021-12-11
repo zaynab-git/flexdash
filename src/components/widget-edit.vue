@@ -424,7 +424,7 @@ export default {
     },
 
     selected() {
-      if (this.edit_active) return this.$vuetify.theme.dark ? 'grey' : 'grey lighten-2'
+      if (this.edit_active) return this.$vuetify.theme.dark ? 'grey darken-2' : 'grey lighten-1'
       return this.$vuetify.theme.dark ? 'grey darken-3' : 'white'
     },
 

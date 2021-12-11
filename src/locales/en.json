@@ -12,10 +12,24 @@
         "traffic-light": "Traffic Light",
         "Markdown": "Text",
         "buzzer": "Buzzer",
-        "hex-keypad": "4X4 Keypad"
+        "hex-keypad": "4X4 Keypad",
+        "LCD": "LCD 16X2"
     },
     "setting": {
         "theme": "Theme",
         "language": "Language"
+    },
+    "toolbar": {
+        "file": "SEND FILE",
+        "webcam": "BOARD WEBCAM",
+        "remove": "REMOVE WIDGETS",
+        "pins": "I/O PINS"
+    },
+    "editmenu": {
+        "edit": "Edit",
+        "appearance": "Appearance",
+        "help": "Help",
+        "clone": "Clone",
+        "delete": "Delete"
     }
 }

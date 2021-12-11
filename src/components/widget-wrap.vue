@@ -31,7 +31,7 @@
             <v-icon size="20px">mdi-pencil</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>Edit</v-list-item-title>
+            <v-list-item-title>{{$t('editmenu.edit')}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item >
 <!--         
@@ -56,7 +56,7 @@
             <v-icon size="20px" >mdi-palette</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title  >Appearance</v-list-item-title>
+            <v-list-item-title  >{{$t('editmenu.appearance')}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item dense @click="handleClone()">
@@ -64,7 +64,7 @@
             <v-icon size="20px" >mdi-content-copy</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title  >Clone</v-list-item-title>
+            <v-list-item-title  >{{$t('editmenu.clone')}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item >
         <v-list-item dense @click="handleHelp()">
@@ -72,7 +72,7 @@
             <v-icon size="20px" >mdi-help-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title  >Help</v-list-item-title>
+            <v-list-item-title  >{{$t('editmenu.help')}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item >
         <v-list-item dense @click="handleDelete()">
@@ -80,7 +80,7 @@
             <v-icon size="20px" color="red darken-3" >mdi-trash-can</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title class="red--text text--darken-3" >Delete</v-list-item-title>
+            <v-list-item-title class="red--text text--darken-3" >{{$t('editmenu.delete')}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

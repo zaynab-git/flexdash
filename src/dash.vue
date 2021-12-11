@@ -124,10 +124,11 @@
                   <v-icon>{{ (drawer ? 'mdi-close' : 'mdi-plus')}}</v-icon>
                 </v-btn>
 
+
       <v-btn text tile @click="upload = true" class="py-8 mx-3">
           <div class="d-flex flex-column ">
             <v-icon >mdi-file-upload</v-icon>
-            <span class="mt-2" style="font-size: 10px;">Send File</span>
+            <span class="mt-2 text-caption">{{$t('toolbar.file')}}</span>
           </div>
       </v-btn>
 
@@ -138,24 +139,23 @@
                 >
                 <div class="d-flex flex-column ">
                   <v-icon>{{ (webcam ? 'mdi-video' : 'mdi-video-off')}}</v-icon>
-                  <span class="mt-2" style="font-size: 10px;">Board Webcam</span>
+                  <span class="mt-2 text-caption">{{$t('toolbar.webcam')}}</span>
           </div>
                 </v-btn>
                 <v-btn text tile  @click="dialog = true" class="py-8 mx-1">
                   <div class="d-flex flex-column ">
               <v-icon>mdi-trash-can</v-icon>
-              <span class="mt-2" style="font-size: 10px;">Remove Widgets</span>
+              <span class="mt-2 text-caption">{{$t('toolbar.remove')}}</span>
           </div>
             </v-btn>
 
                 <v-btn text tile class="py-8 mx-1">
                   <div class="d-flex flex-column ">
               <v-icon>mdi-connection</v-icon>
-              <span class="mt-2" style="font-size: 10px;">I/O pins</span>
+              <span class="mt-2 text-caption" >{{$t('toolbar.pins')}}</span>
           </div>
             </v-btn>
 
-                      <v-spacer></v-spacer>
 
                       <!-- <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
                        style="font-variant: small-caps;">
@@ -359,7 +359,7 @@ export default {
     // provide a random changing value for demo purposes. It is wired into newly created
     // widgets so they spring to life even before the user customizes them.
     const rs = randomStepper(0, 100)
-    this.intvl = window.setInterval(()=> this.$store.insertData("$demo_random", rs()), 3000)
+    // this.intvl = window.setInterval(()=> this.$store.insertData("$demo_random", rs()), 3000)
   },
 
   beforeDestroy() { window.clearInterval(this.intvl) },

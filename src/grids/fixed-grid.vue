@@ -77,7 +77,7 @@
     <!-- </v-toolbar> -->
   
 <v-container fluid v-if="!rolledup" class="g-grid-small py-5 ">
-    <v-card :style=webcamcardstyle v-if="webcam" flat class="background: grey lighten-2"> 
+    <v-card :style="webcamcardstyle" v-if="webcam"> 
       <v-card-title ><span class="mx-auto">FPGA board Webcam</span></v-card-title>
       <v-card-text>
           <video width="100%" height="auto" :style=webcamstyle  ref="camera" autoplay ></video>
@@ -152,7 +152,9 @@ export default {
 
   computed: {
     webcamcardstyle() {
-      return (this.$vuetify.breakpoint.xs ? 'grid-column: span 5; grid-row: span 5;' : 'grid-column: span 5; grid-row: span 6;')
+      let sizestyle = this.$vuetify.breakpoint.xs ? ' grid-column: span 5; grid-row: span 5;' : ' grid-column: span 5; grid-row: span 6;'
+      let colorstyle = this.$vuetify.theme.dark ? ' background-color: #424242;' : ' background-color: #E0E0E0;'
+      return sizestyle + colorstyle
     },
     webcamstyle() {
       return (this.$vuetify.breakpoint.xs ? 'max-height: 300px;' : 'max-height: 440px;')
