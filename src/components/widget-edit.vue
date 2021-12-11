@@ -28,12 +28,11 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
-        <v-divider></v-divider>
-        <v-card shaped outlined class="mx-3 mb-0 mt-3">
+        <v-card :style="{backgroundColor: ( this.$vuetify.theme.dark ? '#424242' : '#F5F5F5')}" 
+        flat class="mx-3 mb-0 mt-3 rounded-lg">
                     <v-card-title class="ma-0 py-2 px-4">
                       Name
                     </v-card-title>
-                    <v-divider></v-divider>
                     <v-card-text class=" ma-0 pa-4">
                       <v-text-field 
                       class="ma-0 pa-0"
@@ -42,29 +41,31 @@
                       </v-text-field>
                     </v-card-text>
                 </v-card>
-        <v-card shaped outlined class="mx-3 mb-0 mt-3">
+
+        <v-card  :style="{backgroundColor: ( this.$vuetify.theme.dark ? '#424242' : '#F5F5F5')}" 
+        flat class="mx-3 mb-0 mt-3 rounded-lg">
             <v-card-title class="ma-0 py-1 px-4">
               Order
             </v-card-title>
-            <v-divider></v-divider>
             <v-card-text class="d-inline mx-3 pa-0">
-              <v-btn outlined class="text-body-2 pl-1 pr-2 mx-1 my-4" @click="moveWidget(-1)">
+              <v-btn  class="text-body-2 pl-1 pr-2 mx-1 my-4" @click="moveWidget(-1)">
                 <v-icon large  >mdi-arrow-left-bold</v-icon>
                 Move To Left
               </v-btn>
-              <v-btn outlined class="text-body-2 pl-2 pr-1 mx-1 my-4" @click="moveWidget(1)">
+              <v-btn class="text-body-2 pl-2 pr-1 mx-1 my-4" @click="moveWidget(1)">
                 Move To Right
                 <v-icon large>mdi-arrow-right-bold</v-icon>
               </v-btn>
             </v-card-text>
           </v-card>
+
           <color-picker
                     label="color" :hint="prop_info['color'].hint"
                     :value="widget.static['color']"
                     @input="handleColorEdit('color', $event)">
           </color-picker>
     </v-card>
-      <v-card color="wight" v-else-if="help" flat  class="pb-3" >
+      <v-card flat color="wight" v-else-if="help"  class="pb-3" >
         <v-card-title class="text-h5 font-weight-medium pt-0 pb-2">
           Help
           <v-spacer></v-spacer>
@@ -72,14 +73,13 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
-        <v-divider></v-divider>
-          <v-card shaped outlined class="mx-4 mb-0 mt-4">
-              <v-card-title class="ma-0 py-1 px-4">
+          <v-card :style="{backgroundColor: ( this.$vuetify.theme.dark ? '#424242' : '#F5F5F5')}"
+           flat class="mx-3 mb-0 mt-3 rounded-lg">
+              <v-card-title class="ma-0 pb-0 px-4">
                 What Is {{widget.kind}} ?
               </v-card-title>
-              <v-divider></v-divider>
-              <v-card-text class="d-inline mx-3 pa-0">
-                <h3 class="px-4 py-1 ma-0">{{child_help_text}}</h3>
+              <v-card-text class="d-inline mx-3">
+                <h3 class="px-4 ma-0">{{child_help_text}}</h3>
               </v-card-text>
           </v-card>
     </v-card>
@@ -91,12 +91,12 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
-        <v-divider></v-divider>
-            <v-card shaped outlined class="mx-4 mb-0 mt-4" v-if="Object.keys(this.child_props).includes('inputs')">
+            <v-card :style="{backgroundColor: ( this.$vuetify.theme.dark ? '#424242' : '#F5F5F5')}"
+             flat class="mx-3 mb-0 mt-3 rounded-lg"
+             v-if="Object.keys(this.child_props).includes('inputs')">
                     <v-card-title class="ma-0 py-1 px-4">
                       Inputs
                     </v-card-title>
-                    <v-divider></v-divider>
                     <v-card-text class=" ma-0 pa-4">
                       <v-container class="ma-0 pa-1 mt-3">
 
@@ -120,7 +120,7 @@
                   <span>Toggle dynamic link vs. literal value</span>
                 </v-tooltip> -->
                 <!-- dynamic link -->
-                 <v-combobox
+                 <v-select
                 class="ma-0 pa-0"
                     clearable dense persistent-hint 
                     :label="prop"
@@ -128,7 +128,7 @@
                     :items="sd_keys"
                     :value="widget.dynamic[prop]"
                     @input="handleEdit('dynamic', prop, $event)">
-                </v-combobox>
+                </v-select>
                 <!-- <topic-tree v-if="!prop_static[prop]"
                     :label="prop" hint='topic (/-separated path)' :value="widget.dynamic[prop]"
                     @input="handleEdit('dynamic', prop, $event)">
@@ -177,11 +177,12 @@
                     </v-card-text>
             
             </v-card >
-             <v-card shaped outlined class="mx-4 mb-0 mt-4"  v-if="Object.keys(this.child_props).includes('outputs')">
+             <v-card :style="{backgroundColor: ( this.$vuetify.theme.dark ? '#424242' : '#F5F5F5')}"
+               flat class="mx-3 mb-0 mt-3 rounded-lg"
+               v-if="Object.keys(this.child_props).includes('outputs')">
                 <v-card-title class="ma-0 py-1 px-4">
                   Outputs
                 </v-card-title>
-                <v-divider></v-divider>
                 <v-card-text class=" ma-0 pa-4">
                   <v-container class="ma-0 pa-1 mt-3">
 
@@ -189,7 +190,7 @@
             <v-row  align="center">
               <v-col class="d-flex" cols="6" v-for="prop of this.child_props.outputs.value" :key=prop>
                 <!--h4 class="mt-2 mr-3">Output binding:</h4-->
-                <v-combobox
+                <v-select
                 class="ma-0 pa-0"
                     clearable dense persistent-hint
                     hint='will add later'
@@ -197,7 +198,7 @@
                     :items="sd_keys"
                     :value="widget.static[prop]"
                     @input="handleEdit('static', prop, $event)">
-                </v-combobox>
+                </v-select>
               </v-col>
               <!-- <v-col v-if="widget.kind == 'hex-keypad'" class="d-flex" cols="12" sm="6" md="4">
                 <v-combobox

@@ -9,10 +9,10 @@
 <template>
 
   <!--class="d-flex flex-column justify-start align-center"-->
-  <v-card :color="color" :class="full_page ? 'full-page' : undefined"
+  <v-card flat :color="color" class="background: grey lighten-2"
           :elevation="no_border ? 0 : undefined"
           :outlined="no_border && $root.editMode"
-          style="overflow: hidden">
+          style="overflow: hidden" >
 
     <!-- Widget title & buttons shown when the child component does _not_ show the title -->
     <v-card-text v-if="!('title' in child_props) && title" class="d-flex pa-0 py-2">
@@ -115,8 +115,8 @@
 .v-card .edit-btn {
   position: absolute; right: 0px; top: 0px;
 }
-.theme--light.v-btn--icon { background-color: rgba(255, 255, 255, 0.6); }
-.theme--dark.v-btn--icon  { background-color: rgba(30, 30, 30, 0.6); }
+.theme--light.v-btn--icon { background-color: #E0E0E0; }
+.theme--dark.v-btn--icon  { background-color: #424242; }
 </style>
 
 <script scoped>

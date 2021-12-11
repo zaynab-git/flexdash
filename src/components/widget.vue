@@ -21,7 +21,7 @@
 
       <!-- Widget proper, i.e. the card and its content-->
       <template v-slot:activator="{ on, attrs }">
-        <v-card :color="edit_active?'highlight':''">
+        <v-card flat :color="edit_active?'highlight':''">
 
           <!-- Widget title & buttons shown when the child component does _not_ show the title -->
           <v-card-text v-if="!childProps.includes('title')" class="d-flex pa-0 pt-1 mb-n1">

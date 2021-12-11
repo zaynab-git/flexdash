@@ -20,7 +20,7 @@
 
 
     <!-- main area of the page with content -->
-    <v-main  :style="{ backgroundColor: $vuetify.theme.themes[theme].background}">
+    <v-main>
       
       <!-- "normal" tabs with grids and widgets -->
       <v-tabs-items v-if="gotConfig" :value="tab_ix" :class="tabs_items_class">
@@ -164,12 +164,11 @@
 
                       <v-spacer></v-spacer>
 
-                            <connections @src="config_src=$event"></connections>
 
                       <v-menu  min-width="15em" offset-y :close-on-content-click="false">
         <!-- Menu activator, i.e. the button -->
         <template v-slot:activator="{ on, attrs }">
-          <v-btn class="mx-2" icon v-bind="attrs" v-on="on"><v-icon>mdi-cog</v-icon></v-btn>
+          <v-btn icon v-bind="attrs" v-on="on"><v-icon>mdi-cog</v-icon></v-btn>
         </template>
         <!-- Settings Menu -->
           <v-list class="px-3">
@@ -189,6 +188,7 @@
         </v-list>
       </v-menu>
 
+                            <connections @src="config_src=$event"></connections>
 
                 
     </v-app-bar>

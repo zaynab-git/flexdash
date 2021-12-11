@@ -77,7 +77,7 @@
     <!-- </v-toolbar> -->
   
 <v-container fluid v-if="!rolledup" class="g-grid-small py-5 ">
-    <v-card :style=webcamcardstyle v-if="webcam"> 
+    <v-card :style=webcamcardstyle v-if="webcam" flat class="background: grey lighten-2"> 
       <v-card-title ><span class="mx-auto">FPGA board Webcam</span></v-card-title>
       <v-card-text>
           <video width="100%" height="auto" :style=webcamstyle  ref="camera" autoplay ></video>

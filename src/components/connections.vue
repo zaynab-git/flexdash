@@ -6,7 +6,7 @@
   <div class="mx-2">
     <v-tooltip bottom>
       <template v-slot:activator="{on}">
-          <v-icon v-on="on" :color="icon_color">{{icon}}</v-icon>
+          <v-icon :class="background= icon_color" color="white" v-on="on" class="pa-2 rounded-circle">{{icon}}</v-icon>
       </template>
       <span>{{status}}</span>
     </v-tooltip>
