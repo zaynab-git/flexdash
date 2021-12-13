@@ -22,7 +22,7 @@ value input: the toggle will be "on" if the value is equal to the "on_value" inp
   props: {
     outputs: { type: Object, value: ["output"]},
     "output": { default: "", static: "" },
-    color: { type: String, default: "red" },
+    color: { type: String, default: "#00BCD4" },
   },
 
 

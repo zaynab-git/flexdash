@@ -57,7 +57,7 @@
               Loading configuration from<br>{{config_src}}
             </v-col>
             <v-col cols="6">
-              <v-progress-linear color="primary" indeterminate rounded height="6">
+              <v-progress-linear color="pink" indeterminate rounded height="6">
               </v-progress-linear>
             </v-col>
           </v-row>
@@ -114,7 +114,7 @@
             
 
       <v-btn
-                  color="red darken-2"
+                  color="cyan darken-1"
                   fab
                   class="mx-2"
                   dark
@@ -131,6 +131,13 @@
             <span class="mt-2 text-caption">{{$t('toolbar.file')}}</span>
           </div>
       </v-btn>
+
+      <v-btn text tile class="py-8 mx-1">
+                  <div class="d-flex flex-column ">
+              <v-icon>mdi-connection</v-icon>
+              <span class="mt-2 text-caption" >{{$t('toolbar.pins')}}</span>
+          </div>
+            </v-btn>
 
         <v-btn
                   text tile
@@ -149,12 +156,6 @@
           </div>
             </v-btn>
 
-                <v-btn text tile class="py-8 mx-1">
-                  <div class="d-flex flex-column ">
-              <v-icon>mdi-connection</v-icon>
-              <span class="mt-2 text-caption" >{{$t('toolbar.pins')}}</span>
-          </div>
-            </v-btn>
 
 
                       <!-- <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
@@ -209,25 +210,26 @@
          <v-card>
 
         <v-card-text class="text-h5 pt-4">
-          are you sure you want to delete all widgets ? 
+          are you sure you want to remove all widgets ? 
         </v-card-text>
 
 
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="red darken-3"
+            color="cyan darken-1"
             text
+            
             @click="dialog = false; "
           >
             CANCEL
           </v-btn>
           <v-btn
-            color="green darken-3"
-            text
+            color="pink darken-1"
+            dark
             @click="dialog = false; deleteGrid('t0001', 0)"
           >
-            ACCEPT
+            REMOVE
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -236,11 +238,11 @@
 
 
     <!-- Menu used to show editing panel floating below tab -->
-    <v-menu v-model="tab_edit" offset-y allow-overflow :activator="'#tab-'+tab_id"
+    <!-- <v-menu v-model="tab_edit" offset-y allow-overflow :activator="'#tab-'+tab_id"
             max-width="40ex" content-class="popup-spacer" :close-on-content-click="false">
       <tab-edit v-model="tab_edit" :tab_ix="tab_ix" :tab_id="tab_id" @reload="reload"></tab-edit>
 
-    </v-menu>
+    </v-menu> -->
 
 
 

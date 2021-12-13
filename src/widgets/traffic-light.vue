@@ -73,6 +73,7 @@ the high-threshold. For string values low and high colors are selected using reg
     "pin yellow": { default: "", dynamic: "GND" },
     "pin green": { default: "", dynamic: "GND" },
     "pin GND": { default: "", dynamic: "GND" },
+    color: { default: "cyan" }
   },
 
   computed: {

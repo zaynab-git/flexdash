@@ -171,7 +171,7 @@ the high-threshold. For string values low and high colors are selected using reg
     "C2": { default: "", static: "" },
     "C3": { default: "", static: "" },
     "C4": { default: "", static: "" },
-    color: { default: "#00838F", tip: "value color, null->text color" }
+    color: { default: "#00BCD4", tip: "value color, null->text color" }
   },
 
 

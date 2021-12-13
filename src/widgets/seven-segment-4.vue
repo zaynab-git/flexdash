@@ -323,7 +323,7 @@ the high-threshold. For string values low and high colors are selected using reg
     "digit 3": { default: "", dynamic: "GND" },
     "digit 4": { default: "", dynamic: "GND" },
 
-    color: { type: String, default: "red", tip: "value color, null->text color" }
+    color: { type: String, default: "#00BCD4", tip: "value color, null->text color" }
   },
 
   computed: {

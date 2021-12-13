@@ -9,7 +9,7 @@
 <template>
 
   <!--class="d-flex flex-column justify-start align-center"-->
-  <v-card flat :color="color" class="background: grey lighten-2"
+  <v-card flat  :color="color"
           :elevation="no_border ? 0 : undefined"
           :outlined="no_border && $root.editMode"
           style="overflow: hidden" >
@@ -20,7 +20,7 @@
       <span v-if="title" class="mx-auto text-no-wrap">{{title}}</span>
       <v-menu offset-y bottom transition="scale-transition">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-on="on" icon v-bind="attrs" class="edit-btn" >
+        <v-btn v-on="on" icon v-bind="attrs" class="edit-btn">
           <v-icon >mdi-dots-vertical</v-icon>
         </v-btn>
       </template>
@@ -28,10 +28,10 @@
       <v-list >
         <v-list-item dense @click="handleEdit()">
           <v-list-item-icon>
-            <v-icon size="20px">mdi-pencil</v-icon>
+            <v-icon size="20px" color="cyan darken-1">mdi-pencil</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{$t('editmenu.edit')}}</v-list-item-title>
+            <v-list-item-title class="cyan--text text--darken-1" >{{$t('editmenu.edit')}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item >
 <!--         
@@ -51,12 +51,12 @@
             <v-list-item-title>Move Right</v-list-item-title>
           </v-list-item-content>
         </v-list-item > -->
-        <v-list-item dense @click="handleColor()">
+        <v-list-item  dense @click="handleColor()">
           <v-list-item-icon>
             <v-icon size="20px" >mdi-palette</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title  >{{$t('editmenu.appearance')}}</v-list-item-title>
+            <v-list-item-title >{{$t('editmenu.appearance')}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item dense @click="handleClone()">
@@ -77,10 +77,10 @@
         </v-list-item >
         <v-list-item dense @click="handleDelete()">
           <v-list-item-icon>
-            <v-icon size="20px" color="red darken-3" >mdi-trash-can</v-icon>
+            <v-icon size="20px" color="pink darken-1" >mdi-trash-can</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title class="red--text text--darken-3" >{{$t('editmenu.delete')}}</v-list-item-title>
+            <v-list-item-title class="red--text text--darken-1" >{{$t('editmenu.delete')}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -114,6 +114,7 @@
 .v-card.full-page .full-page-btn { z-index: 11 }
 .v-card .edit-btn {
   position: absolute; right: 0px; top: 0px;
+  background-color: transparent!important;
 }
 .theme--light.v-btn--icon { background-color: #E0E0E0; }
 .theme--dark.v-btn--icon  { background-color: #424242; }
@@ -127,7 +128,7 @@ export default {
   name: 'WidgetWrap',
 
   props: {
-    color: { type: String, default: undefined }, // background color to highlight the card
+    color: { type: String, default: 'cyan' }, // background color to highlight the card
     no_border: { type: Boolean, default: false }, // true causes no "card" border, used by panel
 
     // config specifies how each prop of the inner component gets set. It has "static bindings"

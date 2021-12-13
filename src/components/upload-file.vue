@@ -16,14 +16,14 @@
                             <v-card-title>BIT File</v-card-title>
                             <v-card-text class="d-flex justify-space-between pb-0">
                                 <v-file-input dense :error="biterr" outlined accept=".bit/.bin" @change="selectbit"  ></v-file-input>
-                                <v-btn @click="sendbit()" color="red darken-2" dark class="py-5 px-5 mx-2">SEND</v-btn>
+                                <v-btn @click="sendbit()" color="cyan darken-1" dark class="py-5 px-5 mx-2">SEND</v-btn>
                             </v-card-text>
                         </v-card>
                          <v-card flat >
                             <v-card-title>Executable  File</v-card-title>
                             <v-card-text class="d-flex">
                                 <v-file-input dense :error="exeerr" outlined  @change="selectexe"  ></v-file-input>
-                                <v-btn @click="sendexe()" color="red darken-2" dark class=" py-5 px-5 mx-2">SEND</v-btn>
+                                <v-btn @click="sendexe()" color="cyan darken-1" dark class=" py-5 px-5 mx-2">SEND</v-btn>
                             </v-card-text>
                         </v-card>
                     </v-card-text>

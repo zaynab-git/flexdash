@@ -27,7 +27,7 @@ The button may contain an icon and/or a title string and is centered in the widg
     "pin GND": { default: "", dynamic: "GND" },
     outputs: { type: Object, value: ["output"]},
     "output": { default: "", static: "" },
-    color: { default: "primary" }
+    color: { default: "#00BCD4" }
   },
 
 

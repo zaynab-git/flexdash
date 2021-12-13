@@ -39,14 +39,14 @@ export default {
   props: {
     inputs: { type: Object, value: ["value"]},
     value: { type: Number, default: 0, dynamic: "" },
-    color: { type: String, default: 'green', tip: "color of filled segment" },
+    color: { type: String, default: 'cyan', tip: "color of filled segment" },
   },
 
   data() {return {
     bindings: {
       min: 0,
       max: 255,
-      needle_color: 'red',
+      needle_color: 'pink',
       radius: 75,
       stretch: false,
       base_color: 'lightgrey'

@@ -23,7 +23,11 @@
         "file": "SEND FILE",
         "webcam": "BOARD WEBCAM",
         "remove": "REMOVE WIDGETS",
-        "pins": "I/O PINS"
+        "pins": "I/O PINS",
+        "connection": {
+            "ok": "connected",
+            "bad": "disconnected"
+        }
     },
     "editmenu": {
         "edit": "Edit",

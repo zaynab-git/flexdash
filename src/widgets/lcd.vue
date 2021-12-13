@@ -86,7 +86,7 @@ the high-threshold. For string values low and high colors are selected using reg
     'D7 pin' : { default: "", dynamic: "GND" },
     '+ve pin' : { default: "", dynamic: "GND" },
     '-ve pin' : { default: "", dynamic: "GND" },
-    color: { default: "red" }
+    color: { default: "#00BCD4" }
   },
 
   computed: {

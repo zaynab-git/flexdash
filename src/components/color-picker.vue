@@ -30,7 +30,7 @@ export default {
   props: {
     label: { default: null },
     hint: { default: null },
-    value: { default: null },
+    value: { default: '#00BCD4' },
   },
 
   data() {

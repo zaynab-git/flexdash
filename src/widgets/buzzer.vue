@@ -39,7 +39,7 @@ the high-threshold. For string values low and high colors are selected using reg
     inputs: { type: Object, value: ["pin VDC", "pin GND"]},
     "pin VDC": { default: "", dynamic: "GND" },
     "pin GND": { default: "", dynamic: "GND" },
-    color: { default: "red" }
+    color: { default: "#00BCD4" }
   },
 
   computed: {

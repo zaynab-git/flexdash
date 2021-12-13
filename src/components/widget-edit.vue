@@ -59,7 +59,7 @@
             </v-card-text>
           </v-card>
 
-          <color-picker
+          <color-picker v-if="widget.kind != 'traffic-light'"
                     label="color" :hint="prop_info['color'].hint"
                     :value="widget.static['color']"
                     @input="handleColorEdit('color', $event)">
@@ -424,8 +424,8 @@ export default {
     },
 
     selected() {
-      if (this.edit_active) return this.$vuetify.theme.dark ? 'grey darken-2' : 'grey lighten-1'
-      return this.$vuetify.theme.dark ? 'grey darken-3' : 'white'
+      if (this.edit_active) return this.$vuetify.theme.dark ? 'cyan darken-2' : 'cyan lighten-4'
+      return this.$vuetify.theme.dark ? 'grey darken-3' : 'grey lighten-2'
     },
 
     // style attribute for widget to determine size

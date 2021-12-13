@@ -93,7 +93,7 @@ export default {
   computed: {
     // compute the color of the connections status icon
     icon_color() {
-      return this.connections['websocket'].conn.data.status == 'ok' ? 'green darken-2' : 'red darken-2'
+      return this.connections['websocket'].conn.data.status == 'ok' ? 'cyan darken-1' : 'pink darken-1'
     },
      icon() {
       return this.connections['websocket'].conn.data.status == 'ok' ? 'mdi-wifi' : 'mdi-wifi-off'
