@@ -1,5 +1,5 @@
 <template>
-      <v-navigation-drawer :color="this.$vuetify.theme.dark ? '#212121' : 'white'" :right="!$vuetify.rtl" v-model="uploadDrawer" clipped app mobile-breakpoint="960" width="400" >
+      <v-navigation-drawer disable-resize-watcher :color="this.$vuetify.theme.dark ? '#212121' : 'white'" :right="!$vuetify.rtl" v-model="uploadDrawer" clipped app mobile-breakpoint="960" width="400" >
 
             <!-- <v-dialog width="45rem" v-model="dialog"> -->
                 <v-card flat >

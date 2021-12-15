@@ -10,7 +10,7 @@
               Color
             </v-card-title>
             <v-card-text class="ma-0 pa-0">
-              <v-color-picker style="background-color: #F5F5F5;" class="py-3 px-2 ma-0 rounded-xl" hide-inputs hide-canvas hide-sliders mode="hexa" show-swatches swatches-max-height="auto"
+              <v-color-picker :style="{backgroundColor: ( this.$vuetify.theme.dark ? '#424242' : '#F5F5F5')}"  class="py-3 px-2 ma-0 rounded-xl" hide-inputs hide-canvas hide-sliders mode="hexa" show-swatches swatches-max-height="auto"
                         :swatches="swatches" :value="value" @update:color="changeColor">
           </v-color-picker>
             </v-card-text>

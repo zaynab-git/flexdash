@@ -26,7 +26,7 @@
       <v-tabs-items v-if="gotConfig" :value="tab_ix" :class="tabs_items_class">
         <v-tab-item v-for="(id) in dash_tabs" :key="id" :ref="id"
                     :style="{ backgroundColor: $vuetify.theme.themes[theme].background}"
-                    :class="{'is-active': id == tab_id}">
+                    :class="{'is-active': id == tab_id, 'background': 'background'}">
                     <!-- set class above as work-around for vuetify issue #11405-->
           <!-- key={{id}} grids:{{tabs[id].grids}}
           <div v-for="(g, ix) in tabs[id].grids" :key="g">
@@ -64,6 +64,39 @@
         </v-container>
       </div>
     </v-main>
+
+
+    <!-- <v-btn text tile @click="upload = true" class="py-8">
+          <div class="d-flex flex-column ">
+            <v-icon >mdi-file-upload</v-icon>
+            <span class="mt-2 text-caption">{{$t('toolbar.file')}}</span>
+          </div>
+      </v-btn>
+
+      <v-btn text tile class="py-8 mx-1">
+                  <div class="d-flex flex-column ">
+              <v-icon>mdi-connection</v-icon>
+              <span class="mt-2 text-caption" >{{$t('toolbar.pins')}}</span>
+          </div>
+            </v-btn>
+
+        <v-btn
+                  text tile
+                  @click="webcam = !webcam"
+                  class="py-8 mx-1"
+                >
+                <div class="d-flex flex-column ">
+                  <v-icon>{{ (webcam ? 'mdi-video' : 'mdi-video-off')}}</v-icon>
+                  <span class="mt-2 text-caption">{{$t('toolbar.webcam')}}</span>
+          </div>
+                </v-btn>
+                <v-btn text tile  @click="dialog = true" class="py-8 mx-1">
+                  <div class="d-flex flex-column ">
+              <v-icon>mdi-trash-can</v-icon>
+              <span class="mt-2 text-caption">{{$t('toolbar.remove')}}</span>
+          </div>
+            </v-btn>
+ -->
 
     <!-- Top title/navigation bar -->
     <v-app-bar :clipped-right="!$vuetify.rtl" :clipped-left="$vuetify.rtl" height="80"  flat  app color="surface">
@@ -111,9 +144,8 @@
       
 
       <!-- Settings menu at far right -->
-            
 
-      <v-btn
+        <v-btn
                   color="cyan darken-1"
                   fab
                   class="mx-2"
@@ -125,7 +157,8 @@
                 </v-btn>
 
 
-      <v-btn text tile @click="upload = true" class="py-8 mx-3">
+            <v-toolbar flat v-if="this.$vuetify.breakpoint.width >= 750" color="surface" class="pa-0 ma-0">
+ <v-btn text tile @click="upload = true" class="py-8">
           <div class="d-flex flex-column ">
             <v-icon >mdi-file-upload</v-icon>
             <span class="mt-2 text-caption">{{$t('toolbar.file')}}</span>
@@ -156,6 +189,50 @@
           </div>
             </v-btn>
 
+
+            </v-toolbar>
+
+      <v-menu offset-y v-else>
+        <!-- Menu activator, i.e. the button -->
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on" ><v-icon large>mdi-menu</v-icon></v-btn>
+        </template>
+        <!-- Settings Menu -->
+        <v-list dense>
+          <v-list-item @click="upload = true">
+            <v-list-item-icon>
+              <v-icon left>mdi-file-upload</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{$t('toolbar.file')}}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-connection</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{$t('toolbar.pins')}}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="webcam = !webcam">
+            <v-list-item-icon>
+              <v-icon >{{ (webcam ? 'mdi-video' : 'mdi-video-off')}}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{$t('toolbar.webcam')}}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="dialog = true">
+            <v-list-item-icon>
+              <v-icon >mdi-trash-can</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{$t('toolbar.remove')}}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
 
 
                       <!-- <v-toolbar-title class="text-h4 font-weight-bold text--secondary flex-shrink-0 mr-3"
@@ -209,8 +286,12 @@
     >
          <v-card>
 
-        <v-card-text class="text-h5 pt-4">
-          are you sure you want to remove all widgets ? 
+        <v-card-title>
+          Remove all widgets ? 
+        </v-card-title>
+
+        <v-card-text>
+          Are you sure you want to remove all the widgets on the dashboard ? This action cant be undone.
         </v-card-text>
 
 

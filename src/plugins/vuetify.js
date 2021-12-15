@@ -43,7 +43,7 @@ export default new Vuetify({
     },
     themes: {
       light: {
-        background: '#f7f5f5', // page background
+        background: '#E0E0E0', // page background
         surface: '#fffdfd', // widget surfaces
         panel: '#f4f2f2', // editing panel
         primary: '#ad1625', // node-red red
@@ -53,7 +53,7 @@ export default new Vuetify({
         highlight: '#fff5ce', // selected widget
       },
       dark: {
-        background: '#0b0808',
+        background: '#616161',
         surface: '#201d1d',
         panel: '#262424',
         primary: '#ad1625', // node-red red

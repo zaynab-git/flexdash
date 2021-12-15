@@ -153,7 +153,7 @@ export default {
   computed: {
     webcamcardstyle() {
       let sizestyle = this.$vuetify.breakpoint.xs ? ' grid-column: span 5; grid-row: span 5;' : ' grid-column: span 5; grid-row: span 6;'
-      let colorstyle = this.$vuetify.theme.dark ? ' background-color: #424242;' : ' background-color: #E0E0E0;'
+      let colorstyle = this.$vuetify.theme.dark ? ' background-color: #212121;' : ' background-color: #ffffff;'
       return sizestyle + colorstyle
     },
     webcamstyle() {

@@ -19,7 +19,7 @@
 <template>
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle" >
-    <v-navigation-drawer :color="this.$vuetify.theme.dark ? '#212121' : 'white'" :right="!$vuetify.rtl" v-model="edit_active" clipped app mobile-breakpoint="960" width="400" >
+    <v-navigation-drawer disable-resize-watcher :color="this.$vuetify.theme.dark ? '#212121' : 'white'" :right="!$vuetify.rtl" v-model="edit_active" clipped app mobile-breakpoint="960" width="400" >
       <v-card v-if="color" flat  class="pb-3" >
         <v-card-title class="text-h5 font-weight-medium pt-0 pb-2">
           Appearance
@@ -424,8 +424,8 @@ export default {
     },
 
     selected() {
-      if (this.edit_active) return this.$vuetify.theme.dark ? 'cyan darken-2' : 'cyan lighten-4'
-      return this.$vuetify.theme.dark ? 'grey darken-3' : 'grey lighten-2'
+      if (this.edit_active) return this.$vuetify.theme.dark ? 'cyan darken-4' : 'cyan lighten-5'
+      return this.$vuetify.theme.dark ? 'grey darken-4' : 'wight'
     },
 
     // style attribute for widget to determine size
