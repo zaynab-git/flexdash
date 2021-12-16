@@ -124,7 +124,6 @@
                 class="ma-0 pa-0"
                     clearable dense persistent-hint 
                     :label="prop"
-                    hint='will add later'
                     :items="sd_keys"
                     :value="widget.dynamic[prop]"
                     @input="handleEdit('dynamic', prop, $event)">
@@ -193,7 +192,6 @@
                 <v-select
                 class="ma-0 pa-0"
                     clearable dense persistent-hint
-                    hint='will add later'
                     :label="prop"
                     :items="sd_keys"
                     :value="widget.static[prop]"
@@ -451,7 +449,8 @@ export default {
     edit_active(val) {
       if (val) {
         this.propStatic()
-        this.sd_keys = Object.keys(this.$store.sd)
+        // this.sd_keys = Object.keys(this.$store.sd)
+        this.sd_keys = [1,2,3,4,5,6,7,8,9]
       }
       console.log('in')
     },

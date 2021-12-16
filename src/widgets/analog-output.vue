@@ -30,7 +30,7 @@ export default {
   name: 'analog-output',
   icon: '$anlgout',
 
-  help: `Simple SVG gauge.`,
+  help: ``,
 
   components: {
     SvgGauge,

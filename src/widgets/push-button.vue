@@ -17,9 +17,7 @@ export default {
   name: 'push-button',
   icon: 'mdi-radiobox-marked',
 
-  help: `Button to send an event.
-Pressing the button sends a message with a specified payload to a topic.
-The button may contain an icon and/or a title string and is centered in the widget.`,
+  help: ``,
 
   props: {
     inputs: { type: Object, value: ["pin VDC", "pin GND"]},

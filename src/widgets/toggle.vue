@@ -15,9 +15,7 @@ export default {
   name: 'Toggle',
   icon: 'mdi-toggle-switch',
 
-  help: `Simple on/off toggle switch.
-Sends a pre-determined value when toggled on or off. The current state can be set via the
-value input: the toggle will be "on" if the value is equal to the "on_value" input.`,
+  help: ``,
 
   props: {
     outputs: { type: Object, value: ["output"]},
