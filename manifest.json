@@ -1,6 +1,6 @@
 {
   "index.html": {
-    "file": "assets/index.e6a850f4.js",
+    "file": "assets/index.748c9ab0.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
@@ -26,7 +26,7 @@
       "src/grids/iframe-grid.vue"
     ],
     "css": [
-      "assets/index.a2582e90.css"
+      "assets/index.268f6b26.css"
     ],
     "assets": [
       "assets/materialdesignicons-webfont.9bdfaf27.eot",
@@ -135,7 +135,7 @@
     "file": "assets/vue3-sfc-loader.a7c67584.js"
   },
   "src/widgets/analog-input.vue": {
-    "file": "assets/analog-input.3a7b1755.js",
+    "file": "assets/analog-input.870bc60b.js",
     "src": "src/widgets/analog-input.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -146,7 +146,7 @@
     ]
   },
   "src/widgets/analog-output.vue": {
-    "file": "assets/analog-output.b46aba6d.js",
+    "file": "assets/analog-output.f054f631.js",
     "src": "src/widgets/analog-output.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -160,7 +160,7 @@
     ]
   },
   "src/widgets/buzzer.vue": {
-    "file": "assets/buzzer.7c64a54a.js",
+    "file": "assets/buzzer.1582dda7.js",
     "src": "src/widgets/buzzer.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -174,7 +174,7 @@
     ]
   },
   "src/widgets/hex-keypad.vue": {
-    "file": "assets/hex-keypad.6f59cecf.js",
+    "file": "assets/hex-keypad.a5f82aa9.js",
     "src": "src/widgets/hex-keypad.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -188,7 +188,7 @@
     ]
   },
   "src/widgets/lcd.vue": {
-    "file": "assets/lcd.146b82ea.js",
+    "file": "assets/lcd.2d263c4b.js",
     "src": "src/widgets/lcd.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -202,7 +202,7 @@
     ]
   },
   "src/widgets/led.vue": {
-    "file": "assets/led.7e1f62fb.js",
+    "file": "assets/led.1e9f1972.js",
     "src": "src/widgets/led.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -216,7 +216,7 @@
     ]
   },
   "src/widgets/push-button.vue": {
-    "file": "assets/push-button.a4d0a86f.js",
+    "file": "assets/push-button.e067310e.js",
     "src": "src/widgets/push-button.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -227,7 +227,7 @@
     ]
   },
   "src/widgets/seven-segment-1.vue": {
-    "file": "assets/seven-segment-1.b9808f22.js",
+    "file": "assets/seven-segment-1.e52c56da.js",
     "src": "src/widgets/seven-segment-1.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -241,7 +241,7 @@
     ]
   },
   "src/widgets/seven-segment-2.vue": {
-    "file": "assets/seven-segment-2.16c74689.js",
+    "file": "assets/seven-segment-2.3e309a69.js",
     "src": "src/widgets/seven-segment-2.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -255,7 +255,7 @@
     ]
   },
   "src/widgets/seven-segment-3.vue": {
-    "file": "assets/seven-segment-3.1137e014.js",
+    "file": "assets/seven-segment-3.0a021981.js",
     "src": "src/widgets/seven-segment-3.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -269,7 +269,7 @@
     ]
   },
   "src/widgets/seven-segment-4.vue": {
-    "file": "assets/seven-segment-4.bb5e188c.js",
+    "file": "assets/seven-segment-4.3e6155d9.js",
     "src": "src/widgets/seven-segment-4.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -283,7 +283,7 @@
     ]
   },
   "src/widgets/toggle.vue": {
-    "file": "assets/toggle.b6f1f27c.js",
+    "file": "assets/toggle.96ae29f3.js",
     "src": "src/widgets/toggle.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -294,7 +294,7 @@
     ]
   },
   "src/widgets/traffic-light.vue": {
-    "file": "assets/traffic-light.3b79a069.js",
+    "file": "assets/traffic-light.e6385d17.js",
     "src": "src/widgets/traffic-light.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -308,7 +308,7 @@
     ]
   },
   "src/grids/fixed-grid.vue": {
-    "file": "assets/fixed-grid.f55af3c3.js",
+    "file": "assets/fixed-grid.5b3ee88f.js",
     "src": "src/grids/fixed-grid.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -318,11 +318,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/fixed-grid.512ee2d6.css"
+      "assets/fixed-grid.67bc43de.css"
     ]
   },
   "src/grids/iframe-grid.vue": {
-    "file": "assets/iframe-grid.b08793e1.js",
+    "file": "assets/iframe-grid.5a7db4ce.js",
     "src": "src/grids/iframe-grid.vue",
     "isDynamicEntry": true,
     "imports": [
