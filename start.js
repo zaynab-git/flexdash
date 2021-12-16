@@ -11,5 +11,5 @@ pre.forEach(f => {
   const html = '<link rel="modulepreload" href="' + f + '">'
   head.insertAdjacentHTML('beforeend', html)
 })
-import "./assets/index.748c9ab0.js"
+import "./assets/index.4156ad96.js"
       

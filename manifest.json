@@ -1,6 +1,6 @@
 {
   "index.html": {
-    "file": "assets/index.748c9ab0.js",
+    "file": "assets/index.4156ad96.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
@@ -135,7 +135,7 @@
     "file": "assets/vue3-sfc-loader.a7c67584.js"
   },
   "src/widgets/analog-input.vue": {
-    "file": "assets/analog-input.870bc60b.js",
+    "file": "assets/analog-input.55be7566.js",
     "src": "src/widgets/analog-input.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -146,7 +146,7 @@
     ]
   },
   "src/widgets/analog-output.vue": {
-    "file": "assets/analog-output.f054f631.js",
+    "file": "assets/analog-output.d43af536.js",
     "src": "src/widgets/analog-output.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -156,11 +156,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/analog-output.dff3080a.css"
+      "assets/analog-output.0c67c583.css"
     ]
   },
   "src/widgets/buzzer.vue": {
-    "file": "assets/buzzer.1582dda7.js",
+    "file": "assets/buzzer.12f5644e.js",
     "src": "src/widgets/buzzer.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -170,11 +170,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/buzzer.f0380ff3.css"
+      "assets/buzzer.ee241b9f.css"
     ]
   },
   "src/widgets/hex-keypad.vue": {
-    "file": "assets/hex-keypad.a5f82aa9.js",
+    "file": "assets/hex-keypad.07baaf90.js",
     "src": "src/widgets/hex-keypad.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -184,11 +184,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/hex-keypad.941baa38.css"
+      "assets/hex-keypad.6d214aca.css"
     ]
   },
   "src/widgets/lcd.vue": {
-    "file": "assets/lcd.2d263c4b.js",
+    "file": "assets/lcd.9f4d2d92.js",
     "src": "src/widgets/lcd.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -198,11 +198,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/lcd.2314b179.css"
+      "assets/lcd.71684809.css"
     ]
   },
   "src/widgets/led.vue": {
-    "file": "assets/led.1e9f1972.js",
+    "file": "assets/led.657a54f1.js",
     "src": "src/widgets/led.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -212,11 +212,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/led.d741bf4d.css"
+      "assets/led.0c40092d.css"
     ]
   },
   "src/widgets/push-button.vue": {
-    "file": "assets/push-button.e067310e.js",
+    "file": "assets/push-button.4a101a4c.js",
     "src": "src/widgets/push-button.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -227,7 +227,7 @@
     ]
   },
   "src/widgets/seven-segment-1.vue": {
-    "file": "assets/seven-segment-1.e52c56da.js",
+    "file": "assets/seven-segment-1.5b3e1f74.js",
     "src": "src/widgets/seven-segment-1.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -237,11 +237,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/seven-segment-1.bebc30f6.css"
+      "assets/seven-segment-1.4c68b954.css"
     ]
   },
   "src/widgets/seven-segment-2.vue": {
-    "file": "assets/seven-segment-2.3e309a69.js",
+    "file": "assets/seven-segment-2.5b471f1b.js",
     "src": "src/widgets/seven-segment-2.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -251,11 +251,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/seven-segment-2.ae299084.css"
+      "assets/seven-segment-2.a97c56cd.css"
     ]
   },
   "src/widgets/seven-segment-3.vue": {
-    "file": "assets/seven-segment-3.0a021981.js",
+    "file": "assets/seven-segment-3.f9286f00.js",
     "src": "src/widgets/seven-segment-3.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -265,11 +265,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/seven-segment-3.8fbc1d9c.css"
+      "assets/seven-segment-3.44ccda28.css"
     ]
   },
   "src/widgets/seven-segment-4.vue": {
-    "file": "assets/seven-segment-4.3e6155d9.js",
+    "file": "assets/seven-segment-4.fd33a3b4.js",
     "src": "src/widgets/seven-segment-4.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -279,11 +279,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/seven-segment-4.f0a32457.css"
+      "assets/seven-segment-4.12ca428c.css"
     ]
   },
   "src/widgets/toggle.vue": {
-    "file": "assets/toggle.96ae29f3.js",
+    "file": "assets/toggle.e410fc39.js",
     "src": "src/widgets/toggle.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -294,7 +294,7 @@
     ]
   },
   "src/widgets/traffic-light.vue": {
-    "file": "assets/traffic-light.e6385d17.js",
+    "file": "assets/traffic-light.1068db07.js",
     "src": "src/widgets/traffic-light.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -304,11 +304,11 @@
       "_vue3-sfc-loader.a7c67584.js"
     ],
     "css": [
-      "assets/traffic-light.56c15abd.css"
+      "assets/traffic-light.c74c8e4a.css"
     ]
   },
   "src/grids/fixed-grid.vue": {
-    "file": "assets/fixed-grid.5b3ee88f.js",
+    "file": "assets/fixed-grid.05b3fec3.js",
     "src": "src/grids/fixed-grid.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -322,7 +322,7 @@
     ]
   },
   "src/grids/iframe-grid.vue": {
-    "file": "assets/iframe-grid.5a7db4ce.js",
+    "file": "assets/iframe-grid.cc2dbed2.js",
     "src": "src/grids/iframe-grid.vue",
     "isDynamicEntry": true,
     "imports": [
