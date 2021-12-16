@@ -56,7 +56,7 @@
       <!-- Menu to add widget -->
       <!-- Paste button/text field -->
       
-            <widget-menu :drawer=drawer @select="addWidget"></widget-menu>
+            <widget-menu :drawer=drawer @select="addWidget" @drwr="$emit('drwr', false)"></widget-menu>
 
       <!-- <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -141,7 +141,7 @@ export default {
     id: { type: String }, // this grid's ID
     drawer: {default: false},
     webcam: {default: true},
-    leftDrawer: {default: false}
+    leftDrawer: {default: false},
   },
 
   data() { return {
@@ -209,7 +209,7 @@ export default {
 
   methods: {
     toggleEdit(ix, on) {
-      this.$emit('dialog',false)
+      this.$emit('upload',false)
       this.edit_ix = on ? ix : null },
 
     addWidget(kind) {
@@ -240,7 +240,7 @@ export default {
         ww[ix+1] = widget_id
         this.$store.updateGrid(this.id, { widgets: ww })
       }
-      this.edit_ix = ix+1
+      // this.edit_ix = ix+1
     },
 
     // move a widget up/down (dir=-1/1)

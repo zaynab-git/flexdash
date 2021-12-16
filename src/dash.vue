@@ -16,7 +16,7 @@
       </div>
     </v-navigation-drawer> -->
     <!-- <pins></pins> -->
-            <upload-file :uploadDrawer=upload @dialog="upload = $event"></upload-file>
+            <upload-file :uploadDrawer=upload @upload="upload = $event"></upload-file>
 
 
     <!-- main area of the page with content -->
@@ -35,8 +35,8 @@
           <component
                      v-for="(g, ix) in tabs[id].grids" :key="g" :id="g"
                      v-bind:is="grids[g].kind in palette.grids ? grids[g].kind : 'div'"
-                     @delete="deleteGrid(id, ix)" :drawer=drawer :webcam=webcam @dialog="upload = $event"
-                     :leftDrawer="upload">
+                     @delete="deleteGrid(id, ix)" :drawer=drawer :webcam=webcam @drwr="drawer = false"
+                      :leftDrawer="upload" @upload="upload = $event">
           </component>
         </v-tab-item>
       </v-tabs-items>

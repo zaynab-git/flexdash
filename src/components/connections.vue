@@ -99,7 +99,7 @@ export default {
       return this.connections['websocket'].conn.data.status == 'ok' ? 'mdi-wifi' : 'mdi-wifi-off'
     },
     status() {
-        return this.connections['websocket'].conn.data.status == 'ok' ? 'connection status: ok' : 'connection status: off'
+        return this.connections['websocket'].conn.data.status == 'ok' ? 'conected to the server' : 'can`t connect to the server'
     },
 
     gotConfig() { return this.$config.dash.title !== undefined },

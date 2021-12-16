@@ -19,7 +19,7 @@
 <template>
   <!-- without div the v-for in parent gets confused by v-menu -->
   <div class="widget-edit" :style="widgetStyle" >
-    <v-navigation-drawer disable-resize-watcher :color="this.$vuetify.theme.dark ? '#212121' : 'white'" :right="!$vuetify.rtl" v-model="edit_active" clipped app mobile-breakpoint="960" width="400" >
+    <v-navigation-drawer disable-resize-watcher :color="this.$vuetify.theme.dark ? '#212121' : 'white'" :right="!$vuetify.rtl" v-model="active_edit" clipped app mobile-breakpoint="960" :width="this.$vuetify.breakpoint.width >= 750 ? '400' :  '300'" >
       <v-card v-if="color" flat  class="pb-3" >
         <v-card-title class="text-h5 font-weight-medium pt-0 pb-2">
           Appearance
@@ -409,7 +409,14 @@ export default {
     //   filtered = filtered.filter(p => !p.endsWith('_color'))
     //   return filtered
     // },
-
+    active_edit: {
+      get() {
+        return this.edit_active
+      },
+      set(val) {
+        if (!val && this.edit_active) this.$emit('edit', false);
+      }
+    },
     // handle a non-vue-standard "help" option in a widget
     child_help() {
       const p = this.palette.widgets

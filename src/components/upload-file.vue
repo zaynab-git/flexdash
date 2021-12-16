@@ -1,12 +1,12 @@
 <template>
-      <v-navigation-drawer disable-resize-watcher :color="this.$vuetify.theme.dark ? '#212121' : 'white'" :right="!$vuetify.rtl" v-model="uploadDrawer" clipped app mobile-breakpoint="960" width="400" >
+      <v-navigation-drawer disable-resize-watcher :color="this.$vuetify.theme.dark ? '#212121' : 'white'" :right="!$vuetify.rtl" v-model="upload" clipped app mobile-breakpoint="960" :width="this.$vuetify.breakpoint.width >= 750 ? '400' :  '300'" >
 
             <!-- <v-dialog width="45rem" v-model="dialog"> -->
                 <v-card flat >
                     <v-card-title class="d-flex text-h5">
                     <span>Send File To FPGA</span>
                     <v-spacer></v-spacer>
-                    <v-btn elevation=0 icon @click="$emit('dialog',false)">
+                    <v-btn elevation=0 icon @click="$emit('upload',false)">
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
                     </v-card-title>
@@ -47,15 +47,16 @@ export default {
       biterr: false,
   }),
 
-//   computed: {
-//       dialog: {
-//           get() {
-//               return this.uploadDrawer
-//           },
-//           set(val) {
-//           }
-//       }
-//   },
+  computed: {
+      upload: {
+          get() {
+              return this.uploadDrawer
+          },
+          set(val) {
+              if (!val) this.$emit('upload', false);
+          }
+      }
+  },
 
   methods: {
       selectbit(file) {

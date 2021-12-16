@@ -5,7 +5,7 @@
 
 <template>
 <div>
-      <v-navigation-drawer disable-resize-watcher v-model="drawer" app :right="$vuetify.rtl" mobile-breakpoint="960" width="200" >
+      <v-navigation-drawer disable-resize-watcher v-model="menuDrawer" app :right="$vuetify.rtl" mobile-breakpoint="960" width="200" >
         <v-list dense>
       <v-list-item class="py-1 px-1" v-for="(icon, kind) in widget_list" :key="kind" @click="$emit('select', kind)">
           <v-list-item-icon class="mx-2">
@@ -61,6 +61,15 @@ export default {
 
   computed: {
     // list of available widgets for the menu
+    menuDrawer: {
+      get() {
+        return this.drawer
+      },
+      set(val) {
+        if (!val) this.$emit('drwr', false);
+      }
+    },
+
     widget_list() {
       // the map() below extracts the first line from the help for inclusion in the menu
       return Object.fromEntries(Object.keys(this.palette.widgets).sort().map(w =>
