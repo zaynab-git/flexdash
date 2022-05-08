@@ -89,7 +89,7 @@ export default class WebsockConnection {
   }
 
   onMessage(msg) {
-    //console.log("WS rx:", msg)
+    // console.log(JSON.parse(msg.data))
     let m
     try {
       m = JSON.parse(msg.data)

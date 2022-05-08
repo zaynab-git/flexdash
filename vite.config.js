@@ -5,7 +5,7 @@ import compress from 'vite-plugin-compress'
 import gen_start_js from './rollup-plugin-start-js.js'
 
 export default {
-  base: '/flexdash/',
+  base: '',
   plugins: [
     createVuePlugin(),
     ViteComponents({

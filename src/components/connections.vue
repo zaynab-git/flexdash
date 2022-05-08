@@ -123,7 +123,7 @@ export default {
     console.log("Connection: created")
     const conn = this.$config.conn
     this.$set(conn, 'demo', { enabled: false, config: false })
-    this.$set(conn, 'websocket', { enabled: true, config: false, address: "ws://localhost:1880/ws/flexdash" })
+    this.$set(conn, 'websocket', { enabled: true, config: false, address: "ws://localhost:8080/" })
     this.$set(conn, 'sockio', { enabled: false, config: false, hostname:"", path:"", tls:false })
 
     // instantiate all the connection objects (they all wait for a start() call)

@@ -73,13 +73,24 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
-          <v-card :style="{backgroundColor: ( this.$vuetify.theme.dark ? '#424242' : '#F5F5F5')}"
+          <v-card  :key=ind :style="{backgroundColor: ( $vuetify.theme.dark ? '#424242' : '#F5F5F5')}"
            flat class="mx-3 mb-0 mt-3 rounded-lg">
               <v-card-title class="ma-0 pb-0 px-4">
-                What Is {{widget.kind}} ?
+                What is {{ widget.kind }} ?
+              </v-card-title>
+              <v-card-text class="d-inline mx-3 black--text">
+                <h3 class="px-4 ma-0">{{ widget_help.what }}</h3>
+              </v-card-text>
+          </v-card>
+          <v-card :style="{backgroundColor: ( $vuetify.theme.dark ? '#424242' : '#F5F5F5')}"
+           flat class="mx-3 mb-0 mt-3 rounded-lg">
+              <v-card-title class="ma-0 pb-0 px-4">
+                Pins
               </v-card-title>
               <v-card-text class="d-inline mx-3">
-                <h3 class="px-4 ma-0">{{child_help_text}}</h3>
+                <ul class="px-8 black--text">
+                  <li v-for="(p,ind) in widget_help.pins" :key=ind ><span class="body-1">{{ind}}</span> : {{ p }} </li>
+                </ul>
               </v-card-text>
           </v-card>
     </v-card>
@@ -407,6 +418,16 @@ export default {
     //   filtered = filtered.filter(p => !p.endsWith('_color'))
     //   return filtered
     // },
+    widget_help() {
+      const p = this.palette.widgets
+      let help = p[this.widget.kind].help
+      return (this.$i18n.locale == 'fa' ? help.fa : help.en)
+    },
+    // widget_help_pins() {
+    //   const p = this.palette.widgets
+    //   let help = p[this.widget.kind].help
+    //   return help.pin
+    // },
     active_edit: {
       get() {
         return this.edit_active
@@ -449,10 +470,9 @@ export default {
     edit_active(val) {
       if (val) {
         this.propStatic()
-        // this.sd_keys = Object.keys(this.$store.sd)
-        this.sd_keys = [1,2,3,4,5,6,7,8,9]
+        this.sd_keys = Object.keys(this.$store.sd)
+        //this.sd_keys = [1,2,3,4,5,6,7,8,9]
       }
-      console.log('in')
     },
   },
 

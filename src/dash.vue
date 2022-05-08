@@ -178,7 +178,7 @@
                   class="py-8 mx-1"
                 >
                 <div class="d-flex flex-column ">
-                  <v-icon>{{ (webcam ? 'mdi-video' : 'mdi-video-off')}}</v-icon>
+                  <v-icon>{{ (webcam ? 'mdi-video-off' : 'mdi-video')}}</v-icon>
                   <span class="mt-2 text-caption">{{$t('toolbar.webcam')}}</span>
           </div>
                 </v-btn>
@@ -217,7 +217,7 @@
           </v-list-item>
           <v-list-item @click="webcam = !webcam">
             <v-list-item-icon>
-              <v-icon >{{ (webcam ? 'mdi-video' : 'mdi-video-off')}}</v-icon>
+              <v-icon >{{ (webcam ? 'mdi-video-off' : 'mdi-video')}}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{$t('toolbar.webcam')}}</v-list-item-title>

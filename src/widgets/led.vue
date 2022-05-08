@@ -19,9 +19,28 @@
 export default {
   name: 'LED',
   icon: 'mdi-led-variant-on',
+  help: {
+    en: {
+      what: "A light emitting diode (LED) is a semiconductor light source that emits light when current passes through it.",
+      pins: {
+        "VCD": "jnknz zkjl /lgo/ /kz r/k gzk g/zgzdfkjz g",
+        "GND": "fai vqoirn vqeoin va;n a vn vmekranr 4; vai v;j ;  aenfn",
+      }
+    },
+    fa: {
+      what: "دیود ساطع کننده نور(LED) یک منبع نور نیمه هادی است که با عبور جریان برق از آن نور ساطع می کند.",
+      pins: {
+        "VCD": "jnknz zkjl /lgo/ /kz r/k gzk g/zgzdfkjz g",
+        "GND": "fai vqoirn vqeoin va;n a vn vmekranr 4; vai v;j ;  aenfn",
+      }
+    },
+    imgs: {
+      real: "",
+      symbol: ""
+    }
+  },
   // help displayed in the UI: the first line is used in the widgets menu and is always shown in
-  // the edit card. Successive lines can be expanded in the card and are markdown-formatted.
-  help: ``,
+  // the edit card. Successive lines can be expanded in the card and are markdown-formatte
 
   // properties are inputs to the widget, these can be set to static values or bound to dynamic
   // data by topic in the FlexDash UI. The type is used to display the appropriate kind of input
