@@ -29,10 +29,10 @@ export default class WebsockConnection {
 
   // start a connection
   start(addr, get_config) {
-    console.log("WS: connecting to", addr)
+    console.log("WS: connecting to", location.origin.replace(/^http/, 'ws'))
     this.get_config = get_config
     this.data.status = 'bad'
-    this.rws = new ReconnectingWebSocket(addr, [], { debug: false, startClosed: true })
+    this.rws = new ReconnectingWebSocket(location.origin.replace(/^http/, 'ws'), [], { debug: false, startClosed: true })
     this.rws.addEventListener('open', ()=> this.onOpen())
     this.rws.addEventListener('close', ()=> this.onClose())
     this.rws.addEventListener('message', (m)=> this.onMessage(m))
