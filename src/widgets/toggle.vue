@@ -27,8 +27,8 @@ export default {
   data() { return {
     val: 0,  // current value being displayed, separate from this.value to avoid mutating prop
     show_value: true,
-    off_value: 'OFF',
-    on_value: 'ON',
+    off_value: 0,
+    on_value: 1,
     enabled: true,
   }},
 

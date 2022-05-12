@@ -55,7 +55,7 @@ export default {
 
   computed: {
     state() {
-      if (this.$props['pin GND'] == 'OFF' && this.$props['pin VDC'] == 'ON') {
+      if (this.$props['pin GND'] == 0 && this.$props['pin VDC'] == 1) {
         return true;
       }
       return false
